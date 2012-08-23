@@ -27,7 +27,7 @@
 ;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 ;;; custom-flleもDropboxにする
-;;(load (format "%s/custom.el" my-elisp-dir))
+(load (format "%s/custom.el" my-elisp-dir))
 
 ;;; snippetsの保存ディレクトリ
 (setq yas-snippet-dirs
@@ -123,5 +123,6 @@
 ;;;-----------------------------------------------------------------
 ;;; vim化
 ;;;-----------------------------------------------------------------
-(require 'mikio-evil)
+;;(require 'mikio-evil)
+
 

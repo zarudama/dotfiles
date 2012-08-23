@@ -1,6 +1,7 @@
 .certs/
-el-get/
-package/
-auto-install/
 .w3m/
+el-get/
+auto-install/
+package/
+
 twittering-mode.gpg

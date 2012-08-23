@@ -1,0 +1,3 @@
+(setq my-elisp-dir (expand-file-name "~/Dropbox/dotfiles/emacs"))
+(setq my-site-lisp-dir (expand-file-name "~/Dropbox/site-lisp"))
+(load (expand-file-name "init.el" my-elisp-dir))

@@ -1,0 +1,16 @@
+include "linux109.mayu"
+
+keymap Global
+
+#mod control += Muhenkan
+#key *Muhenkan = *LControl
+
+mod Control += Henkan
+key *Henkan = *LeftControl
+
+mod Shift += Muhenkan
+key *Muhenkan = *LShift
+
+key *Hiragana = Enter
+
+

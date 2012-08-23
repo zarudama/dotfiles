@@ -1,0 +1,61 @@
+#! /bin/sh
+
+DAEMON=/usr/local/bin/mayu
+NAME=mayu
+USER=anekos
+DESC="Mayu at $USER"
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/mayu
+
+do_start()
+{
+	echo -n "Starting $DESC: "
+	if start-stop-daemon --stop --quiet --pidfile $PIDFILE \
+			--signal 0
+	then
+		echo "already running."
+		exit
+	fi
+	env HOME=/home/$USER \
+	start-stop-daemon --user $USER --start --quiet --background \
+					  --make-pidfile --pidfile $PIDFILE \
+					  --exec $DAEMON
+	echo "$NAME was started"
+}
+
+do_loadtest()
+{
+	env HOME=/home/$USER \
+	start-stop-daemon --user $USER --start --quiet --exec $DAEMON
+	echo "$NAME was started"
+}
+
+do_stop()
+{
+	echo "Stopping daemon: $NAME"
+	start-stop-daemon --stop --pidfile $PIDFILE
+	rm -f $PIDFILE
+}
+
+
+case "$1" in
+	start)
+		do_start
+	;;
+	stop)
+		do_stop
+	;;
+	restart)
+		do_stop
+		do_start
+	;;
+	loadtest)
+		do_loadtest
+	;;
+	*)
+		echo "Usage: $0 (start|stop|restart)"
+	;;
+esac
+# vim: set ts=4 sw=4 :
+
+

@@ -1,0 +1,13 @@
+! keycode key_symbol
+! 102 Muhenkan
+! 100 Henkan_mode
+! 101 Katakana_Hiragana
+! 50 Shift_L
+! 105 Control_R
+! 36 Return
+
+keycode 102 = Shift_L
+keycode 101 = Return
+
+keycode 100 = Control_L
+add Control = Control_L

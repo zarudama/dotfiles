@@ -4,7 +4,7 @@
 (setq el-get-dir (format "%s/el-get" my-elisp-dir))
 
 ;; インストール後のロードパスの用意(el-get自身用)
-(mikio/add-to-load-path "el-get/el-get")
+(add-to-list 'load-path (mikio/elisp-home "el-get/el-get"))
 
 ;;; el-getでインストールしたelisp拡張は、my-elisp-dir/el-get/に保存される。
 ;;; my-elisp-dir/el-get/el-getではない。

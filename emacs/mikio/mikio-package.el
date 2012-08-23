@@ -1,24 +1,6 @@
-(require '_util)
+(require 'mikio-util)
 
-(require 'auto-async-byte-compile)
-(require 'auto-install)
 (require 'package)
-
-;;-----------------------------------------------------------------
-;; 自動インストーラー
-;;-----------------------------------------------------------------
-
-;; for auto-install
-;; cd .emacs.d
-;; mkdir auto-install
-;; cd auto-install
-;; wget http://www.emacswiki.org/emacs/download/auto-install.el
-;; emacs --batch -Q -f batch-byte-compile auto-install.el
-;; (setq auto-install-directory (format "%s/elisp" my-elisp-dir))
-(setq auto-install-directory (mikio/elisp-home  "elisp/")) ;; 末尾に"/"を忘れないこと
-(auto-install-update-emacswiki-package-name t)
-(auto-install-compatibility-setup)
-
 ;;-----------------------------------------------------------------
 ;; package.el(emacs24からは標準)
 ;;   参考
@@ -38,8 +20,9 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ;;インストールするディレクトリを指定
-(setq package-user-dir (mikio/elisp-home  "elisp/"))
+(setq package-user-dir (mikio/elisp-home  "package/"))
 
 ;;インストールしたパッケージにロードパスを通してロードする
 (package-initialize)
 
+(provide 'mikio-package)

@@ -4,7 +4,6 @@
 (require 'skk)
 ;;(require 'skk-autoloads)
 (require 'skk-study);; 変換の学習
-(require 'ac-ja)
 
 ;;-----------------------------------------------------------------
 ;; ddskk
@@ -252,36 +251,37 @@ skk-rom-kana-rule-list))
 	   nil
 	   (cons (substring s n (1+ n)) (substring s n (1+ n)))))))
 
-;;-----------------------------------------------------------------
-;; ac-ja
-;;-----------------------------------------------------------------
-;;補完候補としたい辞書ファイルの場所を指定します。
-;;(setq ac-skk-jisyo-file (expand-file-name "~/Dropbox/dict/skk/SKK-JISYO.L"))
-(setq ac-skk-jisyo-file (expand-file-name "~/Dropbox/dict/skk/SKK-JISYO.geo"))
+;; ;;-----------------------------------------------------------------
+;; ;; ac-ja
+;; ;;-----------------------------------------------------------------
+;; (require 'ac-ja)
+;; ;;補完候補としたい辞書ファイルの場所を指定します。
+;; ;;(setq ac-skk-jisyo-file (expand-file-name "~/Dropbox/dict/skk/SKK-JISYO.L"))
+;; (setq ac-skk-jisyo-file (expand-file-name "~/Dropbox/dict/skk/SKK-JISYO.geo"))
 
-;;補完候補生成に必要な中間ファイルを置く場所を指定します。
-(setq ac-skk-alist-file (expand-file-name "~/ac-skk-alist.el"))
+;; ;;補完候補生成に必要な中間ファイルを置く場所を指定します。
+;; (setq ac-skk-alist-file (expand-file-name "~/ac-skk-alist.el"))
 
 
-(setq ac-sources (append ac-sources '(ac-source-skk)))
+;; (setq ac-sources (append ac-sources '(ac-source-skk)))
 
-;; 自動補完の設定
-(eval-after-load "skk"
-  '(progn
-     (defadvice skk-kakutei (after ad-skk-kakutei last)
-       "skk-kakuteiの後にatuo-complete-modeによる補完を実行するadvice"
-       (unless (minibufferp)
-         (ac-start)))))
+;; ;; 自動補完の設定
+;; (eval-after-load "skk"
+;;   '(progn
+;;      (defadvice skk-kakutei (after ad-skk-kakutei last)
+;;        "skk-kakuteiの後にatuo-complete-modeによる補完を実行するadvice"
+;;        (unless (minibufferp)
+;;          (ac-start)))))
 
-(add-hook 'skk-mode-hook
-          (lambda ()
-            "skk-kakuteiのadviceを活性化"
-            (interactive)
-            (ad-activate 'skk-kakutei)))
+;; (add-hook 'skk-mode-hook
+;;           (lambda ()
+;;             "skk-kakuteiのadviceを活性化"
+;;             (interactive)
+;;             (ad-activate 'skk-kakutei)))
 
-(defadvice skk-mode-exit (before ad-skk-mode-exit last)
-       "skk-modeから抜ける時にskk-kakuteiのadviceを不活性化。"
-       (ad-deactivate 'skk-kakutei))
+;; (defadvice skk-mode-exit (before ad-skk-mode-exit last)
+;;        "skk-modeから抜ける時にskk-kakuteiのadviceを不活性化。"
+;;        (ad-deactivate 'skk-kakutei))
 
 
 (provide 'mikio-skk)

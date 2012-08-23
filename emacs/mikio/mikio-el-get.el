@@ -43,6 +43,10 @@
         (:name eldoc-extension
                :type emacswiki)
 
+        ;; diredバッファの抑制
+        (:name joseph-single-dired
+               :type emacswiki)
+
         ;; for mikio-eshell
         (:name shell-history
                :type emacswiki)
@@ -53,17 +57,18 @@
                :url "http://www.rubyist.net/~rubikitch/private/esh-cmdline-stack.el")
         
         ;;; 標準のレシピだとinfoのインストールでエラーになるので再定義した。
-        (:name slime
-               :description "Superior Lisp Interaction Mode for Emacs"
-               :type github
-               :features slime-autoloads
-               ;;:info "doc"
-               :pkgname "nablaone/slime"
-               :load-path ("." "contrib")
-               :compile (".")
-               ;;:build ("make -C doc slime.info")
-               :post-init (slime-setup)
-               )
+        ;;; => 最新だとclojureがうまく動かないので、package.elで入れる。
+        ;; (:name slime
+        ;;        :description "Superior Lisp Interaction Mode for Emacs"
+        ;;        :type github
+        ;;        :features slime-autoloads
+        ;;        ;;:info "doc"
+        ;;        :pkgname "nablaone/slime"
+        ;;        :load-path ("." "contrib")
+        ;;        :compile (".")
+        ;;        ;;:build ("make -C doc slime.info")
+        ;;        :post-init (slime-setup)
+        ;;        )
 
         (:name yasnippet-config
                :type emacswiki)
@@ -97,19 +102,23 @@
                )
 
         ;;; for skk auto-complete
-        (:name ac-ja
-               :type github
-               :pkgname "myuhe/ac-ja.el")
+        ;; (:name ac-ja
+        ;;        :type github
+        ;;        :pkgname "myuhe/ac-ja.el")
         ))
 
 ;;; append:第一引数のリストに残りの引数の各リストの各要素を追加していく。
 (setq mikio-packages 
       (append 
        '(
+         auto-install    ; emacswiki
+         package         ; http
+
          auto-complete   ; github
          anything        ; git(http)
          undo-tree       ; git(http)
          smartrep        ; github
+         popwin          ; github
 
          revive          ; http windows.elが依存(windows.elは、レシピを書いたほうがいいかも。
          windows         ; http
@@ -122,6 +131,7 @@
          js2-mode        ; github
          ruby-mode       ; elpa
          ac-slime        ; github
+         magit           ; github
 
          yasnippet       ; github
 

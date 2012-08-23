@@ -158,10 +158,10 @@
          )
         ))
 
-(custom-set-variables
- '(org-export-language-setup (quote (("ja" "作者" "日付" "目次" "脚注"))))
- '(org-export-with-toc t)
- )
+;; (custom-set-variables
+;;  '(org-export-language-setup (quote (("ja" "作者" "日付" "目次" "脚注"))))
+;;  '(org-export-with-toc t)
+;;  )
 
 ;; キーバインド
 ;; (eval-after-load "org"

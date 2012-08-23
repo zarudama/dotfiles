@@ -288,19 +288,6 @@
     (define-key eshell-mode-map "\C-c\C-z" 'eshell-new))
   (add-hook 'eshell-mode-hook 'eshell-mode-hook0))
 
-;;;;-----------------------------------------------------------------
-;;;; diredからeshell起動
-;;;;-----------------------------------------------------------------
-;;(defun dired-start-eshell (arg)
-;;  "diredで選択されたファイル名がペーストされた状態で、eshellを起動する。"
-;;  (interactive "P")
-;;  (let ((files (mapconcat 'shell-quote-argument
-;;                          (dired-get-marked-files (not arg))
-;;                          " ")))
-;;    (if (fboundp 'shell-pop) (shell-pop) (eshell t))
-;;    (save-excursion (insert " " files))))
-;;(define-key dired-mode-map [remap dired-do-shell-command] 'dired-start-eshell)
-
 ;;   (if (eq window-system 'w32)
 ;;       (progn
 ;;         (message "w32!")

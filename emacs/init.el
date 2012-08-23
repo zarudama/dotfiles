@@ -22,10 +22,6 @@
 (add-to-list 'load-path (format "%s/mikio/" my-elisp-dir))
 (require 'mikio-util)
 
-;;; 自動コンパイル
-;; (setq auto-async-byte-compile-exclude-files-regexp "~/tmp/")
-;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
-
 ;;; custom-flleもDropboxにする
 (load (format "%s/custom.el" my-elisp-dir))
 
@@ -43,19 +39,25 @@
 ;;;-----------------------------------------------------------------
 (require 'mikio-basic) ; 超基本設定
 (require 'mikio-font)
-(require 'mikio-color)
-(require 'mikio-dired)
+
+;;;-----------------------------------------------------------------
+;;; パッケージ管理システム
+;;;-----------------------------------------------------------------
+(require 'mikio-el-get)
+(require 'mikio-package)
+(require 'mikio-auto-install)
 
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち
 ;;;-----------------------------------------------------------------
-(require 'mikio-el-get)
 (require 'mikio-ext)
+(require 'mikio-dired)
 (require 'mikio-undo)
 (require 'mikio-windows)
 (require 'mikio-tabbar)
 (require 'mikio-anything)
 (require 'mikio-auto-complete)
+(require 'mikio-popwin)
 
 (require 'mikio-moccur)
 (require 'mikio-yasnippet)
@@ -65,6 +67,7 @@
 ;;;-----------------------------------------------------------------
 ;;; プログラミング支援
 ;;;-----------------------------------------------------------------
+(require 'mikio-magit)
 (require 'mikio-tags)
 (require 'mikio-slime)
 (require 'mikio-flymake)
@@ -102,7 +105,6 @@
 ;;;-----------------------------------------------------------------
 ;;; いつのまにか使わなくなった拡張たち
 ;;;-----------------------------------------------------------------
-;;(require 'mikio-package)
 ;;(require "mikio-newsticker")
 ;;(require "mikio-elscreen")
 ;;(require "mikio-mew")
@@ -119,6 +121,8 @@
 ;;(require 'mikio-bookmark)
 ;;(require 'mikio-minimum_win)
 ;;(require "mikio-final")
+;;(require "mikio-auto-compile")
+;;(require 'mikio-color) ; color-theme
 
 ;;;-----------------------------------------------------------------
 ;;; vim化

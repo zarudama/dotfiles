@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: begin_src
+# key: begin_src
+# --
+#+BEGIN_SRC ${1:sh}
+${2:$ ls -la}
+#+END_SRC

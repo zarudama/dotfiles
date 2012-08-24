@@ -140,4 +140,4 @@ value is 500. The recent 500 articles are always displayed at least.")
 ;; ;; my mail address
 ;; (setq bbdb-user-mail-names "ocha\\.awk@gmail\\.com")
 ;; (bbdb-initialize 'gnus 'message)
-(provide 'mikio-gnus)
+(provide 'mikio-gnus-gmail)

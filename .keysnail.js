@@ -5,6 +5,28 @@
 // ========================================================================= //
 //{{%PRESERVE%
 // ここにコードを入力して下さい
+plugins.options["tanything_opt.keymap"] = {
+    "C-z"   : "prompt-toggle-edit-mode",
+    "SPC"   : "prompt-next-page",
+    "b"     : "prompt-previous-page",
+    "j"     : "prompt-next-completion",
+    "k"     : "prompt-previous-completion",
+    "g"     : "prompt-beginning-of-candidates",
+    "G"     : "prompt-end-of-candidates",
+    "D"     : "prompt-cancel",
+    // Tanything specific actions
+    "O"     : "localOpen",
+    "q"     : "localClose",
+    "p"     : "localLeftclose",
+    "n"     : "localRightclose",
+    "a"     : "localAllclose",
+    "d"     : "localDomainclose",
+    "c"     : "localClipUT",
+    "C"     : "localClipU",
+    "e"     : "localMovetoend",
+    "p"     : "localTogglePin"
+};
+
 //}}%PRESERVE%
 // ========================================================================= //
 
@@ -48,6 +70,7 @@ hook.addToHook('KeyBoardQuit', function (aEvent) {
 });
 
 // ============================= Key bindings ============================== //
+
 
 key.setGlobalKey('C-M-r', function (ev) {
     userscript.reload();
@@ -93,11 +116,11 @@ key.setGlobalKey('M-w', function (ev) {
     command.copyRegion(ev);
 }, '選択中のテキストをコピー', true);
 
-key.setGlobalKey('C-s', function (ev) {
+key.setGlobalKey(['C-s'], function (ev) {
     command.iSearchForwardKs(ev);
 }, 'Emacs ライクなインクリメンタル検索', true);
 
-key.setGlobalKey('C-r', function (ev) {
+key.setGlobalKey(['C-r'], function (ev) {
     command.iSearchBackwardKs(ev);
 }, 'Emacs ライクな逆方向インクリメンタル検索', true);
 
@@ -117,13 +140,13 @@ key.setGlobalKey(["C-x", "n"], function (ev) {
     OpenBrowserWindow();
 }, 'ウィンドウを開く', false);
 
-key.setGlobalKey('C-M-l', function (ev) {
-    getBrowser().mTabContainer.advanceSelectedTab(1, true);
-}, 'ひとつ右のタブへ', false);
+// key.setGlobalKey('C-M-l', function (ev) {
+//     getBrowser().mTabContainer.advanceSelectedTab(1, true);
+// }, 'ひとつ右のタブへ', false);
 
-key.setGlobalKey('C-M-h', function (ev) {
-    getBrowser().mTabContainer.advanceSelectedTab(-1, true);
-}, 'ひとつ左のタブへ', false);
+// key.setGlobalKey('C-M-h', function (ev) {
+//     getBrowser().mTabContainer.advanceSelectedTab(-1, true);
+// }, 'ひとつ左のタブへ', false);
 
 key.setGlobalKey(["C-x", "C-c"], function (ev) {
     goQuitApplication();
@@ -152,6 +175,10 @@ key.setGlobalKey(["C-c", "C-c", "C-v"], function (ev) {
 key.setGlobalKey(["C-c", "C-c", "C-c"], function (ev) {
     command.clearConsole();
 }, 'Javascript コンソールの表示をクリア', true);
+
+//////////////////////////////////////////
+// edit-mode
+//////////////////////////////////////////
 
 key.setEditKey(["C-x", "h"], function (ev) {
     command.selectAll(ev);
@@ -235,9 +262,10 @@ key.setEditKey('M-d', function (ev) {
     command.deleteForwardWord(ev);
 }, '次の一単語を削除', false);
 
-key.setEditKey([["C-<backspace>"], ["M-<delete>"]], function (ev) {
-    command.deleteBackwardWord(ev);
-}, '前の一単語を削除', false);
+// mikio
+// key.setEditKey([["C-<backspace>"], ["M-<delete>"]], function (ev) {
+//     command.deleteBackwardWord(ev);
+// }, '前の一単語を削除', false);
 
 key.setEditKey('M-u', function (ev, arg) {
     command.wordCommand(ev, arg, command.upcaseForwardWord, command.upcaseBackwardWord);
@@ -302,131 +330,197 @@ key.setEditKey('M-p', function (ev) {
     command.walkInputElement(command.elementsRetrieverTextarea, false, true);
 }, '前のテキストエリアへフォーカス', false);
 
-key.setViewKey([["C-n"], ["j"]], function (ev) {
+//////////////////////////////////////////
+// view-mode
+//////////////////////////////////////////
+key.setViewKey('j', function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_DOWN, true);
 }, '一行スクロールダウン', false);
 
-key.setViewKey([["C-p"], ["k"]], function (ev) {
+key.setViewKey('k', function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_UP, true);
 }, '一行スクロールアップ', false);
 
-key.setViewKey([["C-f"], ["."]], function (ev) {
-    key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_RIGHT, true);
-}, '右へスクロール', false);
-
-key.setViewKey([["C-b"], [","]], function (ev) {
+key.setViewKey([['h'],['C-h']], function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_LEFT, true);
 }, '左へスクロール', false);
 
-key.setViewKey([["M-v"], ["b"]], function (ev) {
+key.setViewKey('l', function (ev) {
+    key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_RIGHT, true);
+}, '右へスクロール', false);
+
+key.setViewKey('C-b', function (ev) {
     goDoCommand("cmd_scrollPageUp");
 }, '一画面分スクロールアップ', false);
 
-key.setViewKey('C-v', function (ev) {
+key.setViewKey('C-f', function (ev) {
     goDoCommand("cmd_scrollPageDown");
 }, '一画面スクロールダウン', false);
 
-key.setViewKey([["M-<"], ["g"]], function (ev) {
+key.setViewKey(["g", "g"], function (ev) {
     goDoCommand("cmd_scrollTop");
 }, 'ページ先頭へ移動', true);
 
-key.setViewKey([["M->"], ["G"]], function (ev) {
+key.setViewKey('G', function (ev) {
     goDoCommand("cmd_scrollBottom");
 }, 'ページ末尾へ移動', true);
 
-key.setViewKey('l', function (ev) {
-    getBrowser().mTabContainer.advanceSelectedTab(1, true);
-}, 'ひとつ右のタブへ', false);
+// key.setViewKey(':', function (ev, arg) {
+//     shell.input(null, arg);
+// }, 'コマンドの実行', true);
 
-key.setViewKey('h', function (ev) {
-    getBrowser().mTabContainer.advanceSelectedTab(-1, true);
-}, 'ひとつ左のタブへ', false);
-
-key.setViewKey(':', function (ev, arg) {
-    shell.input(null, arg);
-}, 'コマンドの実行', true);
-
-key.setViewKey('R', function (ev) {
+key.setViewKey('r', function (ev) {
     BrowserReload();
 }, '更新', true);
 
-key.setViewKey('B', function (ev) {
+key.setViewKey('H', function (ev) {
     BrowserBack();
 }, '戻る', false);
 
-key.setViewKey('F', function (ev) {
+key.setViewKey('L', function (ev) {
     BrowserForward();
 }, '進む', false);
 
-key.setViewKey(["C-x", "h"], function (ev) {
-    goDoCommand("cmd_selectAll");
-}, 'すべて選択', true);
+key.setViewKey('f', function (ev, arg) {
+    ext.exec("hok-start-foreground-mode", arg);
+}, 'Start foreground hint mode', true);
 
-key.setViewKey('f', function (ev) {
-    command.focusElement(command.elementsRetrieverTextarea, 0);
-}, '最初のインプットエリアへフォーカス', true);
+key.setViewKey('F', function (ev, arg) {
+    ext.exec("hok-start-background-mode", arg);
+}, 'Start background hint mode', true);
 
-key.setViewKey('M-p', function (ev) {
-    command.walkInputElement(command.elementsRetrieverButton, true, true);
-}, '次のボタンへフォーカスを当てる', false);
+key.setViewKey(';', function (ev, arg) {
+    ext.exec("hok-start-extended-mode", arg);
+}, 'Start extended hint mode', true);
 
-key.setViewKey('M-n', function (ev) {
-    command.walkInputElement(command.elementsRetrieverButton, false, true);
-}, '前のボタンへフォーカスを当てる', false);
+key.setViewKey([["g", "t"], ["C-M-n"],["C-n"]], function (ev) {
+    getBrowser().mTabContainer.advanceSelectedTab(1, true);
+}, 'ひとつ右のタブへ', false);
 
-key.setCaretKey([["C-a"], ["^"]], function (ev) {
+key.setViewKey([["g", "T"], ["C-M-p"],["C-p"]], function (ev) {
+    getBrowser().mTabContainer.advanceSelectedTab(-1, true);
+}, 'ひとつ左のタブへ', false);
+
+key.setViewKey(["g", "u"], function (ev) {
+    var uri = getBrowser().currentURI;
+    if (uri.path == "/") {
+        return;
+    }
+    var pathList = uri.path.split("/");
+    if (!pathList.pop()) {
+        pathList.pop();
+    }
+    loadURI(uri.prePath + pathList.join("/") + "/");
+}, '一つ上のディレクトリへ移動', false);
+
+key.setViewKey(["g", "U"], function (ev) {
+    var uri = window._content.location.href;
+    if (uri == null) {
+        return;
+    }
+    var root = uri.match(/^[a-z]+:\/\/[^/]+\//);
+    if (root) {
+        loadURI(root, null, null);
+    }
+}, 'ルートディレクトリへ移動', false);
+
+key.setViewKey('d', function (ev) {
+    BrowserCloseTabOrWindow();
+}, 'タブ / ウィンドウを閉じる', false);
+
+key.setViewKey('u', function (ev) {
+    undoCloseTab();
+}, '閉じたタブを元に戻す', false);
+
+key.setViewKey('i', function (ev, arg) {
+    util.setBoolPref("accessibility.browsewithcaret", !util.getBoolPref("accessibility.browsewithcaret"));
+}, 'Toggle caret mode', true);
+
+key.setViewKey('t', function (ev, arg) {
+    shell.input("tabopen ");
+}, 'Tab open', true);
+
+key.setViewKey('T', function (ev, arg) {
+    shell.input("tabopen! ");
+}, 'Tab open', true);
+
+key.setViewKey('o', function (ev, arg) {
+    shell.input("open ");
+}, 'Open', true);
+
+key.setViewKey('O', function (ev, arg) {
+    shell.input("open! ");
+}, 'Open', true);
+
+key.setViewKey('y', function (ev, arg) {
+    command.setClipboardText(content.document.location.href);
+    display.echoStatusBar("Yanked " + content.document.location.href);
+}, 'Yank current page address', true);
+
+key.setViewKey('p', function (ev, arg) {
+    var url = command.getClipboardText();
+    if (url.match(/\s/) || url.indexOf("://") === -1) {
+        url = "http://www.google.com/search?q=" + encodeURIComponent(url) + "&ie=utf-8&oe=utf-8&aq=t";
+    }
+    gBrowser.loadOneTab(url, null, null, null, false);
+}, 'Open yanked address or google it', true);
+
+//////////////////////////////////////////
+// Caret-mode
+//////////////////////////////////////////
+key.setCaretKey([['^'],['0']], function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectBeginLine") : goDoCommand("cmd_beginLine");
 }, 'キャレットを行頭へ移動', false);
 
-key.setCaretKey([["C-e"], ["$"]], function (ev) {
+key.setCaretKey('$', function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectEndLine") : goDoCommand("cmd_endLine");
 }, 'キャレットを行末へ移動', false);
 
-key.setCaretKey([["C-n"], ["j"]], function (ev) {
-    ev.target.ksMarked ? goDoCommand("cmd_selectLineNext") : goDoCommand("cmd_scrollLineDown");
+key.setCaretKey('j', function (ev) {
+    ev.target.ksMarked ? goDoCommand("cmd_selectLineNext") : command.nextLine(ev);;
 }, 'キャレットを一行下へ', false);
 
-key.setCaretKey([["C-p"], ["k"]], function (ev) {
-    ev.target.ksMarked ? goDoCommand("cmd_selectLinePrevious") : goDoCommand("cmd_scrollLineUp");
+key.setCaretKey('k', function (ev) {
+    ev.target.ksMarked ? goDoCommand("cmd_selectLinePrevious") : command.previousLine(ev);
 }, 'キャレットを一行上へ', false);
 
-key.setCaretKey([["C-f"], ["l"]], function (ev) {
-    ev.target.ksMarked ? goDoCommand("cmd_selectCharNext") : goDoCommand("cmd_scrollRight");
+key.setCaretKey('l', function (ev) {
+    ev.target.ksMarked ? goDoCommand("cmd_selectCharNext") : command.nextChar(ev);
 }, 'キャレットを一文字右へ移動', false);
 
-key.setCaretKey([["C-b"], ["h"], ["C-h"]], function (ev) {
-    ev.target.ksMarked ? goDoCommand("cmd_selectCharPrevious") : goDoCommand("cmd_scrollLeft");
+key.setCaretKey([['h'],['C-h']], function (ev) {
+    ev.target.ksMarked ? goDoCommand("cmd_selectCharPrevious") : command.previousChar(ev);
 }, 'キャレットを一文字左へ移動', false);
 
-key.setCaretKey([["M-f"], ["w"]], function (ev) {
+key.setCaretKey('w', function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectWordNext") : goDoCommand("cmd_wordNext");
 }, 'キャレットを一単語右へ移動', false);
 
-key.setCaretKey([["M-b"], ["W"]], function (ev) {
+key.setCaretKey('b', function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectWordPrevious") : goDoCommand("cmd_wordPrevious");
 }, 'キャレットを一単語左へ移動', false);
 
-key.setCaretKey([["C-v"], ["SPC"]], function (ev) {
-    ev.target.ksMarked ? goDoCommand("cmd_selectPageNext") : goDoCommand("cmd_movePageDown");
+key.setCaretKey('C-f', function (ev) {
+     ev.target.ksMarked ? goDoCommand("cmd_selectPageNext") : goDoCommand("cmd_movePageDown");
 }, 'キャレットを一画面分下へ', false);
 
-key.setCaretKey([["M-v"], ["b"]], function (ev) {
+key.setCaretKey('C-b', function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectPagePrevious") : goDoCommand("cmd_movePageUp");
 }, 'キャレットを一画面分上へ', false);
 
-key.setCaretKey([["M-<"], ["g"]], function (ev) {
+key.setCaretKey(["g", "g"], function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectTop") : goDoCommand("cmd_scrollTop");
 }, 'キャレットをページ先頭へ移動', false);
 
-key.setCaretKey([["M->"], ["G"]], function (ev) {
-    ev.target.ksMarked ? goDoCommand("cmd_selectEndLine") : goDoCommand("cmd_endLine");
-}, 'キャレットを行末へ移動', false);
+key.setCaretKey('G', function (ev) {
+    goDoCommand("cmd_scrollBottom");
+}, 'ページ末尾へ移動', true);
 
-key.setCaretKey('J', function (ev) {
+key.setCaretKey('C-d', function (ev) {
     util.getSelectionController().scrollLine(true);
 }, '画面を一行分下へスクロール', false);
 
-key.setCaretKey('K', function (ev) {
+key.setCaretKey('C-u', function (ev) {
     util.getSelectionController().scrollLine(false);
 }, '画面を一行分上へスクロール', false);
 
@@ -440,43 +534,194 @@ key.setCaretKey('.', function (ev) {
     util.getSelectionController().scrollHorizontal(false);
 }, '右へスクロール', false);
 
-key.setCaretKey('z', function (ev) {
-    command.recenter(ev);
-}, 'キャレットの位置までスクロール', false);
-
-key.setCaretKey([["C-SPC"], ["C-@"]], function (ev) {
-    command.setMark(ev);
-}, 'マークをセット', true);
-
-key.setCaretKey(':', function (ev, arg) {
-    shell.input(null, arg);
-}, 'コマンドの実行', true);
-
-key.setCaretKey('R', function (ev) {
+key.setCaretKey('r', function (ev) {
     BrowserReload();
 }, '更新', true);
 
-key.setCaretKey('B', function (ev) {
+key.setCaretKey('H', function (ev) {
     BrowserBack();
 }, '戻る', false);
 
-key.setCaretKey('F', function (ev) {
+key.setCaretKey('L', function (ev) {
     BrowserForward();
 }, '進む', false);
 
-key.setCaretKey(["C-x", "h"], function (ev) {
-    goDoCommand("cmd_selectAll");
-}, 'すべて選択', true);
+key.setCaretKey('f', function (ev, arg) {
+    ext.exec("hok-start-foreground-mode", arg);
+}, 'Start foreground hint mode', true);
 
-key.setCaretKey('f', function (ev) {
-    command.focusElement(command.elementsRetrieverTextarea, 0);
-}, '最初のインプットエリアへフォーカス', true);
+key.setCaretKey('F', function (ev, arg) {
+    ext.exec("hok-start-background-mode", arg);
+}, 'Start background hint mode', true);
 
-key.setCaretKey('M-p', function (ev) {
-    command.walkInputElement(command.elementsRetrieverButton, true, true);
-}, '次のボタンへフォーカスを当てる', false);
+key.setCaretKey(';', function (ev, arg) {
+    ext.exec("hok-start-extended-mode", arg);
+}, 'Start extended hint mode', true);
 
-key.setCaretKey('M-n', function (ev) {
-    command.walkInputElement(command.elementsRetrieverButton, false, true);
-}, '前のボタンへフォーカスを当てる', false);
+key.setCaretKey([["g", "t"]], function (ev) {
+    getBrowser().mTabContainer.advanceSelectedTab(1, true);
+}, 'ひとつ右のタブへ', false);
+
+key.setCaretKey([["g", "T"]], function (ev) {
+    getBrowser().mTabContainer.advanceSelectedTab(-1, true);
+}, 'ひとつ左のタブへ', false);
+
+key.setCaretKey(["g", "u"], function (ev) {
+    var uri = getBrowser().currentURI;
+    if (uri.path == "/") {
+        return;
+    }
+    var pathList = uri.path.split("/");
+    if (!pathList.pop()) {
+        pathList.pop();
+    }
+    loadURI(uri.prePath + pathList.join("/") + "/");
+}, '一つ上のディレクトリへ移動', false);
+
+key.setCaretKey(["g", "U"], function (ev) {
+    var uri = window._content.location.href;
+    if (uri == null) {
+        return;
+    }
+    var root = uri.match(/^[a-z]+:\/\/[^/]+\//);
+    if (root) {
+        loadURI(root, null, null);
+    }
+}, 'ルートディレクトリへ移動', false);
+
+key.setCaretKey('d', function (ev) {
+    BrowserCloseTabOrWindow();
+}, 'タブ / ウィンドウを閉じる', false);
+
+key.setCaretKey('u', function (ev) {
+    undoCloseTab();
+}, '閉じたタブを元に戻す', false);
+
+key.setCaretKey('i', function (ev, arg) {
+    util.setBoolPref("accessibility.browsewithcaret", !util.getBoolPref("accessibility.browsewithcaret"));
+}, 'Toggle caret mode', true);
+
+key.setCaretKey('t', function (ev, arg) {
+    shell.input("tabopen ");
+}, 'Tab open', true);
+
+key.setCaretKey('T', function (ev, arg) {
+    shell.input("tabopen! ");
+}, 'Tab open', true);
+
+key.setCaretKey('o', function (ev, arg) {
+    shell.input("open ");
+}, 'Open', true);
+
+key.setCaretKey('O', function (ev, arg) {
+    shell.input("open! ");
+}, 'Open', true);
+
+key.setCaretKey('y', function (ev, arg) {
+    command.setMark(ev);
+}, 'マークをセット', true);
+
+key.setCaretKey('p', function (ev, arg) {
+    var url = command.getClipboardText();
+    if (url.match(/\s/) || url.indexOf("://") === -1) {
+        url = "http://www.google.com/search?q=" + encodeURIComponent(url) + "&ie=utf-8&oe=utf-8&aq=t";
+    }
+    gBrowser.loadOneTab(url, null, null, null, false);
+}, 'Open yanked address or google it', true);
+
+//////////////////////////////////////////
+// mikio
+//////////////////////////////////////////
+// Caret Hint
+// key.setCaretKey('s', function (ev, arg) {
+//     ext.exec("swap-caret", arg, ev);
+// }, 'キャレットを交換', true);
+
+// key.setViewKey('c', function (ev, arg) {
+//     nsPreferences.setBoolPref("accessibility.browsewithcaret", true);
+// }, 'キャレットモード', true);
+
+key.setCaretKey('ESC', function (ev, arg) {
+    nsPreferences.setBoolPref("accessibility.browsewithcaret", false);
+}, 'キャレットモードを抜ける', true);
+
+// Hatebnail
+key.setGlobalKey(["C-x", "a", "b"], function (ev, arg) {
+    ext.exec("list-hateb-items", arg);
+}, "はてなブックマークのアイテムを一覧表示", true);
+
+// key.setViewKey("c", function (ev, arg) {
+//     ext.exec("list-hateb-comments", arg);
+// }, "はてなブックマークのコメントを一覧表示", true);
+
+// key.setViewKey('a', function (ev, arg) {
+//     ext.exec("hateb-bookmark-this-page");
+// }, 'このページをはてなブックマークに追加', true);
+
+
+// // ----------------------------------
+// // site local keymap
+// // ----------------------------------
+// key.setGlobalKey("C-;", function (ev, arg) {
+//     ext.exec("site-local-keymap-toggle-status", arg, ev);
+// }, 'Site local keymap', true);
+
+// ----------------------------------
+// tanything
+// ----------------------------------
+key.setViewKey("a", function (ev, arg) {
+                   ext.exec("tanything", arg);
+               }, "タブを一覧表示", true);
+
+
+// // ----------------------------------
+// // Hok
+// // ----------------------------------
+// key.setViewKey('f', function (aEvent, aArg) {
+//     ext.exec("hok-start-foreground-mode", aArg);
+// }, 'Hit a Hint を開始', true);
+
+// key.setViewKey('F', function (aEvent, aArg) {
+//     ext.exec("hok-start-background-mode", aArg);
+// }, 'リンクをバックグラウンドで開く Hit a Hint を開始', true);
+
+// key.setViewKey(';', function (aEvent, aArg) {
+//     ext.exec("hok-start-extended-mode", aArg);
+// }, 'HoK - 拡張ヒントモード', true);
+
+key.setViewKey(['C-c', 'C-e'], function (aEvent, aArg) {
+     ext.exec("hok-start-continuous-mode", aArg);
+}, 'リンクを連続して開く Hit a Hint を開始', true);
+
+// // ----------------------------------
+// // tab
+// // ----------------------------------
+// key.setViewKey('C-k', function (ev) {
+//     BrowserCloseTabOrWindow();
+// }, 'タブ / ウィンドウを閉じる');
+
+// key.setViewKey('C-l', function (ev) {
+//     getBrowser().mTabContainer.advanceSelectedTab(1, true);
+// }, 'ひとつ右のタブへ', false);
+
+// key.setViewKey('C-h', function (ev) {
+//     getBrowser().mTabContainer.advanceSelectedTab(-1, true);
+// }, 'ひとつ左のタブへ', false);
+
+// ----------------------------------
+// my edit key
+// ----------------------------------
+key.setEditKey('C-/', function (ev) {
+    display.echoStatusBar("Undo!", 2000);
+    goDoCommand("cmd_undo");
+}, 'アンドゥ');
+
+key.setEditKey('C-M-/', function (ev) {
+    display.echoStatusBar("Redo!", 2000);
+    goDoCommand("cmd_redo");
+}, 'リドゥ');
+
+key.setEditKey('C-M-h', function (ev) {
+    command.deleteBackwardWord(ev);
+}, '前の一単語を削除', false);
 

@@ -116,7 +116,7 @@
 ;;(require 'mikio-ibuffer)
 ;;(require 'mikio-popwin)
 ;;(require "mikio-smartrep")
-;;(require "mikio-shell")
+(require 'mikio-shell)
 ;;(require "mikio-keybind")
 ;;(require 'mikio-bookmark)
 ;;(require 'mikio-minimum_win)

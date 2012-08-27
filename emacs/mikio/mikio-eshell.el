@@ -285,7 +285,10 @@
     (delete-other-windows)
     )
   (defun eshell-mode-hook0 ()
-    (define-key eshell-mode-map "\C-c\C-z" 'eshell-new))
+    (progn
+      (define-key eshell-mode-map "\C-c\C-z" 'eshell-new)
+      (define-key eshell-mode-map "\C-t" 'switch-to-last-buffer-or-other-window)
+      ))
   (add-hook 'eshell-mode-hook 'eshell-mode-hook0))
 
 ;;   (if (eq window-system 'w32)

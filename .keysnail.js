@@ -234,6 +234,14 @@ key.setEditKey('C-p', function (ev) {
     command.previousLine(ev);
 }, '一行上へ', false);
 
+key.setEditKey([["g", "t"], ["C-M-n"]], function (ev) {
+    getBrowser().mTabContainer.advanceSelectedTab(1, true);
+}, 'ひとつ右のタブへ', false);
+
+key.setEditKey([["g", "T"], ["C-M-p"]], function (ev) {
+    getBrowser().mTabContainer.advanceSelectedTab(-1, true);
+}, 'ひとつ左のタブへ', false);
+
 key.setEditKey('C-v', function (ev) {
     command.pageDown(ev);
 }, '一画面分下へ', false);

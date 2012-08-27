@@ -2,54 +2,51 @@
 
 (require 'evil)
 (require 'paredit)
+(require 'tabbar)
 (evil-mode 1)
 
-(define-key global-map (kbd "C-g") 'evil-force-normal-state)
-(setq evil-default-state 'normal)
+;;(define-key global-map (kbd "C-g") 'evil-force-normal-state)
 
-;; メジャーモード毎にevilの初期状態を設定する。
-(evil-set-initial-state 'eshell-mode 'emacs)
-(evil-set-initial-state 'dired-mode 'emacs)
-;;(evil-set-initial-state 'ibuffer-mode 'emacs)
-(evil-set-initial-state 'Buffer-menu-mode 'emacs)
-(evil-set-initial-state 'undo-tree-mode 'emacs)
-(evil-set-initial-state 'info-mode 'emacs)
-(evil-set-initial-state 'twittering-mode 'emacs)
-(evil-set-initial-state 'w3m-mode 'emacs)
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+;; (setq evil-default-state 'normal)
+
+;; ;; メジャーモード毎にevilの初期状態を設定する。
+;; (evil-set-initial-state 'eshell-mode 'emacs)
+;; (evil-set-initial-state 'dired-mode 'emacs)
+;; ;;(evil-set-initial-state 'ibuffer-mode 'emacs)
+;; (evil-set-initial-state 'Buffer-menu-mode 'emacs)
+;; (evil-set-initial-state 'undo-tree-mode 'emacs)
+;; (evil-set-initial-state 'info-mode 'emacs)
+;; (evil-set-initial-state 'twittering-mode 'emacs)
+;; (evil-set-initial-state 'w3m-mode 'emacs)
+
+
+;; (define-prefix-command 'evil-g-map)
+;; (define-key global-map (kbd "g") 'evil-g-map)
+;; (define-key global-map (kbd "g g") 'beginning-of-buffer)
+;; (define-key global-map (kbd "G") 'end-of-buffer)
+;; (define-key global-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
 (define-key evil-normal-state-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
 ;; Insert時はemacsのキーバインドにする。
-(setcdr evil-insert-state-map nil)
-(define-key evil-insert-state-map
-  (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
+;; (setcdr evil-insert-state-map nil)
+;; (define-key evil-insert-state-map
+;;   (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
 
-;; (add-hook 'evil-normal-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
+; (add-hook 'evil-normal-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 ;; (add-hook 'evil-insert-state-entry-hook (lambda () (set-face-background 'mode-line "Red")))
 ;; (add-hook 'evil-visual-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 ;; (add-hook 'evil-replace-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 ;; (add-hook 'evil-operator-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 ;; (add-hook 'evil-motion-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
-
-;;(define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;creat tab
-;;(define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
-;;(define-key evil-normal-state-map "gT" 'elscreen-previous) ;previous tab
-;;(define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
-;;(define-key evil-normal-state-map (kbd "f") 'jaunte)
-
-
-;; (evil-define-key 'normal dired-mode-map (kbd "H") 'elscreen-previous)
-;; (evil-define-key 'normal dired-mode-map (kbd "L") 'elscreen-next)
-;; (evil-define-key 'normal dired-mode-map (kbd "t d") 'elscreen-kill)
-;; (evil-define-key 'normal dired-mode-map (kbd "t t") '(lambda ()
-;;                                                        (interactive)
-;;                                                        (elscreen-create)
-;;                                                        (anything-recentf)
-;;                                                        ))
-;; ;;(evil-define-key 'normal dired-mode-map (kbd "S") 'eshell-cd-default-directory)
-
-;; ;;(evil-define-key 'normal eshell-mode-map (kbd "H") 'elscreen-previous)
-;; ;; (evil-define-key 'normal eshell-mode-map (kbd "L") 'elscreen-next)
 
 ;; ---------------------------------------------------------------
 ;; evil-declare-key と evil-define-key の違い。
@@ -66,15 +63,6 @@
 (evil-declare-key 'motion w3m-mode-map (kbd "<return>") 'w3m-view-this-url)
 (evil-declare-key 'motion w3m-mode-map (kbd "RET") 'w3m-view-this-url)
 
-;; タブを移動する
-(evil-define-key 'normal w3m-mode-map (kbd "C-l") '(lambda () (interactive) (w3m-next-buffer 1))
-  (kbd "C-h") '(lambda () (interactive) (w3m-next-buffer -1))
-  (kbd "L") 'w3m-view-prev-page
-  (kbd "H") 'w3m-view-next-page
-  (kbd "f") 'jaunte
-  (kbd "i") 'w3m-next-anchor;; 次のリンクに飛ぶ
-  (kbd "K") 'w3m-delete-buffer);; タブを閉じる
-    
 ;(defun my-elisp-eval ()
 ;  (interactive) 
 ;  (eval-last-sexp ((move-end-of-line 1)))
@@ -191,8 +179,8 @@
 
 ;;;;(define-key evil-normal-state-map (kbd "H") (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
 ;;(define-key evil-normal-state-map (kbd "L") (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
-(define-key evil-normal-state-map (kbd "C-h") 'tabbar-backward-tab)
-(define-key evil-normal-state-map (kbd "C-l") 'tabbar-forward-tab)
+(define-key evil-normal-state-map (kbd "C-p") 'tabbar-backward-tab)
+(define-key evil-normal-state-map (kbd "C-n") 'tabbar-forward-tab)
 
 ;;;;;;;;;;;;;;;;
 ;; https://github.com/roman/emacs.d/tree/master/zoo
@@ -249,50 +237,19 @@
   "w" 'zoo/paredit-forward-edit
   "b" 'zoo/paredit-backward-edit)
 ;;;;;;;;;;;;;;;;;
-;; ESC Warning
-;;;;;;;;;;;;;;;;;
-
-(evil-define-command zoo/esc-warning (arg)
-  "Wait for further keys within `evil-esc-delay'.
-Otherwise send [escape]."
-  :repeat ignore
-  (interactive "P")
-  (if (sit-for evil-esc-delay t)
-      (progn
-        (push 'escape unread-command-events)
-        (when defining-kbd-macro
-          ;; we need to replace the ESC by 'escape in the currently
-          ;; defined keyboard macro
-          (evil-save-echo-area
-            (end-kbd-macro)
-            (setq last-kbd-macro (vconcat last-kbd-macro [escape]))
-            (start-kbd-macro t t))))
-    (push last-command-event unread-command-events)
-    ;; preserve prefix argument
-    (setq prefix-arg arg))
-  ;; disable interception for the next key sequence
-  (message "you should use 'jk' instead of ESC")
-  (evil-esc-mode -1)
-  (setq this-command last-command))
-
-(define-key
-  evil-esc-map
-  (kbd "ESC")
-  #'zoo/esc-warning)
-;;;;;;;;;;;;;;;;;
 ;; ESC extras
 ;;;;;;;;;;;;;;;;;
 
 ; Make <ESC> quit almost everything...
 ; As seen on:
 ; * http://stackoverflow.com/questions/8483182/emacs-evil-mode-best-practice
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key evil-normal-state-map [escape] 'keyboard-quit)
+;; (define-key evil-visual-state-map [escape] 'keyboard-quit)
+;; (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 
 (defun evil-undefine ()

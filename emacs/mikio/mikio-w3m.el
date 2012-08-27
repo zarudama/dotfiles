@@ -29,31 +29,6 @@
     ;; favicon のキャッシュを消さない
     (setq w3m-favicon-cache-expire-wait nil)
 
-    ;; Hit a Hint
-    ;; jaunte(ジョウントと読む)
-    ;; (install-elisp "https://raw.github.com/kawaguchi/jaunte.el/master/jaunte.el")
-    (when (require 'jaunte nil t)
-      (define-key w3m-mode-map (kbd "f") 'jaunte))
-
-    ;; タブを移動する
-    (define-key w3m-mode-map (kbd "C-l") '(lambda () (interactive) (w3m-next-buffer 1)))
-    (define-key w3m-mode-map (kbd "C-h") '(lambda () (interactive) (w3m-next-buffer -1)))
-    (define-key w3m-mode-map (kbd "L") 'w3m-view-prev-page)
-    (define-key w3m-mode-map (kbd "H") 'w3m-view-next-page)
-    
-    ;; タブを閉じる
-    (define-key w3m-mode-map (kbd "K") 'w3m-delete-buffer)
-    ;; 次のリンクに飛ぶ
-    (define-key w3m-mode-map (kbd "i") 'w3m-next-anchor)
-    ;; ;; リンクを新しいタブで開く
-    ;; (define-key w3m-mode-map ";" 'w3m-view-this-url-new-session)
-    ;; ;; リンクを普通に開く
-    ;; (define-key w3m-mode-map "'" 'w3m-view-this-url)
-    ;; ;; カーソル下にある画像を表示
-    ;; (define-key w3m-mode-map "n" 'w3m-toggle-inline-image)
-    ;; ;; ブックマークを表示
-    ;; (define-key w3m-mode-map "m" 'w3m-bookmark-view-new-session))
-
     (eval-after-load "w3m-search"
       '(add-to-list 'w3m-search-engine-alist
                     '("google-ja"
@@ -62,17 +37,65 @@
       ;;(setq w3m-search-default-engin "google-ja")
     )
 
+    ;; Hit a Hint
+    ;; jaunte(ジョウントと読む)
+    ;; (install-elisp "https://raw.github.com/kawaguchi/jaunte.el/master/jaunte.el")
+    (when (require 'jaunte nil t)
+      (define-key w3m-mode-map (kbd "F") 'jaunte))
+    (define-key w3m-mode-map (kbd "f") 'w3m-go-to-linknum)
+
+    (define-key w3m-mode-map (kbd "H") 'w3m-view-previous-page)
+    (define-key w3m-mode-map (kbd "L") 'w3m-view-next-page)
+
+    ;; タブ一覧
+    (define-key w3m-mode-map (kbd "a") 'w3m-select-buffer)
+
+    ;; タブを移動する
+    (define-key w3m-mode-map (kbd "C-p") '(lambda () (interactive) (w3m-next-buffer -1)))
+    (define-key w3m-mode-map (kbd "C-n") '(lambda () (interactive) (w3m-next-buffer 1)))
+    
+    ;; タブを閉じる
+    (define-key w3m-mode-map (kbd "d") 'w3m-delete-buffer)
+    (define-key w3m-mode-map (kbd "D") 'w3m-delete-other-buffers)
+
+    ;; ページ移動
+    (define-key w3m-mode-map (kbd "C-f") 'scroll-down-command)          ; 1画面上へ
+    (define-key w3m-mode-map (kbd "C-b") 'scroll-up-command)            ; 1画面下へ
+
+    (define-key w3m-mode-map (kbd "I") 'w3m-toggle-inline-images)       ; 画像表示のトグル
+    (define-key w3m-mode-map (kbd "i") 'w3m-view-image)                 ; 画像表示
+
+    (define-key w3m-mode-map (kbd "R") 'w3m-redisplay-this-page)        ; 再描画
+    (define-key w3m-mode-map (kbd "r") 'w3m-reload-this-page)           ; 再読込
+
+    (define-key w3m-mode-map (kbd "C-l") 'w3m-goto-url)                 ; URL指定
+    (define-key w3m-mode-map (kbd "C-c t") 'w3m-goto-url-new-session)   ; タブを作成
+    
+
+    ;; ブックマークを表示
+    (define-key w3m-mode-map (kbd "C-c b") 'w3m-bookmark-view-new-session)
+
+    ;; ダウンロード
+    (define-key w3m-mode-map (kbd "C-c d") 'w3m-download)
+
+    ;; ページ情報表示
+    (define-key w3m-mode-map (kbd "C-c p") 'w3m-view-header)
+
+    ;; ソース表示
+    (define-key w3m-mode-map (kbd "C-c s") 'w3m-view-source)
+
+    ;; 外部ブラウザで開く
+    (define-key w3m-mode-map (kbd "C-c o") 'w3m-view-url-with-external-browser)
+
     ;; いつでもgoogle検索
     (global-set-key (kbd "C-c g") 'w3m-search)
 
-    ;; 外部ブラウザで開く
-    (define-key w3m-mode-map (kbd "C-c C-o") 'w3m-view-url-with-external-browser)
-
-    (define-key w3m-mode-map (kbd "C-a") 'seq-home)
-    (define-key w3m-mode-map (kbd "C-e") 'seq-end)
+    (define-prefix-command 'w3m-g-map)
+    (define-key w3m-mode-map (kbd "g") 'w3m-g-map)
+    (define-key w3m-mode-map (kbd "g g") 'beginning-of-buffer)
+    (define-key w3m-mode-map (kbd "G") 'end-of-buffer)
+    (define-key w3m-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
     ))
-
-
 
 (provide 'mikio-w3m)

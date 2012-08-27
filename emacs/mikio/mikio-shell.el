@@ -58,6 +58,8 @@
    (setenv "PATH" (concat dir ":" (getenv "PATH")))
    (setq exec-path (append (list dir) exec-path))))
 
+(setenv "MANPATH" (concat "/usr/local/man:/usr/share/man:/Developer/usr/share/man:/sw/share/man" (getenv "MANPATH")))
+
 ;; shell の存在を確認
 (defun skt:shell ()
   (or ;;(executable-find "zsh")

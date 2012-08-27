@@ -98,8 +98,13 @@
           ;; 標準のレシピでは取得できなかったので(オリジナルのgitリポジトリ)
           ;; github上のリポジトリから取得する。
           (:name evil
+                 :type git
+                 :url "https://git.gitorious.org/evil/evil.git"
+                 )
+
+          (:name jaunte
                  :type github
-                 :pkgname "emacsmirror/evil"
+                 :pkgname "kawaguchi/jaunte.el"
                  )
 
           ;; for skk auto-complete
@@ -121,7 +126,7 @@
            smartrep                     ; github
            popwin                       ; github
 
-           revive ; http windows.elが依存(windows.elは、レシピを書いたほうがいいかも。
+           revive                       ; http windows.elが依存(windows.elは、レシピを書いたほうがいいかも。
            windows                      ; http
        
            paredit                      ; http
@@ -135,6 +140,7 @@
            magit                        ; github
 
            yasnippet                    ; github
+           jaunte                       ; github
 
            twittering-mode              ; github
            o-blog                       ; github

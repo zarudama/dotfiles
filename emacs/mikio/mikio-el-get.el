@@ -58,7 +58,6 @@
                  :url "http://www.rubyist.net/~rubikitch/private/esh-cmdline-stack.el")
         
           ;; 標準のレシピだとinfoのインストールでエラーになるので再定義した。
-          ;; => 最新だとclojureがうまく動かないので、package.elで入れる。
           ;; (:name slime
           ;;        :description "Superior Lisp Interaction Mode for Emacs"
           ;;        :type github
@@ -125,8 +124,8 @@
            undo-tree                    ; git(http)
            smartrep                     ; github
            popwin                       ; github
-
-           revive                       ; http windows.elが依存(windows.elは、レシピを書いたほうがいいかも。
+           
+           revive                       ; http(windows.elが依存)
            windows                      ; http
        
            paredit                      ; http
@@ -142,10 +141,18 @@
            yasnippet                    ; github
            jaunte                       ; github
 
-           twittering-mode              ; github
-           o-blog                       ; github
            )
          (mapcar 'el-get-source-name el-get-sources)))
+
+  (cond (window-system
+         (setq mikio-packages
+               (append 
+                mikio-packages
+                '(
+                  twittering-mode       ; github
+                  o-blog                ; github
+                  )
+                )))) ; => 
 
   ;; el-get:
   ;; 引数にはパッケージ名のはいったリストを渡す

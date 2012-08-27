@@ -89,14 +89,19 @@
 ;;;-----------------------------------------------------------------
 ;;; 主にデスクトップのemacsで使用する拡張たち
 ;;;-----------------------------------------------------------------
-(require 'mikio-skk) ; manual-install
-;;(require 'mikio-info) 
-(require 'mikio-org)
-(require 'mikio-o-blog)
-(require 'mikio-gnus)
-(require 'mikio-twitter) ; manual-install
-;;(require "mikio-navi2ch") ; manual-install
+(cond (window-system
+       (require 'mikio-skk)        ; manual-install
+       ;;(require 'mikio-info) 
+       (require 'mikio-org)
+       (require 'mikio-o-blog)
+       (require 'mikio-gnus)
+       (require 'mikio-twitter)    ; manual-install
+       ;;(require "mikio-navi2ch") ; manual-install
+       ))
 
+;;;-----------------------------------------------------------------
+;;; その他
+;;;-----------------------------------------------------------------
 (require 'mikio-text-translator)
 (require 'mikio-tramp)
 (require 'mikio-w3m)   ; manual-install

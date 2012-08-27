@@ -6,6 +6,7 @@
 (evil-mode 1)
 
 ;;(define-key global-map (kbd "C-g") 'evil-force-normal-state)
+;;(global-set-key [escape] 'keyboard-quit)
 
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
@@ -25,7 +26,7 @@
 ;; (evil-set-initial-state 'undo-tree-mode 'emacs)
 ;; (evil-set-initial-state 'info-mode 'emacs)
 ;; (evil-set-initial-state 'twittering-mode 'emacs)
-;; (evil-set-initial-state 'w3m-mode 'emacs)
+(evil-set-initial-state 'w3m-mode 'emacs)
 
 
 ;; (define-prefix-command 'evil-g-map)
@@ -36,17 +37,17 @@
 
 (define-key evil-normal-state-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
-;; Insert時はemacsのキーバインドにする。
+;; ;; Insert時はemacsのキーバインドにする。
 ;; (setcdr evil-insert-state-map nil)
 ;; (define-key evil-insert-state-map
 ;;   (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
 
-; (add-hook 'evil-normal-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
-;; (add-hook 'evil-insert-state-entry-hook (lambda () (set-face-background 'mode-line "Red")))
-;; (add-hook 'evil-visual-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
-;; (add-hook 'evil-replace-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
-;; (add-hook 'evil-operator-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
-;; (add-hook 'evil-motion-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
+(add-hook 'evil-normal-state-entry-hook (lambda () (set-face-background 'mode-line "White")))
+(add-hook 'evil-insert-state-entry-hook (lambda () (set-face-background 'mode-line "Red")))
+(add-hook 'evil-visual-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
+(add-hook 'evil-replace-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
+(add-hook 'evil-operator-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
+(add-hook 'evil-motion-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 
 ;; ---------------------------------------------------------------
 ;; evil-declare-key と evil-define-key の違い。
@@ -60,8 +61,6 @@
 (evil-declare-key 'motion occur-mode-map (kbd "<return>") 'occur-mode-goto-occurrence)
 (evil-declare-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
 
-(evil-declare-key 'motion w3m-mode-map (kbd "<return>") 'w3m-view-this-url)
-(evil-declare-key 'motion w3m-mode-map (kbd "RET") 'w3m-view-this-url)
 
 ;(defun my-elisp-eval ()
 ;  (interactive) 
@@ -163,22 +162,6 @@
   (kbd "M-H") 'org-shiftmetaleft
   (kbd "M-L") 'org-shiftmetaright)
 
-(evil-define-key 'insert org-mode-map
-  (kbd "RET") 'org-open-at-point
-  (kbd "C-i") 'org-cycle ;; 見出しの開閉をサイクルする
-  "ze" 'org-export       ;; 別フィアルへのエクスポート
-  "zt" 'org-todo
-  "zl" 'org-insert-link
-  (kbd "M-m") 'org-meta-return
-  (kbd "M-j") 'org-shiftleft
-  (kbd "M-k") 'org-shiftright
-  (kbd "M-h") 'org-metaleft
-  (kbd "M-l") 'org-metaright
-  (kbd "M-H") 'org-shiftmetaleft
-  (kbd "M-L") 'org-shiftmetaright)
-
-;;;;(define-key evil-normal-state-map (kbd "H") (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
-;;(define-key evil-normal-state-map (kbd "L") (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
 (define-key evil-normal-state-map (kbd "C-p") 'tabbar-backward-tab)
 (define-key evil-normal-state-map (kbd "C-n") 'tabbar-forward-tab)
 

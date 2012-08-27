@@ -59,8 +59,8 @@
     (define-key w3m-mode-map (kbd "D") 'w3m-delete-other-buffers)
 
     ;; ページ移動
-    (define-key w3m-mode-map (kbd "C-f") 'scroll-down-command)          ; 1画面上へ
-    (define-key w3m-mode-map (kbd "C-b") 'scroll-up-command)            ; 1画面下へ
+    (define-key w3m-mode-map (kbd "C-b") 'scroll-down-command)          ; 1画面上へ
+    (define-key w3m-mode-map (kbd "C-f") 'scroll-up-command)            ; 1画面下へ
 
     (define-key w3m-mode-map (kbd "I") 'w3m-toggle-inline-images)       ; 画像表示のトグル
     (define-key w3m-mode-map (kbd "i") 'w3m-view-image)                 ; 画像表示

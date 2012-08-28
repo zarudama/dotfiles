@@ -45,7 +45,7 @@
 ;;;-----------------------------------------------------------------
 (require 'mikio-el-get)
 (require 'mikio-package)
-(require 'mikio-auto-install)
+;;(require 'mikio-auto-install nil t)
 
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち

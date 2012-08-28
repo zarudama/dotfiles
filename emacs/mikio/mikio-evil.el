@@ -7,14 +7,15 @@
 
 ;;(define-key global-map (kbd "C-g") 'evil-force-normal-state)
 ;;(global-set-key [escape] 'keyboard-quit)
+;; (global-unset-key [escape])
 
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key evil-normal-state-map [escape] 'keyboard-quit)
+;; (define-key evil-visual-state-map [escape] 'keyboard-quit)
+;; (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 ;; (setq evil-default-state 'normal)
 
@@ -54,12 +55,12 @@
 ;; どちらもほとんど同じだが、declareのほうは、keymapが存在しなくても定義できる。 
 ;; なのでほとんどの場合は、declareを使用したほうがよいと思われ。
 
-(evil-declare-key 'motion completion-list-mode-map (kbd "<return>") 'choose-completion)
-(evil-declare-key 'motion completion-list-mode-map (kbd "RET") 'choose-completion)
-(evil-declare-key 'motion browse-kill-ring-mode-map (kbd "<return>") 'browse-kill-ring-insert-and-quit)
-(evil-declare-key 'motion browse-kill-ring-mode-map (kbd "RET") 'browse-kill-ring-insert-and-quit)
-(evil-declare-key 'motion occur-mode-map (kbd "<return>") 'occur-mode-goto-occurrence)
-(evil-declare-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
+;; (evil-declare-key 'motion completion-list-mode-map (kbd "<return>") 'choose-completion)
+;; (evil-declare-key 'motion completion-list-mode-map (kbd "RET") 'choose-completion)
+;; (evil-declare-key 'motion browse-kill-ring-mode-map (kbd "<return>") 'browse-kill-ring-insert-and-quit)
+;; (evil-declare-key 'motion browse-kill-ring-mode-map (kbd "RET") 'browse-kill-ring-insert-and-quit)
+;; (evil-declare-key 'motion occur-mode-map (kbd "<return>") 'occur-mode-goto-occurrence)
+;; (evil-declare-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
 
 
 ;(defun my-elisp-eval ()

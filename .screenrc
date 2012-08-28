@@ -1,0 +1,7 @@
+#log on
+defencoding utf8
+escape ^z^z
+startup_message off
+vbell off
+hardstatus alwayslastline "%w"
+

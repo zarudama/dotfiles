@@ -14,7 +14,7 @@
 ;;-----------------------------------------------------------------
 
 (setq auto-install-directory (mikio/elisp-home  "auto-install/")) ;; 末尾に"/"を忘れないこと
-(mikio/add-to-load-path "auto-install")
+(add-to-list 'load-path (mikio/site-lisp-home "auto-install"))
 
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)

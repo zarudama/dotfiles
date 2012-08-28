@@ -134,7 +134,7 @@
 
            clojure-mode                 ; github
            js2-mode                     ; github
-           ruby-mode                    ; elpa
+;;           ruby-mode                    ; elpa
            ac-slime                     ; github
            magit                        ; github
 

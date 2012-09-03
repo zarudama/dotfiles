@@ -283,5 +283,13 @@ skk-rom-kana-rule-list))
 ;;        "skk-modeから抜ける時にskk-kakuteiのadviceを不活性化。"
 ;;        (ad-deactivate 'skk-kakutei))
 
+;;-----------------------------------------------------------------
+;; vim(evil) キーバインド
+;;-----------------------------------------------------------------
+(when (require 'evil nil t)
+  (add-hook 'evil-normal-state-entry-hook
+            (lambda ()
+              (skk-mode -1))))
+
 
 (provide 'mikio-skk)

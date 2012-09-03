@@ -5,8 +5,7 @@
 (defun mikio/elisp-home (path)
   "elispのパス文字列を生成する。
 ex. (mikio/elisp-home 'hoge'  => 'c:/Users/mikio/Dropbox/dotfiles/emacs/hoge'"
-  (format "%s/%s" my-elisp-dir path)
-  )
+  (format "%s/%s" my-elisp-dir path))
 
 (defun mikio/site-lisp-home (path)
   "site-lispのパス文字列を生成する。

@@ -100,6 +100,10 @@
                  :type git
                  :url "https://git.gitorious.org/evil/evil.git"
                  )
+          (:name evil-leader
+                 :type git
+                 :url "https://github.com/cofi/evil-leader.git"
+                 )
 
           (:name jaunte
                  :type github
@@ -144,7 +148,7 @@
            )
          (mapcar 'el-get-source-name el-get-sources)))
 
-  (cond (window-system
+  (cond ((or window-system (eq system-type 'cygwin))
          (setq mikio-packages
                (append 
                 mikio-packages

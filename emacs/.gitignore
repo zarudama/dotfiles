@@ -3,5 +3,7 @@
 el-get/
 auto-install/
 package/
+target/
 
 twittering-mode.gpg
+*.bk.el

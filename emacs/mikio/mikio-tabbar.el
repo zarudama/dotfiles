@@ -138,4 +138,15 @@
       ))
   )
 
+;;-----------------------------------------------------------------
+;; vim(evil) キーバインド
+;;-----------------------------------------------------------------
+(when (require 'evil nil t)
+  (define-key evil-normal-state-map (kbd "C-p") 'tabbar-backward-tab)
+  (define-key evil-normal-state-map (kbd "C-n") 'tabbar-forward-tab)
+
+  ;; (define-key evil-normal-state-map (kbd "C-S-p") (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
+  ;; (define-key evil-normal-state-map (kbd "C-N") '(lambda () (delete-other-windows) (tabbar-backward-group))))
+  )
+
 (provide 'mikio-tabbar)

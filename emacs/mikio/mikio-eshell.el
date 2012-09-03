@@ -29,7 +29,8 @@
 (setq eshell-cmpl-ignore-case t)
 
 ;;; 確認なしでヒストリ保存
-(setq eshell-ask-to-save-history (quote always))
+;;(setq eshell-ask-to-save-history (quote always))
+(setq eshell-ask-to-save-history nil)
 
 ;;; プロンプトの変更
 (defun my-eshell-prompt ()
@@ -291,63 +292,29 @@
       ))
   (add-hook 'eshell-mode-hook 'eshell-mode-hook0))
 
-;;   (if (eq window-system 'w32)
-;;       (progn
-;;         (message "w32!")
-;;         ;; (setq explicit-shell-file-name "c:\\cygwin\\bin\\bash.exe")
-;;         ;; (setq shell-file-name "c:\\cygwin\\bin\\sh.exe")
-;;         ;;(setq eshell-windows-shell-file "c:/cygwin/bin/bash.exe")
-
-
-;; ;; C:
-;; ;; chdir C:\cygwin\bin
-;; ;; bash --login -i
-
-
-;;         ;; (DECODING . ENCODING) specifying the coding
-;;         ;;(modify-coding-system-alist 'process "shell" '(undecided-dos . sjis-unix))
-;;         (modify-coding-system-alist 'process "eshell" '(undecided-unix  . undecided-unix ))
-;;         ;; (setq explicit-shell-file-name "bash.exe")
-;;         ;; (setq shell-file-name "sh.exe")
-;;         ;; (setq shell-command-switch "-c")
-;;         ;;(set-buffer-process-coding-system 'sjis-unix 'sjis-unix )
-;;         ;;(set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
-;;         ;;(set-buffer-process-coding-system 'sjis-unix 'utf-8-unix)
-;;         ;;(set-buffer-process-coding-system 'utf-8-unix 'sjis-unix)
-;;         ;;      (modify-coding-system-alist 'process "shell" '(undecided-dos . utf-8-unix))
-
-;;         ;; (modify-coding-system-alist 'process ".*sh\\.exe" '(undecided-dos . euc-japan))
-;;         ;; argument-editing の設定                                                      
-;;         ;; (require 'mw32script)                                                           
-;;         ;; (mw32script-init)                                                               
-;;         ;; (setq exec-suffix-list '(".exe" ".sh" ".pl"))                                   
-;;         ;; (setq shell-file-name-chars "~/A-Za-z0-9_^$!#%&{}@`'.:()-")                     
-
-;;         ;;      (setenv "JAVA_HOME" "C:\\m-oono\\opt\\jdk1.6.0_24")
-;;         ;;      (setenv "M2_HOME" "c:\\m-oono\\opt\\apache-maven-2.2.1")
-;;         ;;      (setenv "MAVEN_OPTS" (concat "-Duser.home=" (getenv "HOME"))) 
-;;         ;;      (setenv "PATH" 
-;;         ;;              (concat
-;;         ;;               "C:\\cygwin\\bin;"
-;;         ;;               "C:\\cygwin\\usr\\local\\bin;"
-;;         ;;               "C:\\m-oono\\bin;"
-;;         ;;               (getenv "JAVA_HOME") "\\bin;"
-;;         ;;               (getenv "MAVEN_HOME") "\\bin;"
-;; ;;;;               (getenv "USERPROFILE") "\\.lein\\bin;"
-;;         ;;               ))
-;;         ;;      (setq explicit-bash-args '("--noediting" "--rcfile" "~/.emacs.d/.bashrc" "-i"))
-;;         ;;      (setq explicit-bash-args '("--noediting" "--rcfile" "~/.emacs.d/.bashrc" "-i"))
-;;         ;;      (set-background-color "black")
-;;         ;;      (set-foreground-color "#888888")
-;;         ;;      (set-background-color "#dddddd")
-;;         ))
-
-
 ;;;-----------------------------------------------------------------
 ;;; コマンドラインスタックの実現
 ;;; (install-elisp "http://www.rubyist.net/~rubikitch/private/esh-cmdline-stack.el")
 ;;;-----------------------------------------------------------------
 (require 'esh-cmdline-stack)
+
+;;-----------------------------------------------------------------
+;; vim(evil) キーバインド
+;;-----------------------------------------------------------------
+(when (require 'evil nil t)
+  (add-hook 'evil-insert-state-entry-hook
+            (lambda ()
+              (when (eq major-mode 'eshell-mode)
+                (goto-char eshell-last-output-end))))
+
+  (evil-declare-key 'normal eshell-mode-map (kbd "G")
+                    (lambda ()
+                      (goto-char eshell-last-output-end)))
+
+  (evil-declare-key 'insert eshell-mode-map (kbd "C-o") 'anything-eshell-history)
+  (evil-declare-key 'insert eshell-mode-map (kbd "C-p") 'eshell-cmdline/C-p)
+  (evil-declare-key 'insert eshell-mode-map (kbd "C-n") 'eshell-cmdline/C-n)
+  (evil-declare-key 'insert eshell-mode-map (kbd "C-w") 'eshell-cmdline/C-w))
 
 
 (provide 'mikio-eshell)

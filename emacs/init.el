@@ -45,7 +45,7 @@
 ;;;-----------------------------------------------------------------
 (require 'mikio-el-get)
 (require 'mikio-package)
-;;(require 'mikio-auto-install nil t)
+(require 'mikio-auto-install nil t)
 
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち
@@ -89,8 +89,8 @@
 ;;;-----------------------------------------------------------------
 ;;; 主にデスクトップのemacsで使用する拡張たち
 ;;;-----------------------------------------------------------------
-(cond (window-system
-       (require 'mikio-skk)        ; manual-install
+(cond ((or window-system (eq system-type 'cygwin))
+       (require 'mikio-skk)    ; manual-install
        ;;(require 'mikio-info) 
        (require 'mikio-org)
        (require 'mikio-o-blog)
@@ -135,4 +135,6 @@
 ;; (require 'evil)
 ;; (evil-mode 1)
 (require 'mikio-evil)
+
+
 

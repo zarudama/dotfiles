@@ -8,7 +8,7 @@
 
 (define-key dired-mode-map (kbd "j") 'dired-next-line)
 (define-key dired-mode-map (kbd "k") 'dired-previous-line)
-(define-key dired-mode-map (kbd "h") 'dired-up-directory)
+(define-key dired-mode-map (kbd "C-h") 'dired-up-directory)
 (define-key dired-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 ;;(define-key dired-mode-map (kbd "S") 'eshell-cd-default-directory)
 
@@ -29,6 +29,7 @@
   (if (eq major-mode 'dired-mode)
       (let ((fname (dired-get-filename)))
         (w32-shell-execute "open" fname)
+        ;;(w32-shell-execute "start" fname)
         (message "win-started %s" fname))))
 
 ;; dired のキー割り当て追加
@@ -98,5 +99,15 @@
   (dired-map-over-marks-check
    (function dired-convert-coding-system) arg 'convert-coding-system t))
 
+;;-----------------------------------------------------------------
+;; vim(evil) キーバインド
+;;-----------------------------------------------------------------
+(when (require 'evil nil t)
+  (evil-declare-key 'normal dired-mode-map (kbd "j") 'dired-next-line)
+  (evil-declare-key 'normal dired-mode-map (kbd "k") 'dired-previous-line)
+  (evil-declare-key 'normal dired-mode-map (kbd "C-h") 'dired-up-directory)
+  (evil-declare-key 'normal dired-mode-map (kbd "i") 'dired-maybe-insert-subdir)
+  (evil-declare-key 'normal dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
+  (evil-declare-key 'normal dired-mode-map (kbd "q") 'quit-window))
 
 (provide 'mikio-dired)

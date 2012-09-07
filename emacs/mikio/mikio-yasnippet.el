@@ -8,22 +8,30 @@
 (setq yas/prompt-functions
       '(yas/dropdown-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
 
-;; ;; snippetsの保存ディレクトリ
-;; (setq yas-snippet-dirs
-;;       (list (format "%s/snippets" my-elisp-dir) ;; personal snippets
-;;             (format "%s/el-get/yasnippet/snippets" my-elisp-dir) ;; the default collection
-;;             ))
+;; (require 'yasnippet) ;; not yasnippet-bundle
+;; (yas/global-mode 1)
+
+;; snippetsの保存ディレクトリ
+(setq yas-snippet-dirs
+      (list (format "%s/snippets" my-elisp-dir) ;; personal snippets
+            (format "%s/el-get/yasnippet/snippets" my-elisp-dir) ;; the default collection
+            ))
 
 (when (require 'auto-complete-config nil t)
   (yas/set-ac-modes)
   (yas/enable-emacs-lisp-paren-hack)
-;; いろいろな情報源を使いたいならば (ac-config-default) にする
-;;(setq-default ac-sources '(ac-source-yasnippet))
+ ;; (add-to-list 'ac-sources 'ac-source-yasnippet)
+  (setq-default ac-sources '(ac-source-yasnippet))
+;; (ac-config-default)
+;; (setq-default ac-sources '(ac-source-yasnippet))
+;;(setq ac-delay 0.8);;, ac-complete will show a shadow auto-complete tips,
+
   )
 
-(when (require 'anything-c-yasnippet-2 nil t)
-  (global-set-key (kbd "C-x a y") 'anything-yasnippet-2)
-  )
+
+;; (when (require 'anything-c-yasnippet-2 nil t)
+;;   (global-set-key (kbd "C-x a y") 'anything-yasnippet-2)
+;;   )
 
 (provide 'mikio-yasnippet)
 

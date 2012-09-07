@@ -70,12 +70,18 @@
           ;;        :post-init (slime-setup)
           ;;        )
 
+           (:name nrepl
+                 :type github
+                 :pkgname "kingtim/nrepl.el"
+                 )
+
+          ;; うまく動かないのでとりあえず保留
+          ;; (:name anything-c-yasnippet-2
+          ;;        :type http
+          ;;        :url "http://www.rubyist.net/~rubikitch/archive/anything-c-yasnippet-2.el")
+
           (:name yasnippet-config
                  :type emacswiki)
-
-          (:name anything-c-yasnippet-2
-                 :type http
-                 :url "http://www.rubyist.net/~rubikitch/archive/anything-c-yasnippet-2.el")
 
           (:name sha1-el
                  :type http
@@ -128,6 +134,7 @@
            undo-tree                    ; git(http)
            smartrep                     ; github
            popwin                       ; github
+           yasnippet                    ; github
            
            revive                       ; http(windows.elが依存)
            windows                      ; http
@@ -142,7 +149,6 @@
            ac-slime                     ; github
            magit                        ; github
 
-           yasnippet                    ; github
            jaunte                       ; github
 
            )
@@ -153,6 +159,7 @@
                (append 
                 mikio-packages
                 '(
+                  ;;emacs-jabber          ; git(git://)
                   twittering-mode       ; github
                   o-blog                ; github
                   )

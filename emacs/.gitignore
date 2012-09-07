@@ -4,6 +4,7 @@ el-get/
 auto-install/
 package/
 target/
+mikio/private/
 
 twittering-mode.gpg
 *.bk.el

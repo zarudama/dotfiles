@@ -20,6 +20,7 @@
 
 ;;; 自前関数の定義
 (add-to-list 'load-path (format "%s/mikio/" my-elisp-dir))
+(add-to-list 'load-path (format "%s/mikio/private" my-elisp-dir))
 (require 'mikio-util)
 
 ;;; custom-flleもDropboxにする
@@ -68,10 +69,11 @@
 ;;; プログラミング支援
 ;;;-----------------------------------------------------------------
 (require 'mikio-magit)
-(require 'mikio-tags)
-(require 'mikio-slime)
+(require 'mikio-gtags) ;; manual
+(require 'mikio-slime) ;; manual
+(require 'mikio-nrepl)
 (require 'mikio-flymake)
-(require 'mikio-jdee)
+(require 'mikio-jdee) ;; manual
 
 ;;;-----------------------------------------------------------------
 ;;; メジャーモード
@@ -96,6 +98,7 @@
        (require 'mikio-o-blog)
        (require 'mikio-gnus)
        (require 'mikio-twitter)    ; manual-install
+       ;;(require 'mikio-jabber)     ; manual-install
        ;;(require "mikio-navi2ch") ; manual-install
        ))
 
@@ -119,7 +122,6 @@
 ;;(require "mikio-migemo")
 
 ;;(require 'mikio-ibuffer)
-;;(require 'mikio-popwin)
 ;;(require "mikio-smartrep")
 ;;(require 'mikio-shell)
 ;;(require "mikio-keybind")

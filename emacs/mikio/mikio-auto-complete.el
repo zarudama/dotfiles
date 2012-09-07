@@ -13,12 +13,14 @@
 ;;    ~/.emacs.d/site-lisp
 ;;-----------------------------------------------------------------
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (format "%s/elisp/ac-dict" my-elisp-dir))
+;;(add-to-list 'ac-dictionary-directories (format "%s/ac-dict" my-elisp-dir))
 (ac-config-default)
 (global-auto-complete-mode t)
 (setq ac-use-menu-map t)
 (define-key ac-menu-map (kbd "C-n") 'ac-next)
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
+(setq ac-auto-start 1)
+
 ;;  (define-key ac-menu-map (kbd "C-v") 'a)
 ;;  (define-key ac-menu-map (kbd "M-p") 'ac-previous)
 

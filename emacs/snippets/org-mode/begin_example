@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:begin_example
+# key: begin_example
+# --
+#+BEGIN_EXAMPLE
+${1:sample}
+#+END_EXAMPLE

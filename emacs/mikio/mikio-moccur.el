@@ -23,25 +23,21 @@
 
 (when (require 'anything-c-moccur nil t)
   (setq moccur-split-word t)
-  (global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
+  (global-set-key (kbd "C-c s") 'anything-c-moccur-occur-by-moccur)
   ;; インクリメンタルサーチから以降できるように。
-  (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
-  ;; 旧来のisearch-occurはC-M-oへ引越足
-  (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+  (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch))
 
-;;;; WebDBの設定
-  ;; (setq
-  ;;  ;; anything-c-moccur用 `anything-idle-delay'
-  ;;  anything-c-moccur-anything-idle-delay 0.1
-  ;;  ;; バッファの情報をハイライトする
-  ;;  anything-c-moccur-higligt-info-line-flag t
-  ;;  ;; 現在選択中の候補の位置を他のwindowに表示する
-  ;;  anything-c-moccur-enable-auto-look-flag t
-  ;;  ;; 起動時にポイントの位置の単語を初期パターンにする
-  ;;  anything-c-moccur-enable-initial-pattern t)
-
-  ;; (global-set-key (kbd "C-M-o")
-  ;;                 'anything-c-moccur-occur-by-moccur))
-  )
+;;-----------------------------------------------------------------
+;; vim(evil) キーバインド
+;;-----------------------------------------------------------------
+;; (when (and (require 'evil nil t) (require 'color-moccur nil t))
+;;   (message "evil key, moccur")
+;;   (evil-declare-key 'normal moccur-mode-map (kbd "<return>") 'moccur-grep-goto)
+;;   (evil-declare-key 'normal moccur-mode-map (kbd "RET") 'moccur-grep-goto)
+;;   (evil-declare-key 'normal moccur-mode-map (kbd "q") 'quit-window)
+;;   (evil-declare-key 'normal moccur-mode-map (kbd "r") 'moccur-edit-mode-in)
+;;   (evil-declare-key 'normal moccur-mode-map (kbd "C-j") 'moccur-next)
+;;   (evil-declare-key 'normal moccur-mode-map (kbd "C-k") 'moccur-prev)
+;;   )
 
 (provide 'mikio-moccur)

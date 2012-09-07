@@ -17,6 +17,8 @@
 (add-hook 'evil-motion-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 
 (evil-set-initial-state 'sdic-mode 'emacs)
+(evil-set-initial-state 'moccur-mode 'emacs)
+(evil-set-initial-state 'jabber-mode 'emacs)
 
 ;;(require 'evil-leader)
 ;; (setq evil-leader/leader ","

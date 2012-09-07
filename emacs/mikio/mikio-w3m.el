@@ -71,6 +71,8 @@
     (define-key w3m-mode-map (kbd "C-l") 'w3m-goto-url)                 ; URL指定
     (define-key w3m-mode-map (kbd "C-c t") 'w3m-goto-url-new-session)   ; タブを作成
     
+    (define-key w3m-mode-map (kbd "v") 'set-mark-command) ; リージョン選択
+    (define-key w3m-mode-map (kbd "y") 'kill-ring-save)   ; コピー
 
     ;; ブックマークを表示
     (define-key w3m-mode-map (kbd "C-c b") 'w3m-bookmark-view-new-session)

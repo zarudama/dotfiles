@@ -48,6 +48,7 @@
         ":search/emacs/"
         ":search/タブレット/"
         ":search/#androidjp/"
+        ":search/#shibuya_el/"
         ":search/lisp/"
         ":search/scala/"
         ":direct_messages"
@@ -117,5 +118,13 @@
 
 (define-key twittering-mode-map (kbd "C-h") 'tabbar-backward-tab)
 (define-key twittering-mode-map (kbd "C-l") 'tabbar-forward-tab)
+
+;;-----------------------------------------------------------------
+;; vim(evil) キーバインド
+;;-----------------------------------------------------------------
+(when (require 'evil nil t)
+  (define-key twittering-mode-map (kbd "C-p") 'tabbar-backward-tab)
+  (define-key twittering-mode-map (kbd "C-n") 'tabbar-forward-tab)
+  )
 
 (provide 'mikio-twitter)

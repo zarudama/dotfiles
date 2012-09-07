@@ -13,17 +13,17 @@ plugins.options["tanything_opt.keymap"] = {
     "k"     : "prompt-previous-completion",
     "g"     : "prompt-beginning-of-candidates",
     "G"     : "prompt-end-of-candidates",
-    "D"     : "prompt-cancel",
+    "q"     : "prompt-cancel",
     // Tanything specific actions
-    "O"     : "localOpen",
-    "q"     : "localClose",
-    "p"     : "localLeftclose",
-    "n"     : "localRightclose",
-    "a"     : "localAllclose",
-    "d"     : "localDomainclose",
-    "c"     : "localClipUT",
-    "C"     : "localClipU",
-    "e"     : "localMovetoend",
+    "o"     : "localOpen",
+    "d"     : "localClose",
+    // "p"     : "localLeftclose",
+    // "n"     : "localRightclose",
+//    "a"     : "localAllclose",
+//    "D"     : "localDomainclose",
+//    "c"     : "localClipUT",
+//    "C"     : "localClipU",
+//    "e"     : "localMovetoend",
     "p"     : "localTogglePin"
 };
 
@@ -283,6 +283,10 @@ key.setGlobalKey(['C-c', 'C-c', 'C-c'], function (ev) {
     command.clearConsole();
 }, 'Javascript コンソールの表示をクリア', true);
 
+key.setViewKey('i', function (ev) {
+    command.focusElement(command.elementsRetrieverTextarea, 0);
+}, '最初のインプットエリアへフォーカス', true);
+
 key.setViewKey('j', function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_DOWN, true);
 }, '一行スクロールダウン');
@@ -355,9 +359,9 @@ key.setViewKey('u', function (ev) {
     undoCloseTab();
 }, '閉じたタブを元に戻す');
 
-key.setViewKey('i', function (ev, arg) {
-    util.setBoolPref("accessibility.browsewithcaret", !util.getBoolPref("accessibility.browsewithcaret"));
-}, 'Toggle caret mode', true);
+// key.setViewKey('i', function (ev, arg) {
+//     util.setBoolPref("accessibility.browsewithcaret", !util.getBoolPref("accessibility.browsewithcaret"));
+// }, 'Toggle caret mode', true);
 
 key.setViewKey('t', function (ev, arg) {
     shell.input("tabopen ");
@@ -702,9 +706,13 @@ key.setCaretKey('O', function (ev, arg) {
     shell.input("open! ");
 }, 'Open', true);
 
-key.setCaretKey('y', function (ev, arg) {
+key.setCaretKey('v', function (ev, arg) {
     command.setMark(ev);
 }, 'マークをセット', true);
+
+key.setCaretKey('y', function (ev) {
+    command.copyRegion(ev);
+}, '選択中のテキストをコピー', true);
 
 key.setCaretKey('p', function (ev, arg) {
     var url = command.getClipboardText();

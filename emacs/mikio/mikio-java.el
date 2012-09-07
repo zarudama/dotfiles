@@ -51,7 +51,9 @@
             (define-key java-mode-map (kbd "M-C-h") 'backward-kill-word)
             (c-set-style "java2")
             (set (make-local-variable 'compile-command)
-                 (format "javac %s" (file-name-nondirectory buffer-file-name)))))
+                 (format "javac %s" (file-name-nondirectory buffer-file-name)))
+            (message "jaba-hook")
+            (auto-complete 1)))
 
 
 

@@ -309,8 +309,9 @@
 
   (evil-declare-key 'normal eshell-mode-map (kbd "G")
                     (lambda ()
-                      (goto-char eshell-last-output-end)))
-
+                      (goto-char eshell-last-output-end)
+                      (move-end-of-line))) 
+  
   (evil-declare-key 'insert eshell-mode-map (kbd "C-o") 'anything-eshell-history)
   (evil-declare-key 'insert eshell-mode-map (kbd "C-p") 'eshell-cmdline/C-p)
   (evil-declare-key 'insert eshell-mode-map (kbd "C-n") 'eshell-cmdline/C-n)

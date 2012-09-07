@@ -30,4 +30,7 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
 
+(when (require 'popwin nil t)
+  )
+
 (provide 'mikio-elisp)

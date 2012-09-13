@@ -191,32 +191,4 @@
     (t  (org-insert-heading nil))))
 (define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
 
-;;-----------------------------------------------------------------
-;; vim(evil) キーバインド
-;;-----------------------------------------------------------------
-(when (require 'evil nil t)
-  (defun my-org-meta-return (&optional prefix)
-    (interactive "p") ; pは数引数(C-u)を受けとり、この場合はprefixに束縛される。
-    (evil-insert 1)
-    (move-end-of-line nil)          
-    (message "arg:%s" (or prefix 0))
-    (org-insert-heading-dwim prefix)
-    ) 
-
-  (evil-define-key 'normal org-mode-map
-    (kbd "RET") 'org-open-at-point
-    (kbd "C-i") 'org-cycle ; 見出しの開閉をサイクルする
-    ",e" 'org-export       ; 別フィアルへのエクスポート
-    ",t" 'org-todo
-    ",l" 'org-insert-link
-    (kbd "<C-return>") 'my-org-meta-return 
-    (kbd "M-j") 'org-shiftleft
-    (kbd "M-k") 'org-shiftright
-    (kbd "M-h") 'org-metaleft
-    (kbd "M-l") 'org-metaright
-    (kbd "M-H") 'org-shiftmetaleft
-    (kbd "M-L") 'org-shiftmetaright))
-
-
-
 (provide 'mikio-org)

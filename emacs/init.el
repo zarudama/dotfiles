@@ -59,6 +59,7 @@
 (require 'mikio-anything)
 (require 'mikio-auto-complete)
 (require 'mikio-popwin)
+(require 'mikio-smartrep)
 
 (require 'mikio-moccur)
 (require 'mikio-yasnippet)
@@ -122,7 +123,6 @@
 ;;(require "mikio-migemo")
 
 ;;(require 'mikio-ibuffer)
-;;(require "mikio-smartrep")
 ;;(require 'mikio-shell)
 ;;(require "mikio-keybind")
 ;;(require 'mikio-bookmark)
@@ -136,7 +136,8 @@
 ;;;-----------------------------------------------------------------
 ;; (require 'evil)
 ;; (evil-mode 1)
-(require 'mikio-evil)
+;;(require 'mikio-evil)
+
 
 
 

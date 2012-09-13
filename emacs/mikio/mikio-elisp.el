@@ -30,6 +30,12 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
 
+(require 'rainbow-delimiters)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+
+
 (when (require 'popwin nil t)
   )
 

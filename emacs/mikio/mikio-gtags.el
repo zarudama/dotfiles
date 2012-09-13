@@ -13,8 +13,6 @@
 (when (executable-find "gtags")
   (when (require 'gtags nil t)
     (setq gtags-path-style 'relative)   ; パス表示を相対パスにする。
-    (setq view-read-only t)             ; 読み込み専用で開く。
-    (setq gtags-read-only t)            ; 上とセットの定義。
     (setq gtags-pop-delete t) ; M-*で元の位置に戻ったとき、戻る前のバッファを削除する。
     (setq gtags-mode-hook
           '(lambda ()
@@ -33,12 +31,6 @@
     (when (require 'anything-gtags nil t)
       )
 
-    ;;-----------------------------------------------------------------
-    ;; vim(evil) キーバインド
-    ;;-----------------------------------------------------------------
-    (when (require 'evil nil t)
-      (evil-declare-key 'normal gtags-mode-map (kbd "M-.") 'gtags-find-tag-from-here)
-      (evil-declare-key 'normal gtags-mode-map (kbd "M-*") 'gtags-pop-stack)
-      )))
+   ))
 
 (provide 'mikio-gtags)

@@ -27,17 +27,4 @@
   ;; インクリメンタルサーチから以降できるように。
   (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch))
 
-;;-----------------------------------------------------------------
-;; vim(evil) キーバインド
-;;-----------------------------------------------------------------
-;; (when (and (require 'evil nil t) (require 'color-moccur nil t))
-;;   (message "evil key, moccur")
-;;   (evil-declare-key 'normal moccur-mode-map (kbd "<return>") 'moccur-grep-goto)
-;;   (evil-declare-key 'normal moccur-mode-map (kbd "RET") 'moccur-grep-goto)
-;;   (evil-declare-key 'normal moccur-mode-map (kbd "q") 'quit-window)
-;;   (evil-declare-key 'normal moccur-mode-map (kbd "r") 'moccur-edit-mode-in)
-;;   (evil-declare-key 'normal moccur-mode-map (kbd "C-j") 'moccur-next)
-;;   (evil-declare-key 'normal moccur-mode-map (kbd "C-k") 'moccur-prev)
-;;   )
-
 (provide 'mikio-moccur)

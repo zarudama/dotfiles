@@ -99,15 +99,5 @@
   (dired-map-over-marks-check
    (function dired-convert-coding-system) arg 'convert-coding-system t))
 
-;;-----------------------------------------------------------------
-;; vim(evil) キーバインド
-;;-----------------------------------------------------------------
-(when (require 'evil nil t)
-  (evil-declare-key 'normal dired-mode-map (kbd "j") 'dired-next-line)
-  (evil-declare-key 'normal dired-mode-map (kbd "k") 'dired-previous-line)
-  (evil-declare-key 'normal dired-mode-map (kbd "C-h") 'dired-up-directory)
-  (evil-declare-key 'normal dired-mode-map (kbd "i") 'dired-maybe-insert-subdir)
-  (evil-declare-key 'normal dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
-  (evil-declare-key 'normal dired-mode-map (kbd "q") 'quit-window))
 
 (provide 'mikio-dired)

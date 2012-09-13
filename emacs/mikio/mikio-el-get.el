@@ -102,14 +102,14 @@
 
           ;; 標準のレシピでは取得できなかったので(オリジナルのgitリポジトリ)
           ;; github上のリポジトリから取得する。
-          (:name evil
-                 :type git
-                 :url "https://git.gitorious.org/evil/evil.git"
-                 )
-          (:name evil-leader
-                 :type git
-                 :url "https://github.com/cofi/evil-leader.git"
-                 )
+          ;; (:name evil
+          ;;        :type git
+          ;;        :url "https://git.gitorious.org/evil/evil.git"
+          ;;        )
+          ;; (:name evil-leader
+          ;;        :type git
+          ;;        :url "https://github.com/cofi/evil-leader.git"
+          ;;        )
 
           (:name jaunte
                  :type github
@@ -145,11 +145,12 @@
 
            clojure-mode                 ; github
            js2-mode                     ; github
-;;           ruby-mode                    ; elpa
+           ruby-mode                    ; elpa
            ac-slime                     ; github
            magit                        ; github
 
            jaunte                       ; github
+           rainbow-delimiters           ; github
 
            )
          (mapcar 'el-get-source-name el-get-sources)))

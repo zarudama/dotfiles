@@ -58,10 +58,6 @@
     (define-key w3m-mode-map (kbd "d") 'w3m-delete-buffer)
     (define-key w3m-mode-map (kbd "D") 'w3m-delete-other-buffers)
 
-    ;; ページ移動
-    (define-key w3m-mode-map (kbd "C-b") 'scroll-down-command)          ; 1画面上へ
-    (define-key w3m-mode-map (kbd "C-f") 'scroll-up-command)            ; 1画面下へ
-
     (define-key w3m-mode-map (kbd "I") 'w3m-toggle-inline-images)       ; 画像表示のトグル
     (define-key w3m-mode-map (kbd "i") 'w3m-view-image)                 ; 画像表示
 
@@ -71,9 +67,6 @@
     (define-key w3m-mode-map (kbd "C-l") 'w3m-goto-url)                 ; URL指定
     (define-key w3m-mode-map (kbd "C-c t") 'w3m-goto-url-new-session)   ; タブを作成
     
-    (define-key w3m-mode-map (kbd "v") 'set-mark-command) ; リージョン選択
-    (define-key w3m-mode-map (kbd "y") 'kill-ring-save)   ; コピー
-
     ;; ブックマークを表示
     (define-key w3m-mode-map (kbd "C-c b") 'w3m-bookmark-view-new-session)
 
@@ -92,11 +85,21 @@
     ;; いつでもgoogle検索
     (global-set-key (kbd "C-c g") 'w3m-search)
 
-    (define-prefix-command 'w3m-g-map)
-    (define-key w3m-mode-map (kbd "g") 'w3m-g-map)
-    (define-key w3m-mode-map (kbd "g g") 'beginning-of-buffer)
-    (define-key w3m-mode-map (kbd "G") 'end-of-buffer)
     (define-key w3m-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
+
+    ;; -------------------------------------------------------------------------
+    ;; vim っぽい動き
+    ;; -------------------------------------------------------------------------
+    ;; (define-key w3m-mode-map (kbd "C-b") 'scroll-down-command)          ; 1画面上へ
+    ;; (define-key w3m-mode-map (kbd "C-f") 'scroll-up-command)            ; 1画面下へ
+
+    ;; (define-key w3m-mode-map (kbd "v") 'set-mark-command) ; リージョン選択
+    ;; (define-key w3m-mode-map (kbd "y") 'kill-ring-save)   ; コピー
+
+    ;; (define-prefix-command 'w3m-g-map)
+    ;; (define-key w3m-mode-map (kbd "g") 'w3m-g-map)
+    ;; (define-key w3m-mode-map (kbd "g g") 'beginning-of-buffer)
+    ;; (define-key w3m-mode-map (kbd "G") 'end-of-buffer)
 
     ))
 

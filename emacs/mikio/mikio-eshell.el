@@ -229,44 +229,44 @@
 ;;-----------------------------------------------------------------
 ;; eshell を通常のシェルの挙動に近づける。
 ;;-----------------------------------------------------------------
-(progn
-  (defun eshell-in-command-line-p ()
-    (<= eshell-last-output-end (point)))
-  (defmacro defun-eshell-cmdline (key &rest body)
-    (let ((cmd (intern (format "eshell-cmdline/%s" key))))
-      `(progn
-         (add-hook 'eshell-mode-hook
-                   (lambda () (define-key eshell-mode-map (read-kbd-macro ,key) ',cmd)))
-         (defun ,cmd ()
-           (interactive)
-           (if (not (eshell-in-command-line-p))
-               (call-interactively (lookup-key (current-global-map) (read-kbd-macro ,key)))
-             ,@body)))))
-  (defun eshell-history-and-bol (func)
-    (delete-region eshell-last-output-end (point-max))
-    (funcall func 1)
-    (goto-char eshell-last-output-end)))
+;; (progn
+;;   (defun eshell-in-command-line-p ()
+;;     (<= eshell-last-output-end (point)))
+;;   (defmacro defun-eshell-cmdline (key &rest body)
+;;     (let ((cmd (intern (format "eshell-cmdline/%s" key))))
+;;       `(progn
+;;          (add-hook 'eshell-mode-hook
+;;                    (lambda () (define-key eshell-mode-map (read-kbd-macro ,key) ',cmd)))
+;;          (defun ,cmd ()
+;;            (interactive)
+;;            (if (not (eshell-in-command-line-p))
+;;                (call-interactively (lookup-key (current-global-map) (read-kbd-macro ,key)))
+;;              ,@body)))))
+;;   (defun eshell-history-and-bol (func)
+;;     (delete-region eshell-last-output-end (point-max))
+;;     (funcall func 1)
+;;     (goto-char eshell-last-output-end)))
 
-;; C-wの挙動を拡張
-(defun-eshell-cmdline "C-w"
-  (if (eq (point-max) (point))
-      (backward-kill-word 1)
-    (kill-region (region-beginning) (region-end))))
+;; ;; C-wの挙動を拡張
+;; (defun-eshell-cmdline "C-w"
+;;   (if (eq (point-max) (point))
+;;       (backward-kill-word 1)
+;;     (kill-region (region-beginning) (region-end))))
 
-;; コマンドライン上で押されたときは履歴操作
-(defun-eshell-cmdline "C-p"
-  (let ((last-command 'eshell-previous-matching-input-from-input))
-    (eshell-history-and-bol 'eshell-previous-matching-input-from-input)))
+;; ;; コマンドライン上で押されたときは履歴操作
+;; (defun-eshell-cmdline "C-p"
+;;   (let ((last-command 'eshell-previous-matching-input-from-input))
+;;     (eshell-history-and-bol 'eshell-previous-matching-input-from-input)))
 
-;; コマンドライン上で押されたときは履歴操作
-(defun-eshell-cmdline "C-n"
-  (let ((last-command 'eshell-previous-matching-input-from-input))
-    (eshell-history-and-bol 'eshell-next-input)))
+;; ;; コマンドライン上で押されたときは履歴操作
+;; (defun-eshell-cmdline "C-n"
+;;   (let ((last-command 'eshell-previous-matching-input-from-input))
+;;     (eshell-history-and-bol 'eshell-next-input)))
 
-;; eshellデフォルトだと、履歴のポインタを戻せない。
-;; 通常のシェルのように、RET C-pを押したら、直前の履歴を取り出す。
-(defadvice eshell-send-input (after history-position activate)
-  (setq eshell-history-index -1))
+;; ;; eshellデフォルトだと、履歴のポインタを戻せない。
+;; ;; 通常のシェルのように、RET C-pを押したら、直前の履歴を取り出す。
+;; (defadvice eshell-send-input (after history-position activate)
+;;   (setq eshell-history-index -1))
 
 ;;-----------------------------------------------------------------
 ;; elispの変数の値を調べるためのeコマンド
@@ -296,26 +296,7 @@
 ;;; コマンドラインスタックの実現
 ;;; (install-elisp "http://www.rubyist.net/~rubikitch/private/esh-cmdline-stack.el")
 ;;;-----------------------------------------------------------------
-(require 'esh-cmdline-stack)
-
-;;-----------------------------------------------------------------
-;; vim(evil) キーバインド
-;;-----------------------------------------------------------------
-(when (require 'evil nil t)
-  (add-hook 'evil-insert-state-entry-hook
-            (lambda ()
-              (when (eq major-mode 'eshell-mode)
-                (goto-char eshell-last-output-end))))
-
-  (evil-declare-key 'normal eshell-mode-map (kbd "G")
-                    (lambda ()
-                      (goto-char eshell-last-output-end)
-                      (move-end-of-line))) 
-  
-  (evil-declare-key 'insert eshell-mode-map (kbd "C-o") 'anything-eshell-history)
-  (evil-declare-key 'insert eshell-mode-map (kbd "C-p") 'eshell-cmdline/C-p)
-  (evil-declare-key 'insert eshell-mode-map (kbd "C-n") 'eshell-cmdline/C-n)
-  (evil-declare-key 'insert eshell-mode-map (kbd "C-w") 'eshell-cmdline/C-w))
+;;(require 'esh-cmdline-stack)
 
 
 (provide 'mikio-eshell)

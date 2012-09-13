@@ -183,6 +183,10 @@ hook.setHook('KeyBoardQuit', function (aEvent) {
 
 // ============================= Key bindings ============================== //
 
+key.setGlobalKey('C-M-s', function (ev) {
+    openUILinkIn('view-source:' + content.location.href, 'tab');
+}, 'ソースを表示');
+
 key.setGlobalKey('C-M-r', function (ev) {
     userscript.reload();
 }, '設定ファイルを再読み込み', true);

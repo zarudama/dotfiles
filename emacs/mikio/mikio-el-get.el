@@ -37,8 +37,6 @@
                        
           (:name anything-project
                  :type github
-                 :website "https://github.com/imakado/anything-project"
-                 :description ""
                  :pkgname "imakado/anything-project")
 
           (:name eldoc-extension
@@ -74,6 +72,11 @@
                  :type github
                  :pkgname "kingtim/nrepl.el"
                  )
+           (:name ac-nrepl
+                  :type github
+                  :pkgname "ponkore/ac-nrepl"
+                  ;;:pkgname "purcell/ac-nrepl"
+                  )
 
           ;; うまく動かないのでとりあえず保留
           ;; (:name anything-c-yasnippet-2

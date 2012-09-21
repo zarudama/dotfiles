@@ -10,19 +10,18 @@
   ;; windowsの場合、下記をlein.batの先頭に記述
   ;; set JAVA_OPTS=-Dswank.encoding=utf-8-unix
 
- ;;  ;;-----------------------------------------------------------------
- ;;  (require 'ac-slime)
- ;; (add-hook 'slime-mode-hook 'set-up-slime-ac)
- ;;  (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
- ;;  (eval-after-load "auto-complete"
- ;;    '(add-to-list 'ac-modes 'slime-repl-mode))
+  (when (require 'ac-nrepl nil t)
+    (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+    (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+    (eval-after-load "auto-complete"
+      '(add-to-list 'ac-modes 'nrepl-mode)))
 
   ;;-----------------------------------------------------------------
   ;; カッコの対応を取りながらS式を編集する。
   ;; (install-elisp "http://mumble.net/~campbell/emacs/paredit.el")
   ;;-----------------------------------------------------------------
-  (add-hook 'nrepl-mode-hook (lambda () (paredit-mode)))
-
+  (when (require 'paredit nil t)
+    (add-hook 'nrepl-mode-hook (lambda () (paredit-mode))))
   )
 
 (provide 'mikio-nrepl)

@@ -32,8 +32,9 @@
             (format "%s/el-get/yasnippet/snippets" my-elisp-dir) ;; the default collection
              ))
 
+
 ;;; 標準ライブラリを上書きするパッケージはここに。
-(require 'mikio-overwrite)
+;;(require 'mikio-overwrite)
 
 ;;;-----------------------------------------------------------------
 ;;; 標準の機能だけで実現する最低限の設定
@@ -75,7 +76,7 @@
 (require 'mikio-slime) ;; manual
 (require 'mikio-nrepl)
 (require 'mikio-flymake)
-(require 'mikio-jdee) ;; manual
+;;(require 'mikio-jdee) ;; manual
 
 ;;;-----------------------------------------------------------------
 ;;; メジャーモード

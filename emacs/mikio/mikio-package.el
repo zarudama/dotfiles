@@ -16,14 +16,54 @@
   ;;リポジトリにMarmaladeを追加
   (add-to-list 'package-archives
                '("marmalade" . "http://marmalade-repo.org/packages/"))
-  ;; (add-to-list 'package-archives
-  ;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  ;;   (add-to-list 'package-archives
+  ;;                '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
   ;;インストールするディレクトリを指定
   (setq package-user-dir (mikio/elisp-home  "package/"))
 
   ;;インストールしたパッケージにロードパスを通してロードする
   (package-initialize)
+
+  
+  (when nil
+    (require 'cl)
+    (defvar installing-package-list
+      '(
+        ;; ここに使っているパッケージを書く。
+        auto-complete   ; github
+        ;;    anything                     ; git(http)
+        ;;    undo-tree                    ; git(http)
+        ;;    smartrep                     ; github
+        ;;    popwin                       ; github
+        ;;    yasnippet                    ; github
+
+        ;;    revive                       ; http(windows.elが依存)
+        ;;    windows                      ; http
+       
+        ;;    paredit                      ; http
+        ;;    lispxmp                      ; emacswiki
+        ;;    tabbar                       ; emacswiki
+
+        ;;    clojure-mode                 ; github
+        ;;    js2-mode                     ; github
+        ;;    ruby-mode                    ; elpa
+        ;;    ac-slime                     ; github
+        ;;    magit                        ; github
+
+        ;;    jaunte                       ; github
+        ;;    rainbow-delimiters           ; github
+
+        ))
+
+    (let ((not-installed (loop for x in installing-package-list
+                               when (not (package-installed-p x))
+                               collect x)))
+      (when not-installed
+        (package-refresh-contents)
+        (dolist (pkg not-installed)
+          (package-install pkg))))
+    )
   )
 
 (provide 'mikio-package)

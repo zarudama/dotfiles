@@ -21,6 +21,8 @@
            ;;"window selection"
            "*Eshell history*"
 
+           "*helm M-x*"
+
            "*Local Variables*"
            "*JDEE bsh*"
 

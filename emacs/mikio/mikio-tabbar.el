@@ -129,11 +129,11 @@
   (define-key global-map (kbd "C-z") ctl-z-map)
   (smartrep-define-key global-map (kbd "C-z")
     '(
-      ("l" . 'tabbar-forward-tab)
-      ("h" . 'tabbar-backward-tab)
+      ("C-n" . 'tabbar-forward-tab)
+      ("C-p" . 'tabbar-backward-tab)
 
-      ("L" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
-      ("H" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
+      ("P" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
+      ("N" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
       ("C-z" . 'suspend-emacs)
       ))
   )

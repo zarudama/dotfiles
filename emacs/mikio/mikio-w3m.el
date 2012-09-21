@@ -41,18 +41,18 @@
     ;; jaunte(ジョウントと読む)
     ;; (install-elisp "https://raw.github.com/kawaguchi/jaunte.el/master/jaunte.el")
     (when (require 'jaunte nil t)
-      (define-key w3m-mode-map (kbd "F") 'jaunte))
-    (define-key w3m-mode-map (kbd "f") 'w3m-go-to-linknum)
+      (define-key w3m-mode-map (kbd "E") 'jaunte))
+    (define-key w3m-mode-map (kbd "e") 'w3m-go-to-linknum)
 
-    (define-key w3m-mode-map (kbd "H") 'w3m-view-previous-page)
-    (define-key w3m-mode-map (kbd "L") 'w3m-view-next-page)
+    (define-key w3m-mode-map (kbd "B") 'w3m-view-previous-page)
+    (define-key w3m-mode-map (kbd "F") 'w3m-view-next-page)
 
     ;; タブ一覧
     (define-key w3m-mode-map (kbd "a") 'w3m-select-buffer)
 
     ;; タブを移動する
-    (define-key w3m-mode-map (kbd "C-p") '(lambda () (interactive) (w3m-next-buffer -1)))
-    (define-key w3m-mode-map (kbd "C-n") '(lambda () (interactive) (w3m-next-buffer 1)))
+    (define-key w3m-mode-map (kbd "l") '(lambda () (interactive) (w3m-next-buffer -1)))
+    (define-key w3m-mode-map (kbd "h") '(lambda () (interactive) (w3m-next-buffer 1)))
     
     ;; タブを閉じる
     (define-key w3m-mode-map (kbd "d") 'w3m-delete-buffer)
@@ -90,6 +90,13 @@
     ;; -------------------------------------------------------------------------
     ;; vim っぽい動き
     ;; -------------------------------------------------------------------------
+    ;; (when (require 'jaunte nil t)
+    ;;   (define-key w3m-mode-map (kbd "F") 'jaunte))
+    ;; (define-key w3m-mode-map (kbd "f") 'w3m-go-to-linknum)
+
+    ;; (define-key w3m-mode-map (kbd "L") 'w3m-view-previous-page)
+    ;; (define-key w3m-mode-map (kbd "H") 'w3m-view-next-page)
+
     ;; (define-key w3m-mode-map (kbd "C-b") 'scroll-down-command)          ; 1画面上へ
     ;; (define-key w3m-mode-map (kbd "C-f") 'scroll-up-command)            ; 1画面下へ
 

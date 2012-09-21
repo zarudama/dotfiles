@@ -16,7 +16,9 @@
     (setq gtags-pop-delete t) ; M-*で元の位置に戻ったとき、戻る前のバッファを削除する。
     (setq gtags-mode-hook
           '(lambda ()
-             (local-set-key (kbd "M-.") 'gtags-find-tag-from-here) ; 空気を読む便利コマンドらしい。
+             (local-set-key (kbd "C-c C-j") 'gtags-find-tag-from-here) ; 空気を読む便利コマンドらしい。
+             (local-set-key (kbd "C-c C-b") 'gtags-pop-stack)
+             ;;(local-set-key (kbd "M-.") 'gtags-find-tag-from-here) ; 空気を読む便利コマンドらしい。
              ;;(local-set-key (kbd "M-t") 'gtags-find-tag)    ; 関数の定義元へ移動
              ;;(local-set-key (kbd "M-r") 'gtags-find-rtag)   ; 関数を参照元の一覧を表示．RET で参照元へジャンプできる
              ;;(local-set-key (kbd "M-s") 'gtags-find-symbol) ; 変数の定義元と参照元の一覧を表示．RET で該当箇所へジャンプできる．

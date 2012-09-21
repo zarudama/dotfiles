@@ -46,7 +46,7 @@
 ;;;-----------------------------------------------------------------
 (require 'mikio-el-get)
 (require 'mikio-package)
-(require 'mikio-auto-install nil t)
+(require 'mikio-auto-install)
 
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち
@@ -56,7 +56,8 @@
 (require 'mikio-undo)
 (require 'mikio-windows)
 (require 'mikio-tabbar)
-(require 'mikio-anything)
+;(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
+(require 'mikio-helm)
 (require 'mikio-auto-complete)
 (require 'mikio-popwin)
 (require 'mikio-smartrep)

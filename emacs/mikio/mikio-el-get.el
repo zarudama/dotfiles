@@ -74,6 +74,10 @@
                  :type github
                  :pkgname "kingtim/nrepl.el"
                  )
+;          (:name ac-nrepl
+;                 :type github
+;                 :pkgname "ponkore/ac-nrepl.git"
+;                 )
 
           ;; うまく動かないのでとりあえず保留
           ;; (:name anything-c-yasnippet-2
@@ -120,6 +124,7 @@
           ;; (:name ac-ja
           ;;        :type github
           ;;        :pkgname "myuhe/ac-ja.el")
+
           ))
 
   ;; append:第一引数のリストに残りの引数の各リストの各要素を追加していく。
@@ -131,6 +136,7 @@
 
            auto-complete                ; github
            anything                     ; git(http)
+           helm                         ; git(http)
            undo-tree                    ; git(http)
            smartrep                     ; github
            popwin                       ; github

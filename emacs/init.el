@@ -94,16 +94,15 @@
 ;;;-----------------------------------------------------------------
 ;;; 主にデスクトップのemacsで使用する拡張たち
 ;;;-----------------------------------------------------------------
-(cond ((or window-system (eq system-type 'cygwin))
-       (require 'mikio-skk)    ; manual-install
-       ;;(require 'mikio-info) 
-       (require 'mikio-org)
-       (require 'mikio-o-blog)
-       (require 'mikio-gnus)
-       (require 'mikio-twitter)    ; manual-install
-       ;;(require 'mikio-jabber)     ; manual-install
-       ;;(require "mikio-navi2ch") ; manual-install
-       ))
+(when mikio/skk-use  (require 'mikio-skk)) ; manual-install
+(when mikio/info-use (require 'mikio-info) ) 
+(when mikio/org-use (require 'mikio-org))
+(when mikio/o-blog-use (require 'mikio-o-blog))
+(when mikio/gnus-use (require 'mikio-gnus))
+(when mikio/gnus-type :gmail)
+(when mikio/twitter-use (require 'mikio-twitter)); manual-install
+(when mikio/jabber-use (require 'mikio-jabber)) ; manual-install
+(when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
 
 ;;;-----------------------------------------------------------------
 ;;; その他

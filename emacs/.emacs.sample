@@ -1,3 +1,14 @@
 (setq my-elisp-dir (expand-file-name "~/Dropbox/dotfiles/emacs"))
 (setq my-site-lisp-dir (expand-file-name "~/Dropbox/site-lisp"))
+
+(defvar mikio/skk-use t)
+(defvar mikio/info-use nil) 
+(defvar mikio/org-use t)
+(defvar mikio/o-blog-use t)
+(defvar mikio/gnus-use t)
+(defvar mikio/gnus-type :gmail)
+(defvar mikio/twitter-use t)
+(defvar mikio/jabber-use nil)
+(defvar mikio/navi2ch-use nil)
+
 (load (expand-file-name "init.el" my-elisp-dir))

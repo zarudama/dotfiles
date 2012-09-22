@@ -43,8 +43,12 @@
                  :type emacswiki)
 
           ;; diredバッファの抑制
-          (:name joseph-single-dired
-                 :type emacswiki)
+          ;; (:name joseph-single-dired
+          ;;        :type emacswiki)
+
+          ;; ;; win Exploer風の移動
+          ;; (:name dired-view
+          ;;        :type emacswiki)
 
           ;; for mikio-eshell
           (:name shell-history

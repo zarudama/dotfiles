@@ -16,8 +16,15 @@
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
 ;; ディレクトリバッファの抑制
-(require 'joseph-single-dired)
-(eval-after-load 'dired '(require 'joseph-single-dired))
+(when (require 'joseph-single-dired nil t)
+  (eval-after-load 'dired '(require 'joseph-single-dired))
+  )
+
+;; win Exploer風の移動
+(when (require 'dired-view nil t)
+  (add-hook 'dired-mode-hook 'dired-view-minor-mode-on)
+  (define-key dired-mode-map (kbd ":") 'dired-view-minor-mode-dired-toggle)
+  )
 
 ;-----------------------------------------------------------------
 ;; diredでWindowsに関連付けられたアプリを起動する
@@ -99,5 +106,76 @@
   (dired-map-over-marks-check
    (function dired-convert-coding-system) arg 'convert-coding-system t))
 
+
+;; ディレクトリを先頭にする
+(setq ls-lisp-dirs-first t)
+
+;;-----------------------------------------------------------------
+;; windows explorer 風 isearch
+;; - http://homepage1.nifty.com/blankspace/emacs/dired.html
+;;-----------------------------------------------------------------
+;; (defvar my-ex-isearch-next      "\C-r")
+;; (defvar my-ex-isearch-prev      "\C-e")
+;; (defvar my-ex-isearch-backspace "\C-h")
+;; (defvar my-ex-isearch-return    "\C-g")
+
+;; (defun my-ex-isearch (REGEX1 REGEX2 FUNC1 FUNC2 RPT)
+;;   (interactive)
+;;   (let ((input last-command-char)
+;;         (inhibit-quit t)
+;;         (oldpoint (point)) regx str)
+;;     (save-match-data
+;;       (catch 'END
+;;         (while t
+;;           (funcall FUNC1)
+;;           (cond
+;;            ;; character
+;;            ((and (integerp input) (>= input ?!)(<= input ?~)
+;;                  (not (and (>= input ?A)(<= input ?Z))))
+;;             (setq str (concat str (char-to-string input)))
+;;             (setq regx (concat REGEX1 str REGEX2))
+;;             (re-search-forward regx nil t nil))
+;;            ;; backspace
+;;            ((and (integerp input)
+;;                  (or (eq 'backspace input)
+;;                      (= input (string-to-char my-ex-isearch-backspace))))
+;;             (setq str (if (eq 0 (length str)) str (substring str 0 -1)))
+;;             (setq regx (concat REGEX1 str REGEX2))
+;;             (goto-char oldpoint)
+;;             (re-search-forward regx nil t nil))
+;;            ;; next
+;;            ((and (integerp input) (= input (string-to-char my-ex-isearch-next)))
+;;             (re-search-forward regx nil t RPT))
+;;            ;; previous
+;;            ((and (integerp input) (= input (string-to-char my-ex-isearch-prev)))
+;;             (re-search-backward regx nil t nil))
+;;            ;; return
+;;            ((and (integerp input) (= input (string-to-char my-ex-isearch-return)))
+;;             (goto-char oldpoint)
+;;             (message "return")
+;;             (throw 'END nil))
+;;            ;; other command
+;;            (t
+;;             (setq unread-command-events (append (list input) unread-command-events))
+;;             (throw 'END nil)))
+;;           (funcall FUNC2)
+;;           ;(highline-highlight-current-line)
+;;           (message str)
+;;           (setq input (read-event)))))))
+
+;; (defun my-dired-isearch()
+;;   (interactive)
+;;   (my-ex-isearch "[0-9] " "[^ \n]+$" (lambda()(backward-char 3)) 'dired-move-to-filename 2))
+
+;; (defun my-dired-isearch-define-key (str)
+;;   (let ((i 0))
+;;     (while (< i (length str))
+;;       (define-key dired-mode-map (substring str i (1+ i)) 'my-dired-isearch)
+;;       (setq i (1+ i)))))
+
+;; (add-hook 'dired-mode-hook
+;;           '(lambda ()
+;;              (my-dired-isearch-define-key "abcdefghijklmnopqrstuvwxyz0123456789_.-+~#")
+;;              ))
 
 (provide 'mikio-dired)

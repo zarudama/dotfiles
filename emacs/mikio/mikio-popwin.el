@@ -3,7 +3,8 @@
   (setq display-buffer-function 'popwin:display-buffer)
   (setq anything-samewindow nil)
   (let ((popwin-lists
-         '("*anything*"
+         '(
+           "*anything*"
            "*anything buffers*"
            "*anything M-x*"
            "*anything recentf*"
@@ -17,11 +18,23 @@
            "CAPTURE-office.org"
            "*Org Select*"
            " *Org todo*"
+;           " *Agenda Commands*"
+           "*Org Agenda*"
            ;;"* window list *" 
            ;;"window selection"
            "*Eshell history*"
 
            "*helm M-x*"
+           "*helm*"
+           "*helm buffers*"
+           "*helm M-x*"
+           "*helm recentf*"
+           "*helm imenu*"
+           "*helm complete*"
+           "*helm apropos*"
+           "*helm bookmarks*"
+           "*helm-yasnippet-2*"
+           "*helm kill-ring*"
 
            "*Local Variables*"
            "*JDEE bsh*"

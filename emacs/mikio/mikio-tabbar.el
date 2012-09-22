@@ -129,8 +129,8 @@
   (define-key global-map (kbd "C-z") ctl-z-map)
   (smartrep-define-key global-map (kbd "C-z")
     '(
-      ("C-n" . 'tabbar-forward-tab)
-      ("C-p" . 'tabbar-backward-tab)
+      ("n" . 'tabbar-forward-tab)
+      ("p" . 'tabbar-backward-tab)
 
       ("P" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
       ("N" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))

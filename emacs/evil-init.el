@@ -1,15 +1,15 @@
 ;;; 自前関数の定義
-(add-to-list 'load-path (format "%s/mikio/" my-elisp-dir))
+(add-to-list 'load-path (format "%s/mikio/" mikio/elisp-directory))
 (require 'mikio-util)
 
 ;;; custom-flleもDropboxにする
 ;;; custom-flleもDropboxにする
-(load (format "%s/custom.el" my-elisp-dir))
+(load (format "%s/custom.el" mikio/elisp-directory))
 
 ;;; snippetsの保存ディレクトリ
 (setq yas-snippet-dirs
-      (list (format "%s/snippets" my-elisp-dir) ;; personal snippets
-            (format "%s/el-get/yasnippet/snippets" my-elisp-dir) ;; the default collection
+      (list (format "%s/snippets" mikio/elisp-directory) ;; personal snippets
+            (format "%s/el-get/yasnippet/snippets" mikio/elisp-directory) ;; the default collection
              ))
 
 ;;; 標準ライブラリを上書きするパッケージはここに。

@@ -57,9 +57,8 @@
 ;; 見出しの余分な*を消す
 (setq org-hide-leading-stars t)
 
-(setq org-directory "~/Dropbox/org/")
-(setq org-agenda-files '("~/Dropbox/org/index.org" "~/docs/office.org" "~/Dropbox/org/blog.org"))
-
+(setq org-directory (mikio/org-directory))
+(setq org-agenda-files (list org-directory))
 
 (setq org-agenda-include-diary t)
 ;(setq org-agenda-include-diary nil)
@@ -80,10 +79,8 @@
         ("Todo" ?t "** TODO %?\n   %i\n   %a\n   %t" nil "Inbox")))
 
 (setq org-capture-templates
- '(("o" "Office Todo" entry (file+headline "~/docs/office.org" "Inbox")
-        "* TODO %?\n  %i\n  %a\n   %t")
-   ("t" "Todo" entry (file+headline "~/Dropbox/org/index.org" "Inbox")
-        "* TODO %?\n  %i\n  %a\n   %t")))
+      '(("t" "Todo" entry (file+headline (format "%sindex.org" org-directory) "Inbox")
+         "* TODO %?\n  %i\n  %a\n   %t")))
 
 ;;-----------------------------------------------------------------
 ;; agendaの日付フォーマットを日本語表記に変更。

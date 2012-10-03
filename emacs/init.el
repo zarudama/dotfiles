@@ -19,17 +19,17 @@
 ;;;; その場でバイトコンパイルする点が異なります。
 
 ;;; 自前関数の定義
-(add-to-list 'load-path (format "%s/mikio/" my-elisp-dir))
-(add-to-list 'load-path (format "%s/mikio/private" my-elisp-dir))
+(add-to-list 'load-path (format "%s/mikio/" mikio/elisp-directory))
+(add-to-list 'load-path (format "%s/mikio/private" mikio/elisp-directory))
 (require 'mikio-util)
 
 ;;; custom-flleもDropboxにする
-(load (format "%s/custom.el" my-elisp-dir))
+(load (format "%s/custom.el" mikio/elisp-directory))
 
 ;;; snippetsの保存ディレクトリ
 (setq yas-snippet-dirs
-      (list (format "%s/snippets" my-elisp-dir) ;; personal snippets
-            (format "%s/el-get/yasnippet/snippets" my-elisp-dir) ;; the default collection
+      (list (format "%s/snippets" mikio/elisp-directory) ;; personal snippets
+            (format "%s/el-get/yasnippet/snippets" mikio/elisp-directory) ;; the default collection
              ))
 
 
@@ -57,8 +57,8 @@
 (require 'mikio-undo)
 (require 'mikio-windows)
 (require 'mikio-tabbar)
-;(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
-(require 'mikio-helm)
+(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
+;;(require 'mikio-helm)
 (require 'mikio-auto-complete)
 (require 'mikio-popwin)
 (require 'mikio-smartrep)
@@ -95,14 +95,15 @@
 ;;; 主にデスクトップのemacsで使用する拡張たち
 ;;;-----------------------------------------------------------------
 (when mikio/skk-use  (require 'mikio-skk)) ; manual-install
-(when mikio/info-use (require 'mikio-info) ) 
+(when mikio/info-use (require 'mikio-info)) 
 (when mikio/org-use (require 'mikio-org))
 (when mikio/o-blog-use (require 'mikio-o-blog))
 (when mikio/gnus-use (require 'mikio-gnus))
-(when mikio/gnus-type :gmail)
 (when mikio/twitter-use (require 'mikio-twitter)); manual-install
 (when mikio/jabber-use (require 'mikio-jabber)) ; manual-install
 (when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
+(when mikio/newsticker-use (require 'mikio-newsticker))
+(when mikio/howm-use (require 'mikio-howm)) ; manual-install
 
 ;;;-----------------------------------------------------------------
 ;;; その他
@@ -115,7 +116,6 @@
 ;;;-----------------------------------------------------------------
 ;;; いつのまにか使わなくなった拡張たち
 ;;;-----------------------------------------------------------------
-;;(require "mikio-newsticker")
 ;;(require "mikio-elscreen")
 ;;(require "mikio-mew")
 ;;(require "mikio-e2wm")

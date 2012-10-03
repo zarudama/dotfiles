@@ -10,12 +10,8 @@
         (split-window-vertically)
       (split-window-horizontally)))
   (setq windmove-wrap-around t)
-  ;;(define-prefix-command 'window-move-map)
-  ;;(global-set-key (kbd "C-q") 'window-move-map)
-
-  (defvar ctl-l-map (make-keymap))
-  (define-key global-map (kbd "C-l") ctl-l-map)
-  (smartrep-define-key global-map "C-l"
+ 
+  (smartrep-define-key global-map "C-z"
     '(
       ("SPC" . 'scroll-up)
       ("b"   . 'scroll-down)
@@ -28,7 +24,7 @@
       ("j"   . 'next-line)
       ("k"   . 'previous-line)
 
-      ;; ("i"   . 'keyboard-quit)
+      ("q"   . 'keyboard-quit)
 
       ("S" . 'split-window-conditinal)
       ("D" . 'delete-window)
@@ -38,18 +34,12 @@
       ("C-j" . 'windmove-down)
       ("C-k" . 'windmove-up)
       ("C-l" . 'windmove-right)
-      ))
 
-  (defvar ctl-z-map (make-keymap))
-  (define-key global-map (kbd "C-z") ctl-z-map)
-  (smartrep-define-key global-map (kbd "C-z")
-    '(
-      ("l" . 'tabbar-forward-tab)
-      ("h" . 'tabbar-backward-tab)
+      ("n" . 'tabbar-forward-tab)
+      ("p" . 'tabbar-backward-tab)
 
-      ("L" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
-      ("H" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
-      ("C-z" . 'suspend-emacs)
+      ("P" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
+      ("N" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
       ))
 
   )

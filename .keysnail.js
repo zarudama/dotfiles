@@ -271,11 +271,11 @@ key.setGlobalKey(["C-x", "n"], function (ev) {
     OpenBrowserWindow();
 }, 'ウィンドウを開く', false);
 
-key.setGlobalKey(["C-z", "C-n"], function (ev) {
+key.setGlobalKey([["C-z", "C-n"],["C-z", "n"]], function (ev) {
     getBrowser().mTabContainer.advanceSelectedTab(1, true);
 }, 'ひとつ右のタブへ', false);
 
-key.setGlobalKey(["C-z", "C-p"], function (ev) {
+key.setGlobalKey([["C-z", "C-p"],["C-z", "p"]], function (ev) {
     getBrowser().mTabContainer.advanceSelectedTab(-1, true);
 }, 'ひとつ左のタブへ', false);
 

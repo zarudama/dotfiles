@@ -2,7 +2,7 @@
 ;;-----------------------------------------------------------------
 ;; jdee
 ;;-----------------------------------------------------------------
-(add-to-list 'load-path (mikio/site-lisp-home "jdee/dist/jdee-2.4.1/lisp"))
+(add-to-list 'load-path (mikio/site-lisp-directory "jdee/dist/jdee-2.4.1/lisp"))
 
 ;; load autoloads file
 (load "jde-autoload")

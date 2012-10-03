@@ -1,14 +1,27 @@
-(setq my-elisp-dir (expand-file-name "~/Dropbox/dotfiles/emacs"))
-(setq my-site-lisp-dir (expand-file-name "~/Dropbox/site-lisp"))
+;; 設定ファイルたちの場所
+(defvar mikio/elisp-directory (expand-file-name "~/Dropbox/dotfiles/emacs"))
 
+;; 手動インストールしたもの置場
+(defvar mikio/site-lisp-directory (expand-file-name "~/Dropbox/site-lisp"))
+
+;; 使用場所の指定(キーワード)。内容は以下
+;;   会社 => :office (非公開情報を含むもの用)
+;;   自宅 => :home
+(defvar mikio/office-type :office)
+
+;; ネットブックで使用するときはミニマムウィンドウ
+(defvar mikio/netbook-use nil)
+
+;; デスクトップ用途の拡張たちの使用有無
 (defvar mikio/skk-use t)
 (defvar mikio/info-use nil) 
 (defvar mikio/org-use t)
 (defvar mikio/o-blog-use t)
 (defvar mikio/gnus-use t)
-(defvar mikio/gnus-type :gmail)
 (defvar mikio/twitter-use t)
 (defvar mikio/jabber-use nil)
 (defvar mikio/navi2ch-use nil)
+(defvar mikio/newsticker-use t)
+(defvar mikio/howm-use t)
 
-(load (expand-file-name "init.el" my-elisp-dir))
+(load (format "%s/init.el" mikio/elisp-directory))

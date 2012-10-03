@@ -1,6 +1,6 @@
 (require 'mikio-util)
 
-(add-to-list 'load-path (mikio/site-lisp-home "color-theme-6.6.0"))
+(add-to-list 'load-path (mikio/site-lisp-directory "color-theme-6.6.0"))
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-arjen)

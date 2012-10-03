@@ -10,7 +10,7 @@
 ;; cd auto-install
 ;; wget http://www.emacswiki.org/emacs/download/auto-install.el
 ;; emacs --batch -Q -f batch-byte-compile auto-install.el
-;; (setq auto-install-directory (format "%s/elisp" my-elisp-dir))
+;; (setq auto-install-directory (format "%s/elisp" mikio/elisp-directory))
 ;;-----------------------------------------------------------------
 
 (setq auto-install-directory (mikio/elisp-home  "auto-install/")) ;; 末尾に"/"を忘れないこと

@@ -1,27 +1,24 @@
 (require 'mikio-util)
 (require 'tabbar)
 
-;;(add-to-list 'load-path (mikio/site-lisp-home "twittering-mode-2.0.0"))
-(require 'twittering-mode)
-
 ;;-----------------------------------------------------------------
 ;; twittering-mode-2.0.0
 ;;-----------------------------------------------------------------
-(setq twittering-auth-method 'oauth)
-(setq twittering-use-master-password t)
-(setq twittering-private-info-file (mikio/elisp-home  "twittering-mode.gpg"))
-;;(setq twittering-convert-fix-size nil) 
+(require 'twittering-mode)
+
 
 ;;
-;; Twitter
+;; 認証
 ;;
-;; (install-elisp "http://github.com/hayamiz/twittering-mode/raw/master/twittering-mode.el")
-; from http://masutaka.net/chalow/2009-06-07-5.html
-;;
+(setq twittering-auth-method 'oauth)
+(setq twittering-use-master-password t)
+(setq twittering-private-info-file (mikio/site-lisp-directory  ".twittering-mode.gpg"))
+
 
 ;; サーバ証明書の認証を無効化する
 ;; http://d.hatena.ne.jp/wadakei/20120211/1328968663
 (setq twittering-allow-insecure-server-cert t)
+
 
 (setq twittering-timer-interval 75)
 (setq twittering-convert-fix-size 16)

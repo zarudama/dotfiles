@@ -78,7 +78,7 @@
 ;;-----------------------------------------------------------------
 ;;(auto-insert-mode)
 ;;;; 最後の'/'は必須
-;;(setq auto-insert-directory (format "%s/insert" my-elisp-dir))
+;;(setq auto-insert-directory (format "%s/insert" mikio/elisp-directory))
 ;;(define-auto-insert "\\.java$" "java-template.java")
 
 ;;;-----------------------------------------------------------------

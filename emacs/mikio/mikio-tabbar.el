@@ -124,18 +124,4 @@
  'tabbar-separator nil
  :height 1.0)
 
-(when (require 'smartrep nil t)
-  (defvar ctl-z-map (make-keymap))
-  (define-key global-map (kbd "C-z") ctl-z-map)
-  (smartrep-define-key global-map (kbd "C-z")
-    '(
-      ("n" . 'tabbar-forward-tab)
-      ("p" . 'tabbar-backward-tab)
-
-      ("P" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
-      ("N" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))
-      ("C-z" . 'suspend-emacs)
-      ))
-  )
-
 (provide 'mikio-tabbar)

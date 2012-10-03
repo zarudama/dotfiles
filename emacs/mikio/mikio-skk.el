@@ -1,6 +1,6 @@
 (require 'mikio-util)
 
-(add-to-list 'load-path (mikio/site-lisp-home "skk"))
+(add-to-list 'load-path (mikio/site-lisp-directory "skk"))
 (require 'skk)
 ;;(require 'skk-autoloads)
 (require 'skk-study);; 変換の学習
@@ -9,7 +9,7 @@
 ;; ddskk
 ;;-----------------------------------------------------------------
 (global-set-key (kbd "C-x C-j") 'skk-mode)
-(global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
+;;(global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
 ;;(global-set-key (kbd "C-x t") 'skk-tutorial)
 ;;(global-set-key "\C-\\" 'skk-mode))
 

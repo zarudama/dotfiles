@@ -1,13 +1,13 @@
 (require 'mikio-util)
 
 ;;; el-getそのもののインストールディレクトリ 
-(setq el-get-dir (format "%s/el-get" my-elisp-dir))
+(setq el-get-dir (format "%s/el-get" mikio/elisp-directory))
 
 ;; インストール後のロードパスの用意(el-get自身用)
 (add-to-list 'load-path (mikio/elisp-home "el-get/el-get"))
 
-;;; el-getでインストールしたelisp拡張は、my-elisp-dir/el-get/に保存される。
-;;; my-elisp-dir/el-get/el-getではない。
+;;; el-getでインストールしたelisp拡張は、mikio/elisp-directory/el-get/に保存される。
+;;; mikio/elisp-directory/el-get/el-getではない。
 
 ;;; もし el-get がなければインストールを行う
 (unless (require 'el-get nil t)
@@ -162,19 +162,14 @@
            jaunte                       ; github
            rainbow-delimiters           ; github
 
-           )
-         (mapcar 'el-get-source-name el-get-sources)))
+           ;;emacs-jabber                 ; git(git://)
+           twittering-mode              ; github
+           o-blog                       ; github
+           ;;howm                         ; tar+configure+make
 
-  (cond ((or window-system (eq system-type 'cygwin))
-         (setq mikio-packages
-               (append 
-                mikio-packages
-                '(
-                  ;;emacs-jabber          ; git(git://)
-                  twittering-mode       ; github
-                  o-blog                ; github
-                  )
-                )))) ; => 
+           )
+
+         (mapcar 'el-get-source-name el-get-sources)))
 
   ;; el-get:
   ;; 引数にはパッケージ名のはいったリストを渡す

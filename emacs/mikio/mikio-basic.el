@@ -20,8 +20,16 @@
 (global-set-key (kbd "C-S-t")   'previous-multiframe-window)
 (global-set-key (kbd "C-m")  'newline-and-indent)
 (define-key isearch-mode-map (kbd "C-h") 'isearch-del-char)
+;;(define-key isearch-mode-map (kbd "C-q") 'isearch-exit)
 
-(define-key global-map (kbd"C-c f")
+(defvar mikio-map (make-keymap))
+(define-key global-map (kbd "C-z") mikio-map)
+(global-set-key (kbd "C-z C-r") 'recenter-top-bottom)
+(global-set-key (kbd "C-z r") 'query-replace)
+(global-set-key (kbd "C-z R") 'query-replace-regexp)
+(global-set-key (kbd "C-z C-z") 'suspend-emacs)
+
+(define-key global-map (kbd"C-z f")
   (lambda ()
     (interactive)
     (delete-other-windows)
@@ -57,7 +65,7 @@
 (global-font-lock-mode t)
 
 (display-time)
-
+(setq display-time-day-and-date t)
 
 ;;;; C-/が効かない端末対策
 ;;(define-key key-translation-map (kbd "C-_") (kbd "C-/"))

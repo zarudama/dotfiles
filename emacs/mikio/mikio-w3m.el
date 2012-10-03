@@ -10,7 +10,7 @@
   ;; 参考
   ;;  http://sohda.net/cygwin/treebbs/treebbs.cgi?kako=1&log=1347
   (setq w3m-command (executable-find "w3m"))
-  (add-to-list 'load-path (mikio/site-lisp-home "w3m"))
+  (add-to-list 'load-path (mikio/site-lisp-directory "w3m"))
   (when (require 'w3m nil t)
 
     ;; 標準ブラウザをw3mにする。
@@ -50,10 +50,6 @@
     ;; タブ一覧
     (define-key w3m-mode-map (kbd "a") 'w3m-select-buffer)
 
-    ;; タブを移動する
-    (define-key w3m-mode-map (kbd "l") '(lambda () (interactive) (w3m-next-buffer -1)))
-    (define-key w3m-mode-map (kbd "h") '(lambda () (interactive) (w3m-next-buffer 1)))
-    
     ;; タブを閉じる
     (define-key w3m-mode-map (kbd "d") 'w3m-delete-buffer)
     (define-key w3m-mode-map (kbd "D") 'w3m-delete-other-buffers)
@@ -76,6 +72,9 @@
     ;; ページ情報表示
     (define-key w3m-mode-map (kbd "C-c p") 'w3m-view-header)
 
+    ;; エンコード指定
+    (define-key w3m-mode-map (kbd "C-c e") 'w3m-redisplay-with-charset)
+
     ;; ソース表示
     (define-key w3m-mode-map (kbd "C-c s") 'w3m-view-source)
 
@@ -94,6 +93,10 @@
     ;;   (define-key w3m-mode-map (kbd "F") 'jaunte))
     ;; (define-key w3m-mode-map (kbd "f") 'w3m-go-to-linknum)
 
+    ;; タブを移動する
+    ;; (define-key w3m-mode-map (kbd "l") '(lambda () (interactive) (w3m-next-buffer -1)))
+    ;; (define-key w3m-mode-map (kbd "h") '(lambda () (interactive) (w3m-next-buffer 1)))
+    
     ;; (define-key w3m-mode-map (kbd "L") 'w3m-view-previous-page)
     ;; (define-key w3m-mode-map (kbd "H") 'w3m-view-next-page)
 

@@ -13,8 +13,8 @@
 
 ;; snippetsの保存ディレクトリ
 (setq yas-snippet-dirs
-      (list (format "%s/snippets" my-elisp-dir) ;; personal snippets
-            (format "%s/el-get/yasnippet/snippets" my-elisp-dir) ;; the default collection
+      (list (format "%s/snippets" mikio/elisp-directory) ;; personal snippets
+            (format "%s/el-get/yasnippet/snippets" mikio/elisp-directory) ;; the default collection
             ))
 
 (when (require 'auto-complete-config nil t)

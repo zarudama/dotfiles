@@ -18,6 +18,7 @@
            "CAPTURE-office.org"
            "*Org Select*"
            " *Org todo*"
+           "*Org Links*"
 ;           " *Agenda Commands*"
            "*Org Agenda*"
            ;;"* window list *" 
@@ -51,6 +52,8 @@
            "*slime-xref*"               ; Cross-reference
 
            "nREPL error*"
+
+           " widget choose"
            )))
     (dolist (bf popwin-lists)
       ;; height -> 行数

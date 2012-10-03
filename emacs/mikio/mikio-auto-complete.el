@@ -13,7 +13,7 @@
 ;;    ~/.emacs.d/site-lisp
 ;;-----------------------------------------------------------------
 (require 'auto-complete-config)
-;;(add-to-list 'ac-dictionary-directories (format "%s/ac-dict" my-elisp-dir))
+;;(add-to-list 'ac-dictionary-directories (format "%s/ac-dict" mikio/elisp-directory))
 (ac-config-default)
 (global-auto-complete-mode t)
 (setq ac-use-menu-map t)

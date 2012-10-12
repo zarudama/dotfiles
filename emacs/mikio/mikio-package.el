@@ -20,7 +20,7 @@
   ;;                '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
   ;;インストールするディレクトリを指定
-  (setq package-user-dir (mikio/elisp-home  "package/"))
+  (setq package-user-dir (mikio/elisp-directory "package/"))
 
   ;;インストールしたパッケージにロードパスを通してロードする
   (package-initialize)

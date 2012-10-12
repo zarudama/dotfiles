@@ -34,7 +34,7 @@
 
 
 ;;; 標準ライブラリを上書きするパッケージはここに。
-;;(require 'mikio-overwrite)
+(require 'mikio-overwrite)
 
 ;;;-----------------------------------------------------------------
 ;;; 標準の機能だけで実現する最低限の設定
@@ -45,9 +45,9 @@
 ;;;-----------------------------------------------------------------
 ;;; パッケージ管理システム
 ;;;-----------------------------------------------------------------
-(require 'mikio-el-get)
-(require 'mikio-package)
 (require 'mikio-auto-install)
+;;(require 'mikio-package)
+(require 'mikio-el-get)
 
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち
@@ -88,6 +88,7 @@
 (require 'mikio-clojure)
 (require 'mikio-elisp)
 (require 'mikio-xml)
+(require 'mikio-web-mode)
 ;; (require 'mikio-scala)
 ;; (require 'mikio-lisp)
 
@@ -138,7 +139,3 @@
 ;; (require 'evil)
 ;; (evil-mode 1)
 ;;(require 'mikio-evil)
-
-
-
-

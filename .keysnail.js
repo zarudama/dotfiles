@@ -145,6 +145,22 @@ local["^http://www.google.(co.jp|com)/reader/view/"] = [
     ["-", null]
 ];
 
+//////////////////////////////////////////////
+// HistorySearch
+//////////////////////////////////////////////
+plugins.options["hitsory.keymap"] = {
+    "C-z"   : "prompt-toggle-edit-mode",
+    //"SPC"   : "prompt-next-page",
+    //"b"     : "prompt-previous-page",
+    //"j"     : "prompt-next-completion",
+    //"k"     : "prompt-previous-completion",
+    //"g"     : "prompt-beginning-of-candidates",
+    //"G"     : "prompt-end-of-candidates",
+    //"q"     : "prompt-cancel",
+    // history specific actions
+    "/"     : "search"
+    //"o"     : "open"
+};
 
 //}}%PRESERVE%
 // ========================================================================= //
@@ -527,9 +543,13 @@ key.setViewKey(':', function (ev, arg) {
     shell.input(null, arg);
 }, 'コマンドの実行', true);
 
-key.setViewKey('r', function (ev) {
+key.setViewKey('r', function () {
     BrowserReload();
 }, '更新', true);
+
+key.setViewKey('R', function () {
+    BrowserReloadSkipCache();
+}, '更新(キャッシュを無視)');
 
 key.setViewKey('B', function (ev) {
     BrowserBack();
@@ -637,9 +657,13 @@ key.setCaretKey(':', function (ev, arg) {
     shell.input(null, arg);
 }, 'コマンドの実行', true);
 
-key.setCaretKey('R', function (ev) {
+key.setCaretKey('r', function () {
     BrowserReload();
 }, '更新', true);
+
+key.setCaretKey('R', function () {
+    BrowserReloadSkipCache();
+}, '更新(キャッシュを無視)');
 
 key.setCaretKey('B', function (ev) {
     BrowserBack();
@@ -668,3 +692,77 @@ key.setCaretKey('M-n', function (ev) {
 key.setCaretKey('ESC', function (ev, arg) {
     nsPreferences.setBoolPref("accessibility.browsewithcaret", false);
 }, 'キャレットモードを抜ける', true);
+
+key.setGlobalKey(["C-x", "g"], function (ev) {
+    BrowserOpenTab();
+    loadURI("http://www.google.co.jp");
+}, '新しいタブを開いてGoogleに飛ぶ', true);
+
+////////////////////////////////////////////////////////////////////
+// key.setGlobalKey(["C-c", "g"], function (ev) {
+//     BrowserOpenTab();
+//     loadURI("http://www.google.co.jp");
+// }, '新しいタブを開いてGoogleに飛ぶ', true);
+
+key.setGlobalKey(["C-c", "g"], function (ev) {
+    function mySearch(word){
+        var query = "q=" + encodeURIComponent(word);
+        BrowserOpenTab();
+        loadURI("http://www.google.co.jp/search?" + query);
+    }
+    prompt.read("search", mySearch, null, null, null, 0, "my-google-search");
+}, 'Google検索');
+
+// s を入力するとエンジン選択画面が開く。 j/k で上下へ。 Enter や s で決定。
+// エンジンを決定したら検索語句を入力する画面へ。ここで文字を入力して TAB を押すとサジェストの結果で補完される。(TABを押すごとに順次補完候補の移動)
+key.setViewKey('s', function (ev, arg) {
+    let engines = util.suggest.getEngines();
+
+    // If you want to use all available suggest engines,
+    // change suggestEngines value to util.suggest.filterEngines(engines);
+
+    let suggestEngines = [util.suggest.ss.getEngineByName("Google")];
+    let collection = engines.map(
+
+    function (engine)[(engine.iconURI || {
+        spec: ""
+    }).spec, engine.name, engine.description]);
+
+    prompt.selector({
+        message: "engine:",
+        collection: collection,
+        flags: [ICON | IGNORE, 0, 0],
+        header: ["Name", "Description"],
+        keymap: {
+            "s": "prompt-decide",
+            "j": "prompt-next-completion",
+            "k": "prompt-previous-completion"
+        },
+        callback: function (i) {
+            if (i >= 0) util.suggest.searchWithSuggest(engines[i], suggestEngines, "tab");
+        }
+    });
+}, "サジェスト検索", true);
+
+
+key.setGlobalKey(['C-c', 'h'], function (ev, arg) {
+    ext.exec("history-show", arg);
+}, '表示履歴の一覧表示', true);
+key.setViewKey(['h'], function (ev, arg) {
+    ext.exec("history-show", arg);
+}, '表示履歴の一覧表示', true);
+
+
+//Emacsのコピーコマンド'w'
+key.setViewKey('w', function () {
+    command.setClipboardText(content.location.href);
+}, 'URLをコピー', true);
+
+// タブが切りかわる度にURL表示
+// hook.addToHook('LocationChange', function (aNsURI) {
+//     if (aNsURI || aNsURI.spec) {
+//         var url = aNsURI.spec;
+//         display.prettyPrint(url);
+//     }
+// });
+

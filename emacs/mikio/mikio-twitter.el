@@ -38,18 +38,18 @@
 (setq twittering-initial-timeline-spec-string
       '("$related-to(atauky)"
         "mikio_kun/geeks"
-        "mikio_kun/geeks"
-        "mikio_kun/bot"
         "mikio_kun/friend"
         ":search/clojure/"
         ":search/emacs/"
-        ":search/タブレット/"
-        ":search/#androidjp/"
-        ":search/#shibuya_el/"
         ":search/lisp/"
-        ":search/scala/"
         ":direct_messages"
-        ":home"))
+        ":home"
+        ;;"mikio_kun/bot"
+        ;;":search/タブレット/"
+        ;;":search/#androidjp/"
+        ;;":search/#shibuya_el/"
+        ;;":search/scala/"
+        ))
 
 ;; タイムラインのフォーマット
 ;; Documentation:

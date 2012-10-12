@@ -29,7 +29,11 @@
 (global-set-key (kbd "C-z R") 'query-replace-regexp)
 (global-set-key (kbd "C-z C-z") 'suspend-emacs)
 
-(define-key global-map (kbd"C-z f")
+;; (require 'misc)
+;; (global-set-key "\M-f" 'forward-to-word)
+;; (global-set-key "\M-b" 'backward-to-word)
+
+(define-key global-map (kbd"C-c f")
   (lambda ()
     (interactive)
     (delete-other-windows)

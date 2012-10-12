@@ -23,8 +23,6 @@
         '(
           (:name anything-project
                  :type github
-                 :website "https://github.com/imakado/anything-project"
-                 :description ""
                  :pkgname "imakado/anything-project")
                        
           (:name color-moccur
@@ -129,6 +127,10 @@
           ;;        :type github
           ;;        :pkgname "myuhe/ac-ja.el")
 
+          (:name web-mode
+                 :type github
+                 :pkgname "fxbois/web-mode")
+
           ))
 
   ;; append:第一引数のリストに残りの引数の各リストの各要素を追加していく。
@@ -136,7 +138,7 @@
         (append 
          '(
            auto-install                 ; emacswiki
-           package                      ; http
+           ;;package                      ; http
 
            auto-complete                ; github
            anything                     ; git(http)
@@ -156,6 +158,7 @@
            clojure-mode                 ; github
            js2-mode                     ; github
            ruby-mode                    ; elpa
+           web-mode                     ; github
            ac-slime                     ; github
            magit                        ; github
 

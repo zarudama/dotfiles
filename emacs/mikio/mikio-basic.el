@@ -22,6 +22,10 @@
 (define-key isearch-mode-map (kbd "C-h") 'isearch-del-char)
 ;;(define-key isearch-mode-map (kbd "C-q") 'isearch-exit)
 
+;; カレントバッファをすぐに削除する
+(global-set-key (kbd "C-x k") '(lambda () (interactive) (kill-buffer (buffer-name (current-buffer)))))
+
+
 (defvar mikio-map (make-keymap))
 (define-key global-map (kbd "C-z") mikio-map)
 (global-set-key (kbd "C-z C-r") 'recenter-top-bottom)

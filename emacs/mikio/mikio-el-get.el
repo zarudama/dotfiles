@@ -6,9 +6,6 @@
 ;; インストール後のロードパスの用意(el-get自身用)
 (add-to-list 'load-path (mikio/elisp-home "el-get/el-get"))
 
-;;; el-getでインストールしたelisp拡張は、mikio/elisp-directory/el-get/に保存される。
-;;; mikio/elisp-directory/el-get/el-getではない。
-
 ;;; もし el-get がなければインストールを行う
 (unless (require 'el-get nil t)
   (url-retrieve
@@ -57,6 +54,7 @@
                  :type http
                  :url "http://www.rubyist.net/~rubikitch/private/esh-cmdline-stack.el")
         
+          
           ;; 標準のレシピだとinfoのインストールでエラーになるので再定義した。
           ;; (:name slime
           ;;        :description "Superior Lisp Interaction Mode for Emacs"
@@ -80,6 +78,24 @@
                   :pkgname "ponkore/ac-nrepl"
                   ;;:pkgname "purcell/ac-nrepl"
                   )
+
+           (:name tag-group
+                  :type github
+                  :pkgname "tarao/tab-group-el")
+           (:name key-intercept
+                  :type github
+                  :pkgname "tarao/key-intercept-el")
+           (:name multi-mode-util
+                  :type github
+                  :pkgname "tarao/multi-mode-util")
+           (:name multi-mode
+                  :type github
+                  :pkgname "emacsmirror/multi-mode")
+           (:name term-plus-el
+                 :type github
+                 :pkgname "tarao/term-plus-el"
+                 :submodule nil
+                 )
 
           ;; うまく動かないのでとりあえず保留
           ;; (:name anything-c-yasnippet-2
@@ -142,7 +158,7 @@
 
            auto-complete                ; github
            anything                     ; git(http)
-           helm                         ; git(http)
+           ;;helm                         ; git(http)
            undo-tree                    ; git(http)
            smartrep                     ; github
            popwin                       ; github

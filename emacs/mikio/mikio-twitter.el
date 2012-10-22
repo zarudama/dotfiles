@@ -113,6 +113,7 @@
 ;; 	     '(jmp . "http://api.j.mp/shorten?version=2.0.1&login=YOUR_USER_ID&apiKey=YOUR_API_KEY&format=text&longUrl="))
 ;; (setq twittering-tinyurl-service 'jmp)
 
+(define-key twittering-mode-map (kbd "q") nil)
 (define-key twittering-mode-map (kbd "C-h") 'tabbar-backward-tab)
 (define-key twittering-mode-map (kbd "C-l") 'tabbar-forward-tab)
 

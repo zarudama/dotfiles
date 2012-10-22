@@ -67,6 +67,7 @@
 (require 'mikio-yasnippet)
 
 (require 'mikio-eshell)
+(require 'mikio-term+)
 
 ;;;-----------------------------------------------------------------
 ;;; プログラミング支援

@@ -21,7 +21,7 @@
           auto-complete
           popwin
           smartrep
-          ;;color-moccur
+          color-moccur
           yasnippet
           undo-tree
 

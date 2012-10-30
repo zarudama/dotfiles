@@ -1,5 +1,7 @@
 (require 'mikio-util)
 (require 'clojure-mode)
+(require 'nrepl)
+(add-hook 'clojure-mode-hook 'nrepl-interaction-mode)
 
 ;-----------------------------------------------------------------
 ;; カッコの対応を取りながらS式を編集する。

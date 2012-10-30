@@ -44,10 +44,20 @@
 
 ;;;-----------------------------------------------------------------
 ;;; パッケージ管理システム
+;;; インストールの方針は以下のとおり。
+;;; - 基本的にemacs標準のpackage.elのMELPAリポジトリを使用する。
+;;; - MELPAに登録されていないものについては(emacswikiや個人サイト)
+;;;   el-getでインストールする。
+;;; - 上記以外でel-getは原則として使用しない。なぜなら、gitプロトコルや
+;;;   サブモジュールなどでうまく動作しないことがあるから。
+;;;   特にlinux以外の環境だとhttp以外のインストールは
+;;;   うまういかない場合が多いため。
+;;; - 例外的にel-getを使用する例としては、MELPAに登録していないものを
+;;;   一時的に利用したい場合など。
 ;;;-----------------------------------------------------------------
-(require 'mikio-auto-install)
-;;(require 'mikio-package)
+;;(require 'mikio-auto-install)
 (require 'mikio-el-get)
+(require 'mikio-package)
 
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち
@@ -55,33 +65,42 @@
 (require 'mikio-ext)
 (require 'mikio-dired)
 (require 'mikio-undo)
-(require 'mikio-windows)
-(require 'mikio-tabbar)
-(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
-;;(require 'mikio-helm)
+(require 'mikio-windows) ;; install-elisp(original)
+(require 'mikio-tabbar) ;; install-elisp(emacswiki)
+(require 'mikio-color-moccur)
+
+;;(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
+;;(require 'mikio-moccur) ;; color-moccur(melpa), moccur-edit(emacswiki)
+
+(require 'mikio-helm)
+(require 'mikio-helm-project)
+(require 'mikio-helm-moccur)
+(require 'mikio-helm-gtags)
+
 (require 'mikio-auto-complete)
 (require 'mikio-popwin)
 (require 'mikio-smartrep)
 
-(require 'mikio-moccur)
 (require 'mikio-yasnippet)
 
 (require 'mikio-eshell)
-(require 'mikio-term+)
+;; (require 'mikio-term+)
 
-;;;-----------------------------------------------------------------
-;;; プログラミング支援
-;;;-----------------------------------------------------------------
+;; ;;;-----------------------------------------------------------------
+;; ;;; プログラミング支援
+;; ;;;-----------------------------------------------------------------
 (require 'mikio-magit)
-(require 'mikio-gtags) ;; manual
-(require 'mikio-slime) ;; manual
-(require 'mikio-nrepl)
-(require 'mikio-flymake)
-;;(require 'mikio-jdee) ;; manual
+;; ;;(require 'mikio-gtags) ;; manual
+(require 'mikio-helm-gtags)
 
-;;;-----------------------------------------------------------------
-;;; メジャーモード
-;;;-----------------------------------------------------------------
+;; ;;(require 'mikio-slime) ;; manual
+(require 'mikio-nrepl)
+;; (require 'mikio-flymake)
+;; ;;(require 'mikio-jdee) ;; manual
+
+;; ;;;-----------------------------------------------------------------
+;; ;;; メジャーモード
+;; ;;;-----------------------------------------------------------------
 (require 'mikio-java)
 (require 'mikio-javascript)
 (require 'mikio-php)
@@ -93,17 +112,17 @@
 ;; (require 'mikio-scala)
 ;; (require 'mikio-lisp)
 
-;;;-----------------------------------------------------------------
-;;; 主にデスクトップのemacsで使用する拡張たち
-;;;-----------------------------------------------------------------
+;; ;;;-----------------------------------------------------------------
+;; ;;; 主にデスクトップのemacsで使用する拡張たち
+;; ;;;-----------------------------------------------------------------
 (when mikio/skk-use  (require 'mikio-skk)) ; manual-install
-(when mikio/info-use (require 'mikio-info)) 
+;; (when mikio/info-use (require 'mikio-info)) 
 (when mikio/org-use (require 'mikio-org))
 (when mikio/o-blog-use (require 'mikio-o-blog))
 (when mikio/gnus-use (require 'mikio-gnus))
 (when mikio/twitter-use (require 'mikio-twitter)); manual-install
-(when mikio/jabber-use (require 'mikio-jabber)) ; manual-install
-(when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
+;; (when mikio/jabber-use (require 'mikio-jabber)) ; manual-install
+;; (when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
 (when mikio/newsticker-use (require 'mikio-newsticker))
 (when mikio/howm-use (require 'mikio-howm)) ; manual-install
 

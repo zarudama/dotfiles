@@ -1,39 +1,57 @@
 (require 'mikio-util)
 
-(require 'yasnippet-config)
-(require 'dropdown-list)
-(yas/global-mode 1)
-;; snippetsの保存ディレクトリ
-(yas/load-directory (format "%s/snippets" mikio/elisp-directory)) ;; personal snippets)
-;; (setq yas-snippet-dirs
-;;       (list (format "%s/snippets" mikio/elisp-directory) ;; personal snippets
-;;             (format "%s/el-get/yasnippet/snippets" mikio/elisp-directory) ;; the default collection
-;;             ))
+;; 参考
+;; http://fukuyama.co/yasnippet
+(when (require 'yasnippet nil t)
 
-(call-interactively 'yas/reload-all)    ;workaround
-;; anything-complete.elを使っているなら yas/completing-prompt のみでもよい
-(setq yas/prompt-functions
-      '(yas/dropdown-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
+  ;; ユーザ定義のスニペット保存ディレクトリ
+  (setq my-snippets-directory (mikio/elisp-home "snippets"))
+  (mikio/make-directory my-snippets-directory)
+  (add-to-list 'yas-snippet-dirs my-snippets-directory)
 
-;; (require 'yasnippet) ;; not yasnippet-bundle
-;; (yas/global-mode 1)
+  (yas-global-mode 1)
+  (call-interactively 'yas/reload-all)
 
+  ;; 単語展開キーバインド (ver8.0から明記しないと機能しない)
+  ;; (setqだとtermなどで干渉問題ありでした)
+  ;; もちろんTAB以外でもOK 例えば "C-;"とか
+  (custom-set-variables '(yas-trigger-key "TAB"))
 
-(when (require 'auto-complete-config nil t)
-  (yas/set-ac-modes)
-  (yas/enable-emacs-lisp-paren-hack)
- ;; (add-to-list 'ac-sources 'ac-source-yasnippet)
-  (setq-default ac-sources '(ac-source-yasnippet))
-;; (ac-config-default)
-;; (setq-default ac-sources '(ac-source-yasnippet))
-;;(setq ac-delay 0.8);;, ac-complete will show a shadow auto-complete tips,
+  ;; 既存スニペットを挿入する
+  (define-key yas-minor-mode-map (kbd "C-x y i") 'yas-insert-snippet)
+  ;; 新規スニペットを作成するバッファを用意する
+  (define-key yas-minor-mode-map (kbd "C-x y n") 'yas-new-snippet)
+  ;; 既存スニペットを閲覧・編集する
+  (define-key yas-minor-mode-map (kbd "C-x y v") 'yas-visit-snippet-file)
+
+  ;; for interface                                                                        
+  (when t
+    (eval-after-load "helm-config"                                                           
+      '(progn                                                                                    
+         (defun my-yas/prompt (prompt choices &optional display-fn)                              
+           (let* ((names (loop for choice in choices                                             
+                               collect (or (and display-fn (funcall display-fn choice))          
+                                           choice)))                                             
+                  (selected (helm-other-buffer                                               
+                             `(((name . ,(format "%s" prompt))                                   
+                                (candidates . names)                                             
+                                (action . (("Insert snippet" . (lambda (arg) arg))))))           
+                             "*helm yas/prompt*")))                                          
+             (if selected                                                                        
+                 (let ((n (position selected names :test 'equal)))                               
+                   (nth n choices))                                                              
+               (signal 'quit "user quit!"))))                                                    
+         (custom-set-variables '(yas/prompt-functions '(my-yas/prompt)))                         
+         (define-key helm-command-map (kbd "y") 'yas/insert-snippet)))                       
+                                                                                             
+    ;; snippet-mode for *.yasnippet files                                                        
+    (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))                             
+
+  ;; for auto-complete
+  (when (require 'auto-complete-config nil t)
+    (setq-default ac-sources '(ac-source-yasnippet)))
 
   )
-
-
-;; (when (require 'anything-c-yasnippet-2 nil t)
-;;   (global-set-key (kbd "C-x a y") 'anything-yasnippet-2)
-;;   )
 
 (provide 'mikio-yasnippet)
 

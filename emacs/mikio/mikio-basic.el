@@ -75,6 +75,9 @@
 (display-time)
 (setq display-time-day-and-date t)
 
+;; 最近開いたファイルの保存数
+(setq recentf-max-saved-items 512)
+
 ;;;; C-/が効かない端末対策
 ;;(define-key key-translation-map (kbd "C-_") (kbd "C-/"))
 

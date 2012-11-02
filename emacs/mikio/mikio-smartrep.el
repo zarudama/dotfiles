@@ -37,6 +37,7 @@
 
       ("n" . 'tabbar-forward-tab)
       ("p" . 'tabbar-backward-tab)
+      ("K" . (lambda () (interactive) (kill-buffer (buffer-name (current-buffer)))))
 
       ("P" . (lambda () (progn (delete-other-windows) (tabbar-forward-group))))
       ("N" . (lambda () (progn (delete-other-windows) (tabbar-backward-group))))

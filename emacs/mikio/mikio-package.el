@@ -7,24 +7,32 @@
   ;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
   ;; MELPA
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  ;; (add-to-list 'package-archives
+  ;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+  ;; Marmaladeのみにする。
+  (setq package-archives (list '("melpa" . "http://melpa.milkbox.net/packages/")))
+
+	
 
   ;;インストールするディレクトリを指定
-  (setq package-user-dir (mikio/elisp-home "package/"))
+  (setq my-package-directory (mikio/elisp-home "package"))
+  (mikio/make-directory my-package-directory)
+  (setq package-user-dir (concat my-package-directory "/"))
 
   ;; 
   (package-initialize)
 
   (setq my-packages
-        '(helm
+        '(undo-tree
+          helm
           auto-complete
           popwin
           smartrep
           color-moccur
           yasnippet
-          undo-tree
 
+          helm-git
           helm-gtags
           helm-c-moccur
 
@@ -52,50 +60,6 @@
             (when (not (package-installed-p x))
               (package-install x)))
           my-packages)
-   
-  
-  
-
-  ;; (when nil
-  ;;   (require 'cl)
-  ;;   (defvar installing-package-list
-  ;;     '(
-  ;;       ;; ここに使っているパッケージを書く。
-  ;;       auto-complete   ; github
-  ;;       ;;    anything                     ; git(http)
-  ;;       ;;    undo-tree                    ; git(http)
-  ;;       ;;    smartrep                     ; github
-  ;;       ;;    popwin                       ; github
-  ;;       ;;    yasnippet                    ; github
-
-  ;;       ;;    revive                       ; http(windows.elが依存)
-  ;;       ;;    windows                      ; http
-        
-  ;;       ;;    paredit                      ; http
-  ;;       ;;    lispxmp                      ; emacswiki
-  ;;       ;;    tabbar                       ; emacswiki
-
-  ;;       ;;    clojure-mode                 ; github
-  ;;       ;;    js2-mode                     ; github
-  ;;       ;;    ruby-mode                    ; elpa
-  ;;       ;;    ac-slime                     ; github
-  ;;       ;;    magit                        ; github
-
-  ;;       ;;    jaunte                       ; github
-  ;;       ;;    rainbow-delimiters           ; github
-
-  ;;       ))
-
-  ;;   (let ((not-installed (loop for x in installing-package-list
-  ;;                              when (not (package-installed-p x))
-  ;;                              collect x)))
-  ;;     (when not-installed
-  ;;       (package-refresh-contents)
-  ;;       (dolist (pkg not-installed)
-  ;;         (package-install pkg))))
-  ;;   )
-  
-
 )
 
 (provide 'mikio-package)

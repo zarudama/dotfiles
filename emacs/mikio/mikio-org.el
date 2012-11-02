@@ -58,7 +58,8 @@
 (setq org-hide-leading-stars t)
 
 (setq org-directory (mikio/org-directory))
-(setq org-agenda-files (list org-directory))
+(require 'em-glob)
+(setq org-agenda-files (eshell-extended-glob (concat org-directory "**/*.org")))
 
 (setq org-agenda-include-diary t)
 ;(setq org-agenda-include-diary nil)

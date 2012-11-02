@@ -23,18 +23,11 @@
 (add-to-list 'load-path (format "%s/mikio/private" mikio/elisp-directory))
 (require 'mikio-util)
 
-;;; custom-flleもDropboxにする
-(load (format "%s/custom.el" mikio/elisp-directory))
-
-;;; snippetsの保存ディレクトリ
-(setq yas-snippet-dirs
-      (list (format "%s/snippets" mikio/elisp-directory) ;; personal snippets
-            (format "%s/el-get/yasnippet/snippets" mikio/elisp-directory) ;; the default collection
-             ))
-
-
 ;;; 標準ライブラリを上書きするパッケージはここに。
 (require 'mikio-overwrite)
+
+;;; custom-flleもDropboxにする
+;;(load (format "%s/custom.el" mikio/elisp-directory))
 
 ;;;-----------------------------------------------------------------
 ;;; 標準の機能だけで実現する最低限の設定
@@ -73,12 +66,13 @@
 ;;(require 'mikio-moccur) ;; color-moccur(melpa), moccur-edit(emacswiki)
 
 (require 'mikio-helm)
-(require 'mikio-helm-project)
+;(require 'mikio-helm-project)
+(require 'mikio-helm-git)
 (require 'mikio-helm-moccur)
 (require 'mikio-helm-gtags)
 
 (require 'mikio-auto-complete)
-(require 'mikio-popwin)
+;;(require 'mikio-popwin)
 (require 'mikio-smartrep)
 
 (require 'mikio-yasnippet)

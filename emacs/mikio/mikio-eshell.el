@@ -11,13 +11,13 @@
 ;;; eshell tips
 ;;;-----------------------------------------------------------------
 
-;;; シェルコマンドの履歴から補完する
-(require 'shell-history)
-;;(anything-complete-shell-history-setup-key (kbd "C-o"))
-(setq eshell-mode-hook
-      '(lambda ()
-         (local-set-key (kbd "C-o") 'anything-eshell-history)
-         ))
+;; ;;; シェルコマンドの履歴から補完する
+;; (require 'shell-history)
+;; ;;(anything-complete-shell-history-setup-key (kbd "C-o"))
+;; (setq eshell-mode-hook
+;;       '(lambda ()
+;;          (local-set-key (kbd "C-o") 'anything-eshell-history)
+;;          ))
 
 ;;; tabbar用にバッファ名から「＊」を取り除く
 ;;;(setq eshell-buffer-name "eshell")
@@ -297,6 +297,44 @@
 ;;; (install-elisp "http://www.rubyist.net/~rubikitch/private/esh-cmdline-stack.el")
 ;;;-----------------------------------------------------------------
 ;;(require 'esh-cmdline-stack)
+
+;;;-----------------------------------------------------------------
+;; pcomprete
+;; https://github.com/emacs-helm/helm/wiki
+;;;-----------------------------------------------------------------
+(defun pcomplete/find ()
+  (let ((prec (pcomplete-arg 'last -1)))
+    (cond ((and (pcomplete-match "^-" 'last)
+                (string= "find" prec))
+           (pcomplete-opt "HLPDO"))
+          ((pcomplete-match "^-" 'last)
+           (while (pcomplete-here
+                   '("-amin" "-anewer" "-atime" "-cmin" "-cnewer" "-context"
+                     "-ctime" "-daystart" "-delete" "-depth" "-empty" "-exec"
+                     "-execdir" "-executable" "-false" "-fls" "-follow" "-fprint"
+                     "-fprint0" "-fprintf" "-fstype" "-gid" "-group"
+                     "-help" "-ignore_readdir_race" "-ilname" "-iname"
+                     "-inum" "-ipath" "-iregex" "-iwholename"
+                     "-links" "-lname" "-ls" "-maxdepth"
+                     "-mindepth" "-mmin" "-mount" "-mtime"
+                     "-name" "-newer" "-nogroup" "-noignore_readdir_race"
+                     "-noleaf" "-nouser" "-nowarn" "-ok"
+                     "-okdir" "-path" "-perm" "-print"
+                     "-print0" "-printf" "-prune" "-quit"
+                     "-readable" "-regex" "-regextype" "-samefile"
+                     "-size" "-true" "-type" "-uid"
+                     "-used" "-user" "-version" "-warn"
+                     "-wholename" "-writable" "-xdev" "-xtype"))))
+          ((string= "-type" prec)
+           (while (pcomplete-here (list "b" "c" "d" "p" "f" "l" "s" "D"))))
+          ((string= "-xtype" prec)
+           (while (pcomplete-here (list "b" "c" "d" "p" "f" "l" "s"))))
+          ((or (string= prec "-exec")
+               (string= prec "-execdir"))
+           (while (pcomplete-here* (funcall pcomplete-command-completion-function)
+                                   (pcomplete-arg 'last) t))))
+    (while (pcomplete-here (pcomplete-entries) nil 'identity))))
+
 
 
 (provide 'mikio-eshell)

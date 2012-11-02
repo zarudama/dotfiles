@@ -13,8 +13,11 @@
 ;; (setq auto-install-directory (format "%s/elisp" mikio/elisp-directory))
 ;;-----------------------------------------------------------------
 
-(setq auto-install-directory (mikio/elisp-home  "auto-install/")) ;; 末尾に"/"を忘れないこと
-(add-to-list 'load-path (mikio/elisp-home "auto-install"))
+(setq my-auto-install-directory (mikio/elisp-home "auto-install"))
+(mikio/make-directory my-auto-install-directory)
+
+(setq auto-install-directory (concat my-auto-install-directory "/")) ;; 末尾に"/"を忘れないこと
+(add-to-list 'load-path my-auto-install-directory)
 
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)

@@ -2,6 +2,12 @@
 ;; load-pathの設定
 ;;-----------------------------------------------------------------
 
+(defun mikio/make-directory (dir)
+  "ディレクトリが存在しなければ作成する。"
+  (cond
+   ((not (file-exists-p dir))
+    (make-directory dir))))
+
 (defun mikio/elisp-home (path)
   "elispのパス文字列を生成する。
 ex. (mikio/elisp-home 'hoge'  => 'c:/Users/mikio/Dropbox/dotfiles/emacs/hoge'"

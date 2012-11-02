@@ -1,10 +1,13 @@
 (require 'mikio-util)
 
-;;; el-getそのもののインストールディレクトリ 
-(setq el-get-dir (format "%s/el-get" mikio/elisp-directory))
+
+;;; el-get経由でインストールしたパッケージのディレクトリ
+(setq el-get-dir (mikio/elisp-home "el-get"))
+
+(mikio/make-directory el-get-dir)
 
 ;; インストール後のロードパスの用意(el-get自身用)
-(add-to-list 'load-path (mikio/elisp-home "el-get/el-get"))
+(add-to-list 'load-path (concat el-get-dir "/el-get"))
 
 ;;; もし el-get がなければインストールを行う
 (unless (require 'el-get nil t)
@@ -68,8 +71,8 @@
           ;;        :type http
           ;;        :url "http://www.rubyist.net/~rubikitch/archive/anything-c-yasnippet-2.el")
 
-          (:name yasnippet-config
-                 :type emacswiki)
+          ;; (:name yasnippet-config
+          ;;        :type emacswiki)
 
           ;; (:name sha1-el
           ;;        :type http

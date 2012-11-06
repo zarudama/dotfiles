@@ -16,9 +16,14 @@
 (add-hook 'evil-operator-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 (add-hook 'evil-motion-state-entry-hook (lambda () (set-face-background 'mode-line "DarkRed")))
 
-(evil-set-initial-state 'sdic-mode 'emacs)
-(evil-set-initial-state 'moccur-grep-mode 'emacs)
-(evil-set-initial-state 'jabber-mode 'emacs)
+(add-to-list 'evil-emacs-state-modes 'sdic-mode)
+(add-to-list 'evil-emacs-state-modes 'moccure-grep-mode)
+(add-to-list 'evil-emacs-state-modes 'jaber-mode)
+(add-to-list 'evil-emacs-state-modes 'howm-menu-mode)
+;;(add-to-list 'evil-emacs-state-modes 'howm-mode)
+(add-to-list 'evil-emacs-state-modes 'howm-remember-mode)
+(add-to-list 'evil-emacs-state-modes 'howm-view-contents-mode)
+(add-to-list 'evil-emacs-state-modes 'howm-view-summary-mode)
 
 ;;(require 'evil-leader)
 ;; (setq evil-leader/leader ","
@@ -31,6 +36,7 @@
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "M-C-h") 'backward-kill-word)
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+(evil-set-toggle-key (kbd "C-c C-z"))
 
 ;;-----------------------------------------------------------------
 ;; S Expression key bind

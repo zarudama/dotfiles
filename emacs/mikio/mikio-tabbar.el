@@ -16,7 +16,8 @@
 
 ;; タブがはみ出た時はスクロール(初期値t・nilで省略表示)
 ;; 横方向にスクロールする。
-(setq tabbar-auto-scroll-flag nil)
+;;(setq tabbar-auto-scroll-flag nil)
+(setq tabbar-auto-scroll-flag t)
 
 ;;左に表示されるボタンを無効化
 (dolist (btn '(tabbar-buffer-home-button

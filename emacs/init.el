@@ -59,21 +59,21 @@
 (require 'mikio-dired)
 (require 'mikio-undo)
 (require 'mikio-windows) ;; install-elisp(original)
-(require 'mikio-tabbar) ;; install-elisp(emacswiki)
 (require 'mikio-color-moccur)
 
 ;;(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
 ;;(require 'mikio-moccur) ;; color-moccur(melpa), moccur-edit(emacswiki)
 
 (require 'mikio-helm)
-;(require 'mikio-helm-project)
-(require 'mikio-helm-git)
+(require 'mikio-helm-project)
+;;(require 'mikio-helm-git)
 (require 'mikio-helm-moccur)
 (require 'mikio-helm-gtags)
 
 (require 'mikio-auto-complete)
 ;;(require 'mikio-popwin)
 (require 'mikio-smartrep)
+(require 'mikio-tabbar) ;; install-elisp(emacswiki)
 
 (require 'mikio-yasnippet)
 
@@ -131,12 +131,12 @@
 ;;;-----------------------------------------------------------------
 ;;; いつのまにか使わなくなった拡張たち
 ;;;-----------------------------------------------------------------
-;;(require "mikio-elscreen")
 ;;(require "mikio-mew")
 ;;(require "mikio-e2wm")
 ;;(require "mikio-svn")
 ;;(require "mikio-marabar")
 ;;(require "mikio-migemo")
+;;(require 'mikio-elscreen)
 
 ;;(require 'mikio-ibuffer)
 ;;(require 'mikio-shell)
@@ -150,6 +150,7 @@
 ;;;-----------------------------------------------------------------
 ;;; vim化
 ;;;-----------------------------------------------------------------
-;; (require 'evil)
-;; (evil-mode 1)
 ;;(require 'mikio-evil)
+
+
+

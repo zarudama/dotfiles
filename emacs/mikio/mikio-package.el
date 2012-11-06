@@ -31,6 +31,7 @@
           smartrep
           color-moccur
           yasnippet
+          ;;elscreen
 
           helm-git
           helm-gtags
@@ -53,6 +54,7 @@
           twittering-mode              ; github
           o-blog                       ; github
 
+          evil
           ))
 
   (require 'cl)

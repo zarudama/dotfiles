@@ -24,6 +24,7 @@
 (add-to-list 'evil-emacs-state-modes 'howm-remember-mode)
 (add-to-list 'evil-emacs-state-modes 'howm-view-contents-mode)
 (add-to-list 'evil-emacs-state-modes 'howm-view-summary-mode)
+(add-to-list 'evil-emacs-state-modes 'helm-map)
 
 ;;(require 'evil-leader)
 ;; (setq evil-leader/leader ","
@@ -96,7 +97,12 @@
   (evil-declare-key 'normal dired-mode-map (kbd "C-h") 'dired-up-directory)
   (evil-declare-key 'normal dired-mode-map (kbd "i") 'dired-maybe-insert-subdir)
   (evil-declare-key 'normal dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
-  (evil-declare-key 'normal dired-mode-map (kbd "q") 'quit-window))
+  (evil-declare-key 'normal dired-mode-map (kbd "q") 'quit-window)
+  (evil-declare-key 'normal dired-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
+  (evil-declare-key 'normal dired-mode-map (kbd "g g") 'evil-goto-first-line)
+  (evil-declare-key 'normal dired-mode-map (kbd "G") 'evil-goto-line)
+  (if (eq window-system 'w32)
+      (evil-declare-key 'normal dired-mode-map (kbd "z") 'uenox-dired-winstart)))
 
 ;;-----------------------------------------------------------------
 ;; eshell
@@ -196,7 +202,6 @@
 ;; slime
 ;;-----------------------------------------------------------------
 (when (require 'evil nil t)
-
   (add-hook 'evil-insert-state-entry-hook
             (lambda ()
               (when (eq major-mode 'slime-repl-mode)
@@ -223,9 +228,65 @@
 ;; twitter
 ;;-----------------------------------------------------------------
 (when (require 'twittering-mode nil t)
+  (evil-set-initial-state 'twittering-mode 'normal)
+  (evil-declare-key 'normal twittering-mode-map (kbd "<return>") 'twittering-enter)
+  (evil-declare-key 'normal twittering-mode-map (kbd "C-m")  'twittering-enter)
   (define-key twittering-mode-map (kbd "C-p") 'tabbar-backward-tab)
   (define-key twittering-mode-map (kbd "C-n") 'tabbar-forward-tab)
-  )
+  (evil-declare-key 'normal twittering-mode-map (kbd "^") 'beginning-of-line-text)
+  (evil-declare-key 'normal twittering-mode-map (kbd "a") 'twittering-toggle-activate-buffer)
+  ;;(evil-declare-key 'normal twittering-mode-map (kbd "b") 'twittering-switch-to-previous-timeline)
+  (evil-declare-key 'normal twittering-mode-map (kbd "d") 'twittering-direct-message)
+  ;;(evil-declare-key 'normal twittering-mode-map (kbd "f") 'twittering-switch-to-next-timeline)
+  (evil-declare-key 'normal twittering-mode-map (kbd "g") 'twittering-current-timeline)
+  (evil-declare-key 'normal twittering-mode-map (kbd "h") 'backward-char)
+  (evil-declare-key 'normal twittering-mode-map (kbd "i") 'twittering-icon-mode)
+  (evil-declare-key 'normal twittering-mode-map (kbd "j") 'twittering-goto-next-status)
+  (evil-declare-key 'normal twittering-mode-map (kbd "k") 'twittering-goto-previous-status)
+  (evil-declare-key 'normal twittering-mode-map (kbd "l") 'forward-char)
+  (evil-declare-key 'normal twittering-mode-map (kbd "n") 'twittering-goto-next-status-of-user)
+  (evil-declare-key 'normal twittering-mode-map (kbd "p") 'twittering-goto-previous-status-of-user)
+  (evil-declare-key 'normal twittering-mode-map (kbd "r") 'twittering-toggle-show-replied-statuses)
+  (evil-declare-key 'normal twittering-mode-map (kbd "s") 'twittering-search)
+  (evil-declare-key 'normal twittering-mode-map (kbd "t") 'twittering-toggle-proxy)
+  (evil-declare-key 'normal twittering-mode-map (kbd "u") 'twittering-update-status-interactive)
+  ;;(evil-declare-key 'normal twittering-mode-map (kbd "v") 'twittering-other-user-timeline)
+ )
+
+
+;;-----------------------------------------------------------------
+;; w3m
+;;-----------------------------------------------------------------
+(when t
+  (evil-set-initial-state 'w3m-mode 'normal)
+  (evil-declare-key 'normal w3m-mode-map (kbd "<return>") 'w3m-view-this-url)
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-m") 'w3m-view-this-url)
+  ;; タブ一覧
+  (evil-declare-key 'normal w3m-mode-map (kbd "a") 'w3m-select-buffer)
+
+  ;; タブを閉じる
+  (evil-declare-key 'normal w3m-mode-map (kbd "d") 'w3m-delete-buffer)
+  (evil-declare-key 'normal w3m-mode-map (kbd "D") 'w3m-delete-other-buffers)
+
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-M-i") 'w3m-toggle-inline-images) ; 画像表示のトグル
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-i") 'w3m-view-image) ; 画像表示
+
+  (evil-declare-key 'normal w3m-mode-map (kbd "R") 'w3m-redisplay-this-page) ; 再描画
+  (evil-declare-key 'normal w3m-mode-map (kbd "r") 'w3m-reload-this-page) ; 再読込
+
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-l") 'w3m-goto-url) ; URL指定
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-c t") 'w3m-goto-url-new-session) ; タブを作成
+
+  ;; タブを移動する
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-n") '(lambda () (interactive) (w3m-next-buffer 1)))
+  (evil-declare-key 'normal w3m-mode-map (kbd "C-p") '(lambda () (interactive) (w3m-next-buffer -1)))
+
+  (evil-declare-key 'normal w3m-mode-map (kbd "H") 'w3m-view-previous-page)
+  (evil-declare-key 'normal w3m-mode-map (kbd "L") 'w3m-view-next-page)
+
+  (when (require 'jaunte nil t)
+    (evil-declare-key 'normal w3m-mode-map (kbd "F") 'jaunte)
+    (evil-declare-key 'normal w3m-mode-map (kbd "f") 'w3m-go-to-linknum)))
 
 
 (provide 'mikio-evil)

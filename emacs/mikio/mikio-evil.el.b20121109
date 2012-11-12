@@ -24,11 +24,7 @@
 (add-to-list 'evil-emacs-state-modes 'howm-remember-mode)
 (add-to-list 'evil-emacs-state-modes 'howm-view-contents-mode)
 (add-to-list 'evil-emacs-state-modes 'howm-view-summary-mode)
-
-(evil-add-hjkl-bindings *howm-menu-mode-map* 'emacs)
-(evil-add-hjkl-bindings *howm-remember-mode-map* 'emacs)
-;;(evil-add-hjkl-bindings *howm-view-contents-mode* 'emacs)
-(evil-add-hjkl-bindings *howm-view-summary-mode* 'emacs)
+(add-to-list 'evil-emacs-state-modes 'helm-map)
 
 ;;(require 'evil-leader)
 ;; (setq evil-leader/leader ","

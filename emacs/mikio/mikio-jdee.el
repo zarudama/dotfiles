@@ -4,6 +4,13 @@
 ;;-----------------------------------------------------------------
 (add-to-list 'load-path (mikio/site-lisp-directory "jdee/dist/jdee-2.4.1/lisp"))
 
+;; coplilationバッファを自動的にスクロールさせる
+(setq compilation-ask-about-save nil)
+(setq compilation-scroll-output 'first-error)
+
+;;(setq jde-db-read-vm-args "-J-Dfile.encoding=UTF8")
+;;(setq jde-debugger '("jdb -J-Dfile.encoding=UTF8"))
+
 ;; load autoloads file
 (load "jde-autoload")
 ;;(require 'jde)

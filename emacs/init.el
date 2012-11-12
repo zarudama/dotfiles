@@ -69,6 +69,7 @@
 ;;(require 'mikio-helm-git)
 (require 'mikio-helm-moccur)
 (require 'mikio-helm-gtags)
+(require 'mikio-helm-ack)
 
 (require 'mikio-auto-complete)
 ;;(require 'mikio-popwin)
@@ -90,12 +91,14 @@
 ;; ;;(require 'mikio-slime) ;; manual
 (require 'mikio-nrepl)
 ;; (require 'mikio-flymake)
-;; ;;(require 'mikio-jdee) ;; manual
+(require 'mikio-jdee) ;; manual
 
 ;; ;;;-----------------------------------------------------------------
 ;; ;;; メジャーモード
 ;; ;;;-----------------------------------------------------------------
 (require 'mikio-java)
+;;(require 'mikio-java-mode-plus)
+;;(require 'mikio-auto-complete-java)
 (require 'mikio-javascript)
 (require 'mikio-php)
 (require 'mikio-ruby)
@@ -150,7 +153,10 @@
 ;;;-----------------------------------------------------------------
 ;;; vim化
 ;;;-----------------------------------------------------------------
-(require 'mikio-evil)
+;;(require 'mikio-evil)
+
+
+
 
 
 

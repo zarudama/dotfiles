@@ -40,5 +40,5 @@
 ;;(global-set-key (kbd "C-x a g") 'helm-ack)
 (global-set-key (kbd "C-x a d") 'helm-for-document)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-(helm-mode t)
+;;(helm-mode t) ; なんでもhelm
 (provide 'mikio-helm)

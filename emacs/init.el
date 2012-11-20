@@ -103,6 +103,7 @@
 (require 'mikio-php)
 (require 'mikio-ruby)
 (require 'mikio-clojure)
+(require 'mikio-scheme)
 (require 'mikio-elisp)
 (require 'mikio-xml)
 (require 'mikio-web-mode)

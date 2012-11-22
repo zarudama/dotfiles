@@ -107,6 +107,7 @@
 (require 'mikio-elisp)
 (require 'mikio-xml)
 (require 'mikio-web-mode)
+(require 'mikio-sh-mode)
 ;; (require 'mikio-scala)
 ;; (require 'mikio-lisp)
 

@@ -27,12 +27,13 @@
 (require 'helm)
 (require 'jde)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; auto-complete
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; TODO 型ごとのメソッド一覧を、バッファローカルの連想リストに保存して再利用するようにする。
-;;(make-variable-buffer-local 'mikio/lvar-methods)
 (defvar mikio/lvar-methods nil)
+(defvar helm-jdee-method-args-separator ", ")
+
+(defun helm-jdee-method-cache-clear ()
+  (interactive)
+  (setq mikio/lvar-methods nil))
 
 (defun ac-source-jdee-candidates ()
   (with-current-buffer helm-current-buffer
@@ -129,7 +130,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'cl)
-(setq my-method "wait(long, int) : void throws java.lang.InterruptedException")
 
 (defun my-jdee-method-split (s)
   (let ((ss (replace-regexp-in-string " +" "" (car (split-string s ":")))))
@@ -143,10 +143,6 @@
     (when (string-match "\\(.*\\)(\\(.*\\))" ss)
       (list (match-string 1 ss) (match-string 2 ss)))))
 
-;;my-method ; => "wait(long, int) : void throws java.lang.InterruptedException"
-;; (my-jdee-method-split my-method) 
-;; (my-jdee-method-list my-method)
-
 (defun my-jdee-method-name (l)
   (car l))
 
@@ -154,33 +150,51 @@
   (let ((arg (car (cdr l))))
     (split-string arg ",")))
 
-;; (my-jdee-method-list my-method)
-;;(my-jdee-method-create-snippet (my-jdee-method-args (my-jdee-method-list my-method)))
-
 (defun my-jdee-method-create-snippet (l)
   (let ((len (length l)))
     (loop for i from 1 to len
           for x in l
           collect (format "${%s:%s}" i x))))
-(setq args '("aa" "bb"))
-(apply 'concat "hoge" args)
 
+(defun kill-at-point (thing)
+  (let (start end)
+    (beginning-of-thing thing)
+    (setq start (point))
+    (end-of-thing thing)
+    (setq end (point))
+    (kill-region start end)))
+
+(defun join-list-stirng (l sep)
+  (mapconcat 'identity l sep))
 
 (defun my-jdee-method-action (s)
   "yasnippet用のテンプレートを動的に作成する。"
   (let* ((l (my-jdee-method-list s))
          (name (my-jdee-method-name l))
          (args (my-jdee-method-args l))
-         (snip (apply 'concat (my-jdee-method-create-snippet args)))
-         (snippet (concat name "(" snip ")"))
-         )
+         (snip (my-jdee-method-create-snippet args))
+         (sig (join-list-stirng snip helm-jdee-method-args-separator))
+         (snippet (concat name "(" sig ")")))
     (message snippet)
-    ;;(insert s)
+    (if (not (null (thing-at-point 'symbol)))
+             (kill-at-point 'symbol))
     (yas/expand-snippet snippet)
     ;;(yas/expand-snippet "split(${1:String} , ${2:int})")
     ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; http://d.hatena.ne.jp/tuto0621/20090217/1234888531
+(defun copy-at-point (thing)
+  (kill-new (thing-at-point thing))
+  (end-of-thing thing)
+  (car kill-ring)
+  )
+
+(defun init-query ()
+  (if (not (null (thing-at-point 'symbol)))
+      (copy-at-point 'symbol)
+    ""))
+
 
 (eval-when-compile (require 'cl))
 (require 'helm)
@@ -191,31 +205,16 @@
 
 (defvar helm-c-source-jdee-method
   '((name . "jdee-method")
-    (init . (lambda () ()))
-    (candidates-in-buffer)
-    (candidate-number-limit . 9999)
     (candidates . (lambda () (ac-source-jdee-candidates)))
     (action ("Insert" . my-jdee-method-action))))
 
 (defun helm-jdee-method ()
   ""
   (interactive)
-  (helm-other-buffer '(helm-c-source-jdee-method) "*helm-jdee-method*")
-  )
-
-;; (defvar helm-c-jdee-method-mode-name " HelmJdeM")
-;; (defvar helm-c-jdee-method-mode-map (make-sparse-keymap))
-
-;; ;;;###autoload
-;; (define-minor-mode helm-jdee-method-mode ()
-;;   "Enable for helm-jdee-method"
-;;   :group      'helm-jdee-method
-;;   :init-value nil
-;;   :global     nil
-;;   :keymap     helm-c-jdee-method-mode-map
-;;   :lighter    helm-c-jdee-method-mode-name
-;;   (if helm-jdee-method-mode
-;;       (run-hooks 'helm-jdee-method-mode-hook)))
+  (helm
+   :input (init-query) 
+   :sources 'helm-c-source-jdee-method
+   :buffer "*helm-jdee-method*"))
 
 (provide 'helm-jdee-method)
 

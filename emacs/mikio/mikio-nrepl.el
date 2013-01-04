@@ -16,4 +16,9 @@
     (add-hook 'nrepl-mode-hook (lambda () (paredit-mode))))
   )
 
+
+(defun my-nrepl-mode-setup ()
+  (require 'nrepl-ritz))
+(add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
+
 (provide 'mikio-nrepl)

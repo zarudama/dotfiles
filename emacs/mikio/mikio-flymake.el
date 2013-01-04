@@ -47,7 +47,19 @@
   (add-hook 'ruby-mode-hook
             (lambda () 
               (flymake-mode)
-              )))
+              ))
+
+
+  (when (not (fboundp 'flymake-ruby-init))
+    (defun my-java-flymake-init ()
+      (list "javac" (list (flymake-init-create-temp-buffer-copy
+                           'flymake-create-temp-with-folder-structure))))    
+    )
+  (add-hook 'java-mode-hook 'flymake-mode-on)
+  (add-to-list 'flymake-allowed-file-name-masks '("\\.java$" my-java-flymake-init
+                                                  flymake-simple-cleanup))
+
+  )
 
 ;;-----------------------------------------------------------------
 ;; flaymake tool tip popup

@@ -18,6 +18,8 @@
 ;;;; M-x compile-defunは、C-M-xと同様関数再定義ですが、
 ;;;; その場でバイトコンパイルする点が異なります。
 
+(setq debug-on-error t)
+
 ;;; 自前関数の定義
 (add-to-list 'load-path (format "%s/mikio/" mikio/elisp-directory))
 (add-to-list 'load-path (format "%s/mikio/private" mikio/elisp-directory))
@@ -92,6 +94,7 @@
 (require 'mikio-nrepl)
 ;; (require 'mikio-flymake)
 (require 'mikio-jdee) ;; manual
+;;(require 'mikio-cedet) ;; manual
 
 ;; ;;;-----------------------------------------------------------------
 ;; ;;; メジャーモード
@@ -136,20 +139,20 @@
 ;;;-----------------------------------------------------------------
 ;;; いつのまにか使わなくなった拡張たち
 ;;;-----------------------------------------------------------------
-;;(require "mikio-mew")
-;;(require "mikio-e2wm")
-;;(require "mikio-svn")
-;;(require "mikio-marabar")
-;;(require "mikio-migemo")
+;;(require 'mikio-e2wm)
+;;(require 'mikio-mew)
+;;(require 'mikio-svn)
+;;(require 'mikio-marabar)
+;;(require 'mikio-migemo)
 ;;(require 'mikio-elscreen)
 
 ;;(require 'mikio-ibuffer)
 ;;(require 'mikio-shell)
-;;(require "mikio-keybind")
+;;(require 'mikio-keybind)
 ;;(require 'mikio-bookmark)
 ;;(require 'mikio-minimum_win)
-;;(require "mikio-final")
-;;(require "mikio-auto-compile")
+;;(require 'mikio-final)
+;;(require 'mikio-auto-compile)
 ;;(require 'mikio-color) ; color-theme
 
 ;;;-----------------------------------------------------------------

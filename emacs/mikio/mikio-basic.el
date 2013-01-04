@@ -21,6 +21,8 @@
 (global-set-key (kbd "C-m")  'newline-and-indent)
 (define-key isearch-mode-map (kbd "C-h") 'isearch-del-char)
 ;;(define-key isearch-mode-map (kbd "C-q") 'isearch-exit)
+(global-set-key (kbd "M-P") 'backward-paragraph)
+(global-set-key (kbd "M-N") 'forward-paragraph)
 
 ;; カレントバッファをすぐに削除する
 (global-set-key (kbd "C-x k") '(lambda () (interactive) (kill-buffer (buffer-name (current-buffer)))))

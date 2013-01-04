@@ -25,3 +25,5 @@
 (defvar mikio/howm-use t)
 
 (load (format "%s/init.el" mikio/elisp-directory))
+
+(server-start)

@@ -14,6 +14,7 @@
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c r") 'org-remember)
+;;(define-key org-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
 ;; --------------------------------------
 ;; from rubikitch mail

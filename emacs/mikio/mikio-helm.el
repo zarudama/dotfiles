@@ -21,11 +21,23 @@
                 (kbd "C-o")
                 'helm-eshell-history)))
 
-(add-hook 'eshell-mode-hook
-          #'(lambda ()
-              (define-key eshell-mode-map 
-                [remap pcomplete]
-                'helm-esh-pcomplete)))
+;; (add-hook 'eshell-mode-hook
+;;           #'(lambda ()
+;;               (define-key eshell-mode-map 
+;;                 [remap pcomplete]
+;;                 'helm-esh-pcomplete)))
+
+;;-----------------------------------------------------------------
+;; helm
+;;-----------------------------------------------------------------
+;; (require 'yasnippet)
+(require 'helm-c-yasnippet)
+;; (setq helm-c-yas-space-match-any-greedy t) ;[default: nil]
+(global-set-key (kbd "C-x a y") 'helm-c-yas-complete)
+;; (yas--initialize)
+;; (yas-load-directory "<path>/<to>/snippets/")
+;; (add-to-list 'yas-extra-mode-hooks 'ruby-mode-hook)
+;; (add-to-list 'yas-extra-mode-hooks 'cperl-mode-hook)
 
 ;;-----------------------------------------------------------------
 ;; 起動コマンド
@@ -39,6 +51,6 @@
 (global-set-key (kbd "C-x a g") 'helm-do-grep)
 ;;(global-set-key (kbd "C-x a g") 'helm-ack)
 (global-set-key (kbd "C-x a d") 'helm-for-document)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;;(global-set-key (kbd "C-x C-f") 'helm-find-files)
 ;;(helm-mode t) ; なんでもhelm
 (provide 'mikio-helm)

@@ -1,75 +1,95 @@
-(add-to-list 'load-path (mikio/site-lisp-directory "elib-1.0"))
+(require 'mikio-util)
 
-;; (load-file (mikio/site-lisp-directory "cedet-1.0.1/common/cedet.el"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/cogre"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/common"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/contrib"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/ede"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/eieio"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/semantic"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/semantic/bovine"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/semantic/ctags"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/semantic/symref"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/semantic/wisent"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/speedbar"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.0.1/srecode"))
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+;; (add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
 
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/cogre"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/common"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/contrib"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/ede"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/eieio"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/semantic"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/semantic/bovine/"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/semantic/ctags/"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/speedbar"))
-(add-to-list 'load-path (mikio/site-lisp-directory "cedet-1.1/srecode"))
-(load-file (mikio/site-lisp-directory "cedet-1.1/common/cedet.el"))
 
-;; Load CEDET.
-;; See cedet/common/cedet.info for configuration details.
-;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
-;; CEDET component (including EIEIO) gets activated by another 
-;; package (Gnus, auth-source, ...).
-;; (load-file "~/Dropbox/site-lisp/cedet-1.1/common/cedet.el")
+;; ;; Enable Semantic
+;; (semantic-mode 1)
 
 ;; ;; Enable EDE (Project Management) features
 ;; (global-ede-mode 1)
 
-;; ;; Enable EDE for a pre-existing C++ project
-;; ;; (ede-cpp-root-project "NAME" :file "~/myproject/Makefile")
+;; via
+;; https://github.com/alexott/emacs-configs/blob/master/rc/emacs-rc-cedet.el
+(defun alexott/cedet-hook ()                                                                            
+  (local-set-key [(control return)] 'semantic-ia-complete-symbol-menu)                                  
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol)                                                  
+  ;;                                                                                                    
+  (local-set-key "\C-c>" 'semantic-comsemantic-ia-complete-symbolplete-analyze-inline)                  
+  (local-set-key "\C-c=" 'semantic-decoration-include-visit)                                            
+                                                                                                          
+  (local-set-key "\C-cj" 'semantic-ia-fast-jump)                                                        
+  (local-set-key "\C-cq" 'semantic-ia-show-doc)                                                         
+  (local-set-key "\C-cs" 'semantic-ia-show-summary)                                                     
+  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)                                           
+  ;; (local-set-key (kbd "C-c <left>") 'semantic-tag-folding-fold-block)                                 
+  ;; (local-set-key (kbd "C-c <right>") 'semantic-tag-folding-show-block)          
+  
+                                                                                                          
+;;  (add-to-list 'ac-sources 'ac-source-semantic)                                                         
+  )                                                                                                     
+
+;; helper for boost setup...
+(defun recur-list-files (dir re)
+  "Returns list of files in directory matching to given regex"
+  (when (file-accessible-directory-p dir)
+    (let ((files (directory-files dir t))
+          matched)
+      (dolist (file files matched)
+        (let ((fname (file-name-nondirectory file)))
+          (cond
+           ((or (string= fname ".")
+                (string= fname "..")) nil)
+           ((and (file-regular-p file)
+                 (string-match re fname))
+            (setq matched (cons file matched)))
+           ((file-directory-p file)
+            (let ((tfiles (recur-list-files file re)))
+              (when tfiles (setq matched (append matched tfiles)))))))))))
 
 
-;; ;; Enabling Semantic (code-parsing, smart completion) features
-;; ;; Select one of the following:
+(add-hook 'java-mode-hook 'alexott/cedet-hook)                                                        
+                                                                                                          
 
-;; ;; * This enables the database and idle reparse engines
-;; (semantic-load-enable-minimum-features)
+(require 'semantic/db-javap)
+;; (global-ede-mode 1) ;; Enable EDE
 
-;; ;; * This enables some tools useful for coding, such as summary mode,
-;; ;;   imenu support, and the semantic navigator
-;; (semantic-load-enable-code-helpers)
+;; ---------------------------------------------------------------
+;; http://my-clojure.blogspot.jp/2012/05/cedet-11-emacs-java.html
+(global-semanticdb-minor-mode 1)
+(semantic-load-enable-gaudy-code-helpers)
+(custom-set-variables
+ '(cedet-java-jdk-root "c:/Program Files/Java/jdk1.7.0_09/")
+ '(semanticdb-javap-classpath '("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar")))
+;; ---------------------------------------------------------------
 
-;; ;; * This enables even more coding tools such as intellisense mode,
-;; ;;   decoration mode, and stickyfunc mode (plus regular code helpers)
-;; ;; (semantic-load-enable-gaudy-code-helpers)
+;; (setq cedet-java-classpath-extension '("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar"))
+;; ;; (setq semanticdb-javap-classpath ) 
 
-;; ;; * This enables the use of Exuberant ctags if you have it installed.
-;; ;;   If you use C++ templates or boost, you should NOT enable it.
-;; ;; (semantic-load-enable-all-exuberent-ctags-support)
-;; ;;   Or, use one of these two types of support.
-;; ;;   Add support for new languages only via ctags.
-;; ;; (semantic-load-enable-primary-exuberent-ctags-support)
-;; ;;   Add support for using ctags as a backup parser.
-;; ;; (semantic-load-enable-secondary-exuberent-ctags-support)
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; example of java-root project
+;;
+;; (ede-java-root-project "SOMENAME"
+;;                        :file "/dir/to/some/file"
+;;                        :local-variables
+;;                        '((grep-command . "grep -nHi -e ")
+;;                          (compile-command . "ant")))
+;;
+;; (ede-java-root-project "Lucene"
+;; :file "~/work/lucene-solr/lucene-4.0.0/build.xml"
+;; :srcroot '("core/src")
+;; :localclasspath '("core/lucene-core-4.0.0.jar")
+;; ;; :classpath (recur-list-files "~/work/lucene-solr/lucene-4.0.0/" ".*\.jar$")
+;; )
 
-;; ;; Enable SRecode (Template management) minor-mode.
-;; (global-srecode-minor-mode 1)
-;;(setq global-senator-minor-mode t)
+;; (ede-java-root-project "TestProject"
+;;                        :file "~/dev/sample-java-project/build.xml"
+;;                        :srcroot '("src" "test")
+;;                        :localclasspath '("lib")
+;;                        :classpath '("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar")
+;; ;;                       :classpath '("c:/Users/m-oono/dev/sample-java-project/")
+;;                        )
 
-
-(require 'cedet)
-;;(semantic-load-enable-guady-code-helpers)
-
-
-
+(provide 'mikio-cedet)

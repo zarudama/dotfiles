@@ -48,8 +48,8 @@
     (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))                             
 
   ;; for auto-complete
-  (when (require 'auto-complete-config nil t)
-    (setq-default ac-sources '(ac-source-yasnippet)))
+  ;; (when (require 'auto-complete-config nil t)
+  ;;   (setq-default ac-sources '(ac-source-yasnippet)))
 
   )
 

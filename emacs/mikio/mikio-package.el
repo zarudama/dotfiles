@@ -10,7 +10,7 @@
   ;; (add-to-list 'package-archives
   ;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-  ;; Marmaladeのみにする。
+  ;; MELPAのみにする。
   (setq package-archives (list '("melpa" . "http://melpa.milkbox.net/packages/")))
 
 	
@@ -31,7 +31,6 @@
           smartrep
           color-moccur
           yasnippet
-          ;;elscreen
 
           helm-git
           helm-gtags
@@ -44,6 +43,7 @@
           web-mode
 
           nrepl
+          nrepl-ritz
           ac-nrepl
           ;;ac-slime
           magit
@@ -51,8 +51,12 @@
           jaunte
           rainbow-delimiters
 
-          twittering-mode              ; github
-          o-blog                       ; github
+          ;; window manager by kiwanami
+          window-layout
+          e2wm
+
+          twittering-mode
+          ;;o-blog
 
           evil
           ))

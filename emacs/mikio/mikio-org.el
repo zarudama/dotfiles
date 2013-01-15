@@ -1,7 +1,7 @@
 (require 'mikio-util)
 
 (require 'org-install)
-;;;(require 'org-babel-init)
+;;(require 'org-babel-init)
 ;;(require 'org-babel-perl)
 ;;(require 'ob-clojure)
 ;;(require 'ob-java)
@@ -16,36 +16,22 @@
 (global-set-key (kbd "C-c r") 'org-remember)
 ;;(define-key org-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
-;; --------------------------------------
-;; from rubikitch mail
-;; --------------------------------------
-;;; 言語は日本語
-(setq org-export-default-language "ja")
-;;; 文字コードはUTF-8
-(setq org-export-html-coding-system 'utf-8)
-;;; 行頭の:は使わない BEGIN_EXAMPLE 〜 END_EXAMPLE で十分
-(setq org-export-with-fixed-width nil)
-;;; ^と_を解釈しない
-(setq org-export-with-sub-superscripts nil)
-;;; --や---をそのまま出力する
-(setq org-export-with-special-strings nil)
-;;; TeX・LaTeXのコードを解釈しない
-(setq org-export-with-TeX-macros nil)
-(setq org-export-with-LaTeX-fragments nil)
-;; --------------------------------------
+(add-hook 'org-mode-hook 'turn-on-font-lock)
 
+;; コードブロックも色付け
+(setq org-src-fontify-natively t)
+
+;; (setq (org-export-language-setup (quote (("ja" "作者" "日付" "目次" "脚注")))))
+;; (setq (org-export-with-toc t)))
 
 (setq org-agenda-custom-commands
   '(("x" "Unscheduled TODO" tags-todo "-SCHEDULED>=\"<now>\"" nil)))
 (setq org-stuck-projects
   '("+PROJECT/-DONE-SOMEDAY" ("TODO" "WAIT")))
 
-;; (setq org-agenda-time-grid
-;;   '((daily today require-timed)
-;;     "----------------"
-;;     (900 930 1000 1030 1100 1130 1200 1230
-;;          1300 1330 1400 1430 1500 1530 1600 1630 1700 1730 1800 1830
-;;          1900 1930 2000 2030 2100 2130 2200 2230 2300 2330 2400 2430)))
+(setq org-todo-keywords
+      '((sequence "TODO" "WORKING" "|" "DONE" )))
+
 (setq org-agenda-time-grid
   '((daily today require-timed)
     "----------------"
@@ -53,17 +39,15 @@
          1300 1330 1400 1430 1500 1530 1600 1630 1700 1730 1800 1830
          1900 1930 2000 2030 2100 2130 2200 2230 2300 2330 )))
 
-
-(add-hook 'org-mode-hook 'turn-on-font-lock)
-;; 見出しの余分な*を消す
+;; 見出しの余分な"*"を消す
 (setq org-hide-leading-stars t)
 
 (setq org-directory (mikio/org-directory))
 (require 'em-glob)
 (setq org-agenda-files (eshell-extended-glob (concat org-directory "**/*.org")))
 
-(setq org-agenda-include-diary t)
-;(setq org-agenda-include-diary nil)
+;;(setq org-agenda-include-diary t)
+(setq org-agenda-include-diary nil)
 
 ;; auto-complete
 (add-to-list 'ac-modes 'org-mode)
@@ -83,6 +67,42 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline (format "%sindex.org" org-directory) "Inbox")
          "* TODO %?\n  %i\n  %a\n   %t")))
+
+;; --------------------------------------
+;; from rubikitch mail
+;; --------------------------------------
+
+;; - C-RET で現在の階層の見出し
+;; - C-u C-RET で現在より1階層深い見出し
+;; - C-u C-u C-RET で現在より1階層浅い見出し
+(require 'cl)
+(defun org-insert-upheading (arg)
+  (interactive "P")
+  (org-insert-heading arg)
+  (cond
+   ((org-on-heading-p) (org-do-promote))
+   ((org-at-item-p) (org-outdent-item))))
+(defun org-insert-heading-dwim (arg)
+  (interactive "p")
+  (case arg
+    (4  (org-insert-subheading nil))
+    (16 (org-insert-upheading  nil))
+    (t  (org-insert-heading nil))))
+(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
+
+;;; 言語は日本語
+(setq org-export-default-language "ja")
+;;; 文字コードはUTF-8
+(setq org-export-html-coding-system 'utf-8)
+;;; 行頭の:は使わない BEGIN_EXAMPLE 〜 END_EXAMPLE で十分
+(setq org-export-with-fixed-width nil)
+;;; ^と_を解釈しない
+(setq org-export-with-sub-superscripts nil)
+;;; --や---をそのまま出力する
+(setq org-export-with-special-strings nil)
+;;; TeX・LaTeXのコードを解釈しない
+(setq org-export-with-TeX-macros nil)
+(setq org-export-with-LaTeX-fragments nil)
 
 ;;-----------------------------------------------------------------
 ;; agendaの日付フォーマットを日本語表記に変更。
@@ -157,11 +177,6 @@
          )
         ))
 
-;; (custom-set-variables
-;;  '(org-export-language-setup (quote (("ja" "作者" "日付" "目次" "脚注"))))
-;;  '(org-export-with-toc t)
-;;  )
-
 ;; キーバインド
 ;; (eval-after-load "org"
 ;;   '(progn
@@ -169,25 +184,5 @@
 ;;       org-mode-map "C-c"
 ;;       '(("C-n" . (lambda () (outline-next-visible-heading 1)))
 ;;         ("C-p" . (lambda () (outline-previous-visible-heading 1)))))))
-
-;;-----------------------------------------------------------------
-;; - C-RET で現在の階層の見出し
-;; - C-u C-RET で現在より1階層深い見出し
-;; - C-u C-u C-RET で現在より1階層浅い見出し
-;;-----------------------------------------------------------------
-(require 'cl)
-(defun org-insert-upheading (arg)
-  (interactive "P")
-  (org-insert-heading arg)
-  (cond
-   ((org-on-heading-p) (org-do-promote))
-   ((org-at-item-p) (org-outdent-item))))
-(defun org-insert-heading-dwim (arg)
-  (interactive "p")
-  (case arg
-    (4  (org-insert-subheading nil))
-    (16 (org-insert-upheading  nil))
-    (t  (org-insert-heading nil))))
-(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
 
 (provide 'mikio-org)

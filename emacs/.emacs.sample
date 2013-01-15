@@ -1,3 +1,9 @@
+;;(load "~/init-webserver.el")
+;;(load "~/init-jdee.el")
+
+
+;; ;;(load "~/init-cedet.el")
+
 ;; 設定ファイルたちの場所
 (defvar mikio/elisp-directory (expand-file-name "~/Dropbox/dotfiles/emacs"))
 
@@ -23,7 +29,46 @@
 (defvar mikio/navi2ch-use nil)
 (defvar mikio/newsticker-use t)
 (defvar mikio/howm-use t)
+(defvar mikio/greader-use t)
 
 (load (format "%s/init.el" mikio/elisp-directory))
+;;(add-to-list 'Info-directory-list (format "%s/info" mikio/site-lisp-directory))
 
-(server-start)
+
+
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(cedet-java-jdk-root "c:/Program Files/Java/jdk1.7.0_09/")
+;;  '(ede-project-directories (quote ("c:/Users/m-oono/dev/sample-java-project")))
+;;  '(org-agenda-format-date "%Y/%m/%d (%a)")
+;;  '(semanticdb-javap-classpath (quote ("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar")))
+;;  '(yas-prompt-functions (quote (my-yas/prompt)))
+;;  '(yas-trigger-key "TAB"))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(org-agenda-date ((t :weight bold)) t))
+
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("c:/Users/m-oono/docs/org/2012/09/2012_09_27.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_01.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_02.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_03.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_04.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_05.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_09.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_11.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_12.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_15.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_16.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_17.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_18.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_19.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_22.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_23.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_24.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_25.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_26.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_29.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_30.org" "c:/Users/m-oono/docs/org/2012/10/2012_10_31.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_01.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_02.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_05.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_06.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_07.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_08.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_09.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_12.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_14.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_16.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_19.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_20.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_21.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_22.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_26.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_27.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_28.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_29.org" "c:/Users/m-oono/docs/org/2012/11/2012_11_30.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_03.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_04.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_05.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_06.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_07.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_10.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_11.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_12.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_14.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_17.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_18.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_19.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_20.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_21.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_25.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_26.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_27.org" "c:/Users/m-oono/docs/org/2012/12/2012_12_28.org" "c:/Users/m-oono/docs/org/2013/01/2013_01_04.org" "c:/Users/m-oono/docs/org/2013/01/2013_01_07.org" "c:/Users/m-oono/docs/org/hoge.org" "c:/Users/m-oono/docs/org/honkon.org" "c:/Users/m-oono/docs/org/index.org" "c:/Users/m-oono/docs/org/mysenkyo.org")))
+ '(org-agenda-format-date "%Y/%m/%d (%a)")
+ '(yas-prompt-functions (quote (my-yas/prompt)))
+ '(yas-trigger-key "TAB"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-date ((t :weight bold)) t))

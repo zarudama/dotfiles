@@ -51,6 +51,7 @@
 (global-set-key (kbd "C-x a g") 'helm-do-grep)
 ;;(global-set-key (kbd "C-x a g") 'helm-ack)
 (global-set-key (kbd "C-x a d") 'helm-for-document)
+(global-set-key (kbd "C-x a m") 'helm-man-woman)
 ;;(global-set-key (kbd "C-x C-f") 'helm-find-files)
 ;;(helm-mode t) ; なんでもhelm
 (provide 'mikio-helm)

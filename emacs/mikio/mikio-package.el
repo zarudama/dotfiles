@@ -35,6 +35,7 @@
           helm-git
           helm-gtags
           helm-c-moccur
+          helm-c-yasnippet
 
           paredit
           ruby-mode

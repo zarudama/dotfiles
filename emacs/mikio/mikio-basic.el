@@ -27,6 +27,8 @@
 ;; カレントバッファをすぐに削除する
 (global-set-key (kbd "C-x k") '(lambda () (interactive) (kill-buffer (buffer-name (current-buffer)))))
 
+;; 別ウィンドウの逆スクロール
+(global-set-key (kbd "C-M-y") 'scroll-other-window-down)
 
 (defvar mikio-map (make-keymap))
 (define-key global-map (kbd "C-z") mikio-map)
@@ -197,6 +199,10 @@
   (prefer-coding-system 'utf-8)
   (setq file-name-coding-system 'utf-8)
   (setq locale-coding-system 'utf-8)))
+
+
+;; 設定ファイルをよしなに。
+(require 'generic-x)
 
 
 (provide 'mikio-basic)

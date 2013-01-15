@@ -1,0 +1,73 @@
+ ;; '(jde-java-font-lock-constructor-face ((((class color)) (:foreground "yellow" :weight light))))
+ ;; '(jde-java-font-lock-link-face ((t (:foreground "yellow" :underline t :slant normal))))
+ ;; '(jde-java-font-lock-modifier-face ((((class color)) (:foreground "yellow" :weight light))))
+ ;; '(jde-java-font-lock-operator-face ((((class color)) (:foreground "yellow"))))
+
+       
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(anything-grep-match ((t (:inherit red :background "yellow" :foreground "black"))) t)
+ '(anything-match ((t (:inherit match :background "yellow" :foreground "black"))) t)
+ '(anything-visible-mark ((((min-colors 88)) (:background "green1" :foreground "black"))) t)
+ '(blue ((t (:foreground "white"))) t)
+ '(comint-highlight-prompt ((t (:foreground "white"))))
+ '(cursor ((t (:background "yellow" :foreground "red"))))
+ '(custom-comment ((((class grayscale color) (background light)) (:background "gray85" :foreground "black"))))
+ '(custom-comment-tag ((((class color) (background light)) (:foreground "white"))))
+ '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:background "grey60" :foreground "black" :weight bold))))
+ '(diff-function ((t (:inherit diff-header :background "white" :foreground "black"))))
+ '(diff-header ((((class color) (min-colors 88) (background light)) (:background "grey80" :foreground "black"))))
+ '(diff-refine-change ((((class color) (min-colors 88) (background light)) (:background "grey85" :foreground "black"))))
+ '(e2wm:face-history-list-normal ((t (:foreground "whilte"))) t)
+ '(eshell-ls-missing-face ((t (:background "black" :foreground "white"))) t)
+ '(evil-ex-lazy-highlight ((t (:inherit lazy-highlight :foreground "black"))) t)
+ '(font-lock-comment-face ((t (:foreground "red"))))
+ '(font-lock-constant-face ((t (:foreground "yellow"))))
+ '(font-lock-keyword-face ((t (:foreground "yellow"))))
+ '(font-lock-string-face ((t (:foreground "magenta"))))
+ '(fringe ((((class color) (background light)) (:background "black" :foreground "white"))))
+ '(helm-selection ((t (:background "ForestGreen" :foreground "black" :underline t))))
+ '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "RosyBrown1" :foreground "black"))))
+ '(jde-java-font-lock-constant-face ((t (:foreground "yellow"))))
+ '(jde-java-font-lock-constructor-face ((t (:foreground "blue" :weight bold))))
+ '(jde-java-font-lock-javadoc-face ((t (:foreground "red"))))
+ '(jde-java-font-lock-modifier-face ((t (:foreground "steelblue1" :weight light))))
+ '(jde-java-font-lock-private-face ((t (:foreground "blue" :weight bold))))
+ '(jde-java-font-lock-protected-face ((t (:foreground "blue" :weight bold))))
+ '(jde-java-font-lock-public-face ((t (:foreground "blue" :weight bold))))
+ '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "paleturquoise" :foreground "black"))))
+ '(linum ((t (:inherit (yellow default)))) t)
+ '(list-mode-item-selected ((t (:background "gray68" :foreground "black"))) t)
+ '(magit-item-highlight ((((class color) (background light)) (:background "gray95" :foreground "black"))))
+ '(magit-log-graph ((((class color) (background light)) (:foreground "white"))))
+ '(magit-log-tag-label ((((class color) (background light)) (:background "LightGoldenRod" :foreground "black"))) t)
+ '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
+ '(minibuffer-prompt ((t (:foreground "white"))))
+ '(moccur-face ((t (:background "light cyan" :foreground "black" :weight bold))))
+ '(mode-line ((t (:background "snow" :foreground "black" :box (:line-width -1 :style released-button)))))
+ '(org-agenda-column-dateline ((t (:inherit org-column :background "black" :foreground "white"))) t)
+ '(org-agenda-date ((t :weight bold)) t)
+ '(org-agenda-restriction-lock ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))) t)
+ '(org-column ((t (:background "gray22" :foreground "yellow" :strike-through nil :underline nil :slant normal :weight normal :height 120 :family "Migu 1M"))) t)
+ '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :foreground "black" :underline t :weight bold))) t)
+ '(org-level-3 ((t (:inherit outline-3 :foreground "gold"))) t)
+ '(p4-diff-file-face ((t (:background "gray90" :foreground "black"))) t)
+ '(p4-diff-head-face ((t (:background "gray95" :foreground "black"))) t)
+ '(popup-scroll-bar-background-face ((t (:background "gray" :foreground "black"))))
+ '(skk-emacs-hiragana-face ((t (:foreground "SystemHotTrackingColor"))) t)
+ '(speedbar-highlight-face ((((class color) (background light)) (:background "green" :foreground "black"))))
+ '(underline ((t (:background "black" :foreground "white" :underline "white"))))
+ '(yas/field-highlight-face ((((class color) (background light)) (:background "DarkSeaGreen1" :foreground "black"))) t))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (deeper-blue)))
+ '(yas-prompt-functions (quote (my-yas/prompt)))
+ '(yas-trigger-key "TAB"))

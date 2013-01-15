@@ -28,8 +28,9 @@
 ;;; 標準ライブラリを上書きするパッケージはここに。
 (require 'mikio-overwrite)
 
-;;; custom-flleもDropboxにする
-;;(load (format "%s/custom.el" mikio/elisp-directory))
+;; customize の出力先
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
 ;;;-----------------------------------------------------------------
 ;;; 標準の機能だけで実現する最低限の設定
@@ -74,7 +75,7 @@
 (require 'mikio-helm-ack)
 
 (require 'mikio-auto-complete)
-;;(require 'mikio-popwin)
+(require 'mikio-popwin)
 (require 'mikio-smartrep)
 (require 'mikio-tabbar) ;; install-elisp(emacswiki)
 
@@ -127,6 +128,7 @@
 ;; (when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
 (when mikio/newsticker-use (require 'mikio-newsticker))
 (when mikio/howm-use (require 'mikio-howm)) ; manual-install
+(when mikio/greader-use (require 'mikio-greader)) ; manual-install
 
 ;;;-----------------------------------------------------------------
 ;;; その他

@@ -1,11 +1,8 @@
 (require 'mikio-util)
 
-;;-----------------------------------------------------------------
-;; e2wm
-;; (auto-install-from-url "https://github.com/kiwanami/emacs-window-manager/raw/master/e2wm.el")
-;; (auto-install-from-url "https://raw.github.com/kiwanami/emacs-window-manager/master/e2wm-config.el")
-;; (auto-install-from-url "https://github.com/kiwanami/emacs-window-manager/raw/master/e2wm-vcs.el")
-;;-----------------------------------------------------------------
+(add-to-list 'load-path (mikio/site-lisp-directory "emacs-window-layout"))
+(add-to-list 'load-path (mikio/site-lisp-directory "emacs-window-manager"))
+
 ;; 最小の e2wm 設定例
 ;;  2011/04/19 現在、max-depth-...とかいうエラーが出て常用できない。
 (when (require 'e2wm nil t)

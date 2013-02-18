@@ -155,14 +155,13 @@
 ;;           (lambda ()
 ;;             (my-ac-eshell-mode)))
 
-
 ;; ----------------------------------------
 ;; sudo の後のコマンドも補完が効くように。
 ;; ----------------------------------------
-;; (defun pcomplete/sudo ()
-;;   "Completion rules for the `sudo' command."
-;;   (let ((pcomplete-help "complete after sudo"))
-;;     (pcomplete-here (pcomplete-here (eshell-complete-commands-list)))))
+(defun pcomplete/sudo ()
+  "Completion rules for the `sudo' command."
+  (let ((pcomplete-help "complete after sudo"))
+    (pcomplete-here (pcomplete-here (eshell-complete-commands-list)))))
 
 ;; ----------------------------------------
 ;; 画面クリア
@@ -222,7 +221,7 @@
                          eshell/rm
                          eshell/rmdir
                          eshell/su
-                         eshell/sudo
+                         ;;eshell/sudo
                          eshell/time))))
 (eshell-disable-unix-command-emulation)
 
@@ -289,6 +288,7 @@
     (progn
       (define-key eshell-mode-map "\C-c\C-z" 'eshell-new)
       (define-key eshell-mode-map "\C-t" 'switch-to-last-buffer-or-other-window)
+      (define-key eshell-mode-map (kbd "C-j") nil)
       ))
   (add-hook 'eshell-mode-hook 'eshell-mode-hook0))
 

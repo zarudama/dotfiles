@@ -18,7 +18,7 @@
 ;;;; M-x compile-defunは、C-M-xと同様関数再定義ですが、
 ;;;; その場でバイトコンパイルする点が異なります。
 
-(setq debug-on-error t)
+(setq debug-on-error nil)
 
 ;;; 自前関数の定義
 (add-to-list 'load-path (format "%s/mikio/" mikio/elisp-directory))
@@ -58,10 +58,11 @@
 ;;;-----------------------------------------------------------------
 ;;; 必須の設定たち
 ;;;-----------------------------------------------------------------
-(require 'mikio-ext)
 (require 'mikio-dired)
 (require 'mikio-undo)
-(require 'mikio-windows) ;; install-elisp(original)
+;;(require 'mikio-windows) ;; install-elisp(original)
+;;(require 'mikio-simple-screen) ;; install-elisp(original)
+(require 'mikio-e2wm)
 (require 'mikio-color-moccur)
 
 ;;(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
@@ -91,7 +92,7 @@
 ;; ;;(require 'mikio-gtags) ;; manual
 (require 'mikio-helm-gtags)
 
-;; ;;(require 'mikio-slime) ;; manual
+(require 'mikio-slime)
 (require 'mikio-nrepl)
 ;; (require 'mikio-flymake)
 (require 'mikio-jdee) ;; manual
@@ -112,6 +113,7 @@
 (require 'mikio-xml)
 (require 'mikio-web-mode)
 (require 'mikio-sh-mode)
+(require 'mikio-haskell)
 ;; (require 'mikio-scala)
 ;; (require 'mikio-lisp)
 
@@ -125,7 +127,7 @@
 (when mikio/gnus-use (require 'mikio-gnus))
 (when mikio/twitter-use (require 'mikio-twitter)); manual-install
 ;; (when mikio/jabber-use (require 'mikio-jabber)) ; manual-install
-;; (when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
+;;(when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
 (when mikio/newsticker-use (require 'mikio-newsticker))
 (when mikio/howm-use (require 'mikio-howm)) ; manual-install
 (when mikio/greader-use (require 'mikio-greader)) ; manual-install
@@ -141,7 +143,6 @@
 ;;;-----------------------------------------------------------------
 ;;; いつのまにか使わなくなった拡張たち
 ;;;-----------------------------------------------------------------
-;;(require 'mikio-e2wm)
 ;;(require 'mikio-mew)
 ;;(require 'mikio-svn)
 ;;(require 'mikio-marabar)
@@ -162,9 +163,6 @@
 ;;;-----------------------------------------------------------------
 ;;(require 'mikio-evil)
 
-
-
-
-
-
-
+(require 'server)
+(unless (server-running-p)
+  (server-start))

@@ -503,6 +503,18 @@ key.setViewKey([["C-b"], [","]], function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_LEFT, true);
 }, '左へスクロール', false);
 
+key.setViewKey([["C-e"]], function (ev) {
+    for (var i = 0; i < 100; i++) {
+        key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_RIGHT, true);
+    }
+}, '右端へ移動', false);
+
+key.setViewKey([["C-a"]], function (ev) {
+    for (var i = 0; i < 100; i++) {
+        key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_LEFT, true);
+    }
+}, '左端へ移動', false);
+
 key.setViewKey([["M-v"], ["b"]], function (ev) {
     goDoCommand("cmd_scrollPageUp");
 }, '一画面分スクロールアップ', false);
@@ -707,7 +719,7 @@ key.setGlobalKey(["C-x", "g"], function (ev) {
 key.setGlobalKey(["C-c", "g"], function (ev) {
     function mySearch(word){
         var query = "q=" + encodeURIComponent(word);
-        BrowserOpenTab();
+        //BrowserOpenTab();
         loadURI("http://www.google.co.jp/search?" + query);
     }
     prompt.read("search", mySearch, null, null, null, 0, "my-google-search");

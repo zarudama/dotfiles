@@ -9,13 +9,15 @@
   (mikio/make-directory my-snippets-directory)
   (add-to-list 'yas-snippet-dirs my-snippets-directory)
 
-  (yas-global-mode 1)
+;;  (yas-global-mode 1)
+  (yas-global-mode -1)
   (call-interactively 'yas/reload-all)
 
   ;; 単語展開キーバインド (ver8.0から明記しないと機能しない)
   ;; (setqだとtermなどで干渉問題ありでした)
   ;; もちろんTAB以外でもOK 例えば "C-;"とか
-  (custom-set-variables '(yas-trigger-key "TAB"))
+  ;;(custom-set-variables '(yas-trigger-key "TAB"))
+  (setq yas-trigger-key nil)
 
   ;; 既存スニペットを挿入する
   (define-key yas-minor-mode-map (kbd "C-x y i") 'yas-insert-snippet)

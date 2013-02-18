@@ -41,8 +41,8 @@
     ;; jaunte(ジョウントと読む)
     ;; (install-elisp "https://raw.github.com/kawaguchi/jaunte.el/master/jaunte.el")
     (when (require 'jaunte nil t)
-      (define-key w3m-mode-map (kbd "E") 'jaunte))
-    (define-key w3m-mode-map (kbd "e") 'w3m-go-to-linknum)
+      (define-key w3m-mode-map (kbd "e") 'jaunte))
+    (define-key w3m-mode-map (kbd "E") 'w3m-go-to-linknum)
 
     (define-key w3m-mode-map (kbd "B") 'w3m-view-previous-page)
     (define-key w3m-mode-map (kbd "F") 'w3m-view-next-page)

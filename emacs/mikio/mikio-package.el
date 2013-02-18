@@ -42,19 +42,23 @@
           php-mode
           js2-mode
           web-mode
+          haskell-mode
+          less-css-mode
 
           nrepl
           nrepl-ritz
           ac-nrepl
-          ;;ac-slime
           magit
+
+          slime
+          ac-slime
 
           jaunte
           rainbow-delimiters
 
           ;; window manager by kiwanami
-          window-layout
-          e2wm
+          ;; window-layout
+          ;; e2wm
 
           twittering-mode
           ;;o-blog

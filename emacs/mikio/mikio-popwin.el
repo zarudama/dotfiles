@@ -5,6 +5,9 @@
 (global-set-key (kbd "C-x p") popwin:keymap)
 (push '("*org.junit.runner.JUnitCore*" :height 0.4 :noselect t :stick t) popwin:special-display-config)
 
+(add-to-list 'special-display-buffer-names "*sdic*")
+(push '("*sdic*" :position bottom) popwin:special-display-config)
+
 ;; (when (require 'popwin nil t)
 ;;   (setq display-buffer-function 'popwin:display-buffer)
 ;;   (setq anything-samewindow nil)

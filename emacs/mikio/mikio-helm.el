@@ -4,7 +4,10 @@
 
 ;; 過去のkillリングの内容を表示する。
 (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
-
+(eval-after-load 'helm
+  '(progn
+     (define-key helm-map (kbd "C-h") 'delete-backward-char)
+     ))
 ;;(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
 ;;(helm-dired-bindings 1)

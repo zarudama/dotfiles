@@ -4,7 +4,6 @@
 ;; slime
 ;;-----------------------------------------------------------------
 (when (require 'slime nil t)
-  (require 'clojure-mode)
 
   ;; SLIMEからの入力をUTF-8に設定
   ;; windowsの場合、下記をlein.batの先頭に記述
@@ -14,7 +13,7 @@
 
   ;; set for default common lisp
   ;;(setq inferior-lisp-program "clj")
-  ;;(setq inferior-lisp-program "sbcl")
+  (setq inferior-lisp-program "sbcl")
   ;;(setq inferior-lisp-program "gosh")
 
   ;;(slime-setup '(slime-repl slime-fancy slime-banner))
@@ -24,17 +23,11 @@
   ;;(slime-setup '(slime-fancy slime-asdf))
 
   ;; slimeをカラフルに
-                                        ;(add-hook 'slime-repl-mode-hook (lambda () (clojure-mode-font-lock-setup)))
   (add-hook 'slime-repl-mode-hook
             (lambda ()
-              (clojure-mode-font-lock-setup)
+              ;;(clojure-mode-font-lock-setup)
               (font-lock-mode)
               (font-lock-mode)))
-  ;; (add-hook 'slime-repl-mode-hook
-  ;;           (defun clojure-mode-slime-font-lock ()
-  ;;             (require 'clojure-mode)
-  ;;             (let (font-lock-mode)
-  ;;               (clojure-mode-font-lock-setup))))
 
   ;;-----------------------------------------------------------------
   (require 'ac-slime)

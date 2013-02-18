@@ -3,7 +3,7 @@
  ;; '(jde-java-font-lock-modifier-face ((((class color)) (:foreground "yellow" :weight light))))
  ;; '(jde-java-font-lock-operator-face ((((class color)) (:foreground "yellow"))))
 
-       
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -44,6 +44,8 @@
  '(list-mode-item-selected ((t (:background "gray68" :foreground "black"))) t)
  '(magit-item-highlight ((((class color) (background light)) (:background "gray95" :foreground "black"))))
  '(magit-log-graph ((((class color) (background light)) (:foreground "white"))))
+ '(magit-log-head-label-default ((t (:background "Grey50" :foreground "black" :box 1))))
+ '(magit-log-head-label-tags ((t (:background "LemonChiffon1" :foreground "black" :box 1))))
  '(magit-log-tag-label ((((class color) (background light)) (:background "LightGoldenRod" :foreground "black"))) t)
  '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
  '(minibuffer-prompt ((t (:foreground "white"))))

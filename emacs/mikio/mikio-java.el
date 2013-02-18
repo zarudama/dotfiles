@@ -48,6 +48,7 @@
 
 (add-hook 'java-mode-hook
           (lambda ()
+            (linum-mode)
             (define-key java-mode-map (kbd "M-C-h") 'backward-kill-word)
             (c-set-style "java2")
             (set (make-local-variable 'compile-command)

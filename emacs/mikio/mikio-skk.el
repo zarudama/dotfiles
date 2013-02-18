@@ -37,6 +37,10 @@
 ;;(setq skk-sticky-key [convert])
 (setq skk-sticky-key ";")
 
+;; azik 対応
+;; (setq skk-use-azik t)
+;; (setq skk-azik-keyboard-type 'jp106) ; 英語キーボードの場合は 'en を指定
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;表示の設定
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -8,6 +8,7 @@
 
 (define-key global-map (kbd "C-h") 'delete-backward-char)
 (define-key global-map (kbd "M-C-h") 'backward-kill-word)
+(define-key global-map (kbd "C-j") nil)
 
 (global-set-key (kbd "C-c a")   'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)
@@ -29,6 +30,8 @@
 
 ;; 別ウィンドウの逆スクロール
 (global-set-key (kbd "C-M-y") 'scroll-other-window-down)
+
+(global-set-key (kbd "C-x C-d") 'dired)
 
 (defvar mikio-map (make-keymap))
 (define-key global-map (kbd "C-z") mikio-map)

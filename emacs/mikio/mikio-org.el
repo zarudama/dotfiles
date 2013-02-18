@@ -16,7 +16,9 @@
 (global-set-key (kbd "C-c r") 'org-remember)
 ;;(define-key org-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
-(add-hook 'org-mode-hook 'turn-on-font-lock)
+(add-hook 'org-mode-hook (lambda ()
+                           (turn-on-font-lock)
+                           (define-key org-mode-map (kbd "C-j") nil)))
 
 ;; コードブロックも色付け
 (setq org-src-fontify-natively t)

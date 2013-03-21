@@ -88,8 +88,8 @@
           (:name text-translator-load
                  :type emacswiki)
 
-          (:name sudo-ext
-                 :type emacswiki)
+          ;; (:name sudo-ext
+          ;;        :type emacswiki)
 
           ;; 標準のレシピでは取得できなかったので(オリジナルのgitリポジトリ)
           ;; github上のリポジトリから取得する。
@@ -108,13 +108,12 @@
   (setq mikio-packages 
         (append 
          '(
-           auto-install                 ; emacswiki
-           package                      ; http
+           ;; auto-install                 ; emacswiki
+           ;; package                      ; http
            
-           revive                       ; http(windows.elが依存)
-           windows                      ; http
+           ;; revive                       ; http(windows.elが依存)
+           ;; windows                      ; http
        
-           lispxmp                      ; emacswiki
            tabbar                       ; emacswiki
            )
 

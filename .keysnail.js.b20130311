@@ -162,38 +162,6 @@ plugins.options["hitsory.keymap"] = {
     //"o"     : "open"
 };
 
-//////////////////////////////////////////////
-// Dlbsnail
-//////////////////////////////////////////////
-plugins.options["dlbsnail.file_key_map"] = {
-    "C-z"   : "prompt-toggle-edit-mode",
-    "SPC"   : "prompt-next-page",
-    "b"     : "prompt-previous-page",
-    "j"     : "prompt-next-completion",
-    "k"     : "prompt-previous-completion",
-    "g"     : "prompt-beginning-of-candidates",
-    "G"     : "prompt-end-of-candidates",
-    "q"     : "prompt-cancel",
-    // for finished file
-    "o"     : "open-this-file",
-    "O"     : "show-this-file",
-    "R"     : "rename-this-file",
-    // "C-D"   : "delete-this-file",
-    "C"     : "clear-this-file",
-    // for in progress or pause file
-    // "C-C"   : "cancel-this-file",
-    // for in progress file
-    // "C-P"   : "pause-this-file",
-    // for pause file
-    "r"     : "resume-this-file",
-    // for all file
-    "c"     : "copy-url",
-    "V"     : "visit-ref-website",
-    "u"     : "undo-clear",
-    "h"     : "refresh-file-list",
-    "s"     : "switch-file-type"
-};
-
 //}}%PRESERVE%
 // ========================================================================= //
 
@@ -515,23 +483,9 @@ key.setEditKey('M-p', function (ev) {
 ///////////////////////////////////////////////////////////////////////////////
 // view
 ///////////////////////////////////////////////////////////////////////////////
-key.setViewKey([["C-h"]], function (ev) {
-    for (var i = 0; i < 100; i++) {
-        key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_LEFT, true);
-    }
-}, '左端へ移動', false);
-
 key.setViewKey("a", function (ev, arg) {
                    ext.exec("tanything", arg);
                }, "タブを一覧表示", true);
-
-key.setViewKey('d', function (ev) {
-    BrowserCloseTabOrWindow();
-}, 'タブ / ウィンドウを閉じる', false);
-
-key.setViewKey('u', function (ev) {
-    undoCloseTab();
-}, '閉じたタブを元に戻す', false);
 
 key.setViewKey([["C-n"], ["j"]], function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_DOWN, true);
@@ -541,11 +495,11 @@ key.setViewKey([["C-p"], ["k"]], function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_UP, true);
 }, '一行スクロールアップ', false);
 
-key.setViewKey([["l"], ["."]], function (ev) {
+key.setViewKey([["C-f"], ["."]], function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_RIGHT, true);
 }, '右へスクロール', false);
 
-key.setViewKey([["h"], [","]], function (ev) {
+key.setViewKey([["C-b"], [","]], function (ev) {
     key.generateKey(ev.originalTarget, KeyEvent.DOM_VK_LEFT, true);
 }, '左へスクロール', false);
 
@@ -561,11 +515,11 @@ key.setViewKey([["C-a"]], function (ev) {
     }
 }, '左端へ移動', false);
 
-key.setViewKey("C-b", function (ev) {
+key.setViewKey([["M-v"], ["b"]], function (ev) {
     goDoCommand("cmd_scrollPageUp");
 }, '一画面分スクロールアップ', false);
 
-key.setViewKey('C-f', function (ev) {
+key.setViewKey('C-v', function (ev) {
     goDoCommand("cmd_scrollPageDown");
 }, '一画面スクロールダウン', false);
 
@@ -853,6 +807,3 @@ key.setViewKey('w', function () {
 //     }
 // });
 
-key.setViewKey(['C-x', 'd'], function (ev, arg) {
-    ext.exec("dlbsnail-show-file-list", arg, ev);
-}, 'Show Download Statusbar Items', true);

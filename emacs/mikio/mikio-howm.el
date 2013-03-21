@@ -5,7 +5,10 @@
 (setq howm-menu-lang 'ja)
 (global-set-key "\C-c,," 'howm-menu)
 (autoload 'howm-menu "howm-mode" "Hitori Otegaru Wiki Modoki" t)
-
+(eval-after-load 'howm
+  '(progn
+     (define-key howm-view-summary-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
+     ))
 
 (if (equal mikio/office-type :office)
     (setq mikio/howm-dirctory "~/docs")

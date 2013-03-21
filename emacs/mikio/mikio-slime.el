@@ -13,7 +13,8 @@
 
   ;; set for default common lisp
   ;;(setq inferior-lisp-program "clj")
-  (setq inferior-lisp-program "sbcl")
+  ;;(setq inferior-lisp-program "sbcl")
+  (setq inferior-lisp-program "clisp")
   ;;(setq inferior-lisp-program "gosh")
 
   ;;(slime-setup '(slime-repl slime-fancy slime-banner))

@@ -7,8 +7,8 @@
 ;;; sdic-mode 用の設定
 (add-to-list 'load-path (mikio/site-lisp-directory "sdic"))
 (when (require 'sdic nil t)
-  (global-set-key (kbd "C-x w") 'sdic-describe-word)
-  (global-set-key (kbd "C-x W") 'sdic-describe-word-at-point)
+  (global-set-key (kbd "C-c w") 'sdic-describe-word)
+  (global-set-key (kbd "C-c W") 'sdic-describe-word-at-point)
  ; (strategy direct)
   )
 

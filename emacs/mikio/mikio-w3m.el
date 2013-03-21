@@ -70,7 +70,7 @@
     (define-key w3m-mode-map (kbd "C-c d") 'w3m-download)
 
     ;; ページ情報表示
-    (define-key w3m-mode-map (kbd "C-c p") 'w3m-view-header)
+    ;;(define-key w3m-mode-map (kbd "C-c p") 'w3m-view-header)
 
     ;; エンコード指定
     (define-key w3m-mode-map (kbd "C-c e") 'w3m-redisplay-with-charset)

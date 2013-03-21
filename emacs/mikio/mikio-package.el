@@ -31,12 +31,14 @@
           smartrep
           color-moccur
           yasnippet
+          elscreen
 
           helm-git
           helm-gtags
           helm-c-moccur
           helm-c-yasnippet
 
+          lispxmp
           paredit
           ruby-mode
           php-mode
@@ -56,14 +58,14 @@
           jaunte
           rainbow-delimiters
 
-          ;; window manager by kiwanami
-          ;; window-layout
-          ;; e2wm
+          window-layout
+          e2wm
 
           twittering-mode
           ;;o-blog
 
           evil
+          evil-paredit
           ))
 
   (require 'cl)

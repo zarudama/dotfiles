@@ -86,5 +86,7 @@ ex. (mikio/elisp-home 'hoge') => 'c:/Users/mikio/Dropbox/dotfiles/emacs/hoge'"
 
 
 (define-key global-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
+;;(define-key overriding-local-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
+
 
 (provide 'mikio-util)

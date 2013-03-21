@@ -4,7 +4,7 @@
 (require 'dired-x)
 
 ;; 2画面ファイラ化。
-;;(setq dired-dwim-target t)
+(setq dired-dwim-target t)
 
 (define-key dired-mode-map (kbd "j") 'dired-next-line)
 (define-key dired-mode-map (kbd "k") 'dired-previous-line)

@@ -61,7 +61,8 @@
 (require 'mikio-dired)
 (require 'mikio-undo)
 ;;(require 'mikio-windows) ;; install-elisp(original)
-;;(require 'mikio-simple-screen) ;; install-elisp(original)
+(require 'mikio-simple-screen) ;; install-elisp(original)
+;;(require 'mikio-elscreen)
 (require 'mikio-e2wm)
 (require 'mikio-color-moccur)
 
@@ -74,6 +75,7 @@
 (require 'mikio-helm-moccur)
 (require 'mikio-helm-gtags)
 (require 'mikio-helm-ack)
+(require 'mikio-emamux)
 
 (require 'mikio-auto-complete)
 (require 'mikio-popwin)
@@ -147,7 +149,6 @@
 ;;(require 'mikio-svn)
 ;;(require 'mikio-marabar)
 ;;(require 'mikio-migemo)
-;;(require 'mikio-elscreen)
 
 ;;(require 'mikio-ibuffer)
 ;;(require 'mikio-shell)
@@ -161,7 +162,7 @@
 ;;;-----------------------------------------------------------------
 ;;; vim化
 ;;;-----------------------------------------------------------------
-;;(require 'mikio-evil)
+(require 'mikio-evil)
 
 (require 'server)
 (unless (server-running-p)

@@ -1,3 +1,9 @@
+;; (defvar my-jde-project-root-dir (expand-file-name "~/dev/wsrch/web/websearch/"))
+;; (defvar my-jde-main-class-dir "./target/classes")
+;; (defvar my-jde-test-class-dir "./target/test-classes")
+;; (defvar my-jde-main-source-dir "./src/main/java")
+;; (defvar my-jde-test-source-dir "./src/test/java")
+
 (jde-project-file-version "1.0")
 (jde-set-variables
  ;; ファイル単体でコンパイル(C-c C-v C-c )した時の.classの出力先

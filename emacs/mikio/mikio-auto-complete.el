@@ -19,6 +19,7 @@
 (setq ac-use-menu-map t)
 (define-key ac-menu-map (kbd "C-n") 'ac-next)
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
+(define-key ac-menu-map (kbd "ESC") 'ac-stop)
 (setq ac-auto-start 1)
 
 ;;  (define-key ac-menu-map (kbd "C-v") 'a)

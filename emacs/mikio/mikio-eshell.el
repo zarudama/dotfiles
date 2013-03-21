@@ -175,9 +175,9 @@
 ;; ----------------------------------------
 ;; コマンド解釈乗っ取り
 ;; ----------------------------------------
-(require 'esh-myparser)
-;; zsh用のzコマンド定義
-(defun eshell-parser/z (str) (eshell-parser/b str "zsh"))
+;; (require 'esh-myparser)
+;; ;; zsh用のzコマンド定義
+;; (defun eshell-parser/z (str) (eshell-parser/b str "zsh"))
 
 ;; ----------------------------------------
 ;; eshellをポップアップする

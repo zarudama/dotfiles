@@ -1,15 +1,15 @@
 (require 'mikio-util)
 
-;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
 ;; (add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
 
 
 ;; ;; Enable Semantic
-;; (semantic-mode 1)
+(semantic-mode 1)
 
 ;; ;; Enable EDE (Project Management) features
-;; (global-ede-mode 1)
+(global-ede-mode 1)
 
 ;; via
 ;; https://github.com/alexott/emacs-configs/blob/master/rc/emacs-rc-cedet.el
@@ -61,8 +61,8 @@
 (global-semanticdb-minor-mode 1)
 (semantic-load-enable-gaudy-code-helpers)
 (custom-set-variables
- '(cedet-java-jdk-root "c:/Program Files/Java/jdk1.7.0_09/")
- '(semanticdb-javap-classpath '("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar")))
+ '(cedet-java-jdk-root "c:/Program Files/Java/jdk1.7.0_13/")
+ '(semanticdb-javap-classpath '("c:/Program Files/Java/jdk1.7.0_13/jre/lib/rt.jar")))
 ;; ---------------------------------------------------------------
 
 ;; (setq cedet-java-classpath-extension '("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar"))
@@ -84,12 +84,11 @@
 ;; ;; :classpath (recur-list-files "~/work/lucene-solr/lucene-4.0.0/" ".*\.jar$")
 ;; )
 
-;; (ede-java-root-project "TestProject"
-;;                        :file "~/dev/sample-java-project/build.xml"
-;;                        :srcroot '("src" "test")
-;;                        :localclasspath '("lib")
-;;                        :classpath '("c:/Program Files/Java/jdk1.7.0_09/jre/lib/rt.jar")
-;; ;;                       :classpath '("c:/Users/m-oono/dev/sample-java-project/")
-;;                        )
+(ede-java-root-project "TestProject"
+                       :file "~/dev/sample-java-project/build.xml"
+                       :srcroot '("src" "test")
+                       :localclasspath '("lib")
+                       :classpath '("c:/Program Files/Java/jdk1.7.0_13/jre/lib/rt.jar")
+                       )
 
 (provide 'mikio-cedet)

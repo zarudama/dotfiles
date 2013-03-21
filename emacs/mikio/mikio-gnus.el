@@ -3,6 +3,7 @@
 (require 'gnus)
 
 ;;(setq my-gnus-type (getenv "GNUS_TYPE"))
+(define-key gnus-summary-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
 (when mikio/office-type
   (cond

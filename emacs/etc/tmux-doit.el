@@ -82,6 +82,7 @@
   (interactive)
   (let ((ch (read-event)))
     (case ch
+      (?\C-y  (emamux:copy-kill-ring))
       ;; C-] C-]でペーストバッファ貼り付け
       (?\C-\] (tmux-paste))
       ;; C-] C-jで端末に切り替える

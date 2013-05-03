@@ -21,6 +21,7 @@
 (setq debug-on-error nil)
 
 ;;; 自前関数の定義
+(add-to-list 'load-path (format "%s/etc/" mikio/elisp-directory))
 (add-to-list 'load-path (format "%s/mikio/" mikio/elisp-directory))
 (add-to-list 'load-path (format "%s/mikio/private" mikio/elisp-directory))
 (require 'mikio-util)
@@ -90,7 +91,7 @@
 ;; ;;;-----------------------------------------------------------------
 ;; ;;; プログラミング支援
 ;; ;;;-----------------------------------------------------------------
-(require 'mikio-magit)
+;;(require 'mikio-magit)
 ;; ;;(require 'mikio-gtags) ;; manual
 (require 'mikio-helm-gtags)
 
@@ -123,13 +124,13 @@
 ;; ;;; 主にデスクトップのemacsで使用する拡張たち
 ;; ;;;-----------------------------------------------------------------
 (when mikio/skk-use  (require 'mikio-skk)) ; manual-install
-;; (when mikio/info-use (require 'mikio-info)) 
+(when mikio/info-use (require 'mikio-info))
 (when mikio/org-use (require 'mikio-org))
 (when mikio/o-blog-use (require 'mikio-o-blog))
 (when mikio/gnus-use (require 'mikio-gnus))
 (when mikio/twitter-use (require 'mikio-twitter)); manual-install
 ;; (when mikio/jabber-use (require 'mikio-jabber)) ; manual-install
-;;(when mikio/navi2ch-use (require mikio-navi2ch)) ; manual-install
+(when mikio/navi2ch-use (require 'mikio-navi2ch)) ; manual-install
 (when mikio/newsticker-use (require 'mikio-newsticker))
 (when mikio/howm-use (require 'mikio-howm)) ; manual-install
 (when mikio/greader-use (require 'mikio-greader)) ; manual-install

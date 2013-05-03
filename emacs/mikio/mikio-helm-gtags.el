@@ -10,7 +10,7 @@
 ;; customize
 (setq helm-c-gtags-path-style 'relative)
 (setq helm-c-gtags-ignore-case t)
-(setq helm-c-gtags-read-only t)
+(setq helm-c-gtags-read-only nil)
 
 ;; key bindings
 (add-hook 'helm-gtags-mode-hook

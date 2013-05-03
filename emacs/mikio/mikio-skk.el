@@ -1,8 +1,9 @@
 (require 'mikio-util)
 
 (add-to-list 'load-path (mikio/site-lisp-directory "skk"))
+;;(add-to-list 'load-path (mikio/site-lisp-directory "ddskk-15.1"))
 (require 'skk)
-;;(require 'skk-autoloads)
+(require 'skk-autoloads)
 (require 'skk-study);; 変換の学習
 
 ;;-----------------------------------------------------------------

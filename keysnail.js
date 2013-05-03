@@ -72,13 +72,13 @@ local["^https?://mail.google.com/mail/"] = [
     ['x', null],
     ['s', null],
     ['y', null],
-//    ['e', null],
+    ['e', null],
     ['m', null],
     ['!', null],
     ['#', null],
     ['r', null],
     ['R', null],
-//    ['a', null],
+    ['a', null],
     ['A', null],
     ['f', null],
     ['F', null],
@@ -241,9 +241,6 @@ hook.addToHook('KeyBoardQuit', function (aEvent) {
 ///////////////////////////////////////////////////////////////////////////////
 // global
 ///////////////////////////////////////////////////////////////////////////////
-key.setGlobalKey(['C-c', 'l'], function (ev, arg) {
-    ext.exec("site-local-keymap-toggle-status", arg);
-}, 'サイトローカルのトグル', true);
 
 key.setGlobalKey(['C-x', 'a', 'b'], function (ev, arg) {
     ext.exec("list-hateb-items", arg);

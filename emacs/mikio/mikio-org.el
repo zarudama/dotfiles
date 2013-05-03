@@ -1,6 +1,7 @@
 (require 'mikio-util)
 
-(require 'org-install)
+;;(require 'org-install)
+;;(require 'org-remember)
 ;;(require 'org-babel-init)
 ;;(require 'org-babel-perl)
 ;;(require 'ob-clojure)
@@ -13,7 +14,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c r") 'org-remember)
+;;(global-set-key (kbd "C-c r") 'org-remember)
 ;;(define-key org-mode-map (kbd "C-t") 'switch-to-last-buffer-or-other-window)
 
 (add-hook 'org-mode-hook (lambda ()
@@ -59,12 +60,12 @@
 ;; t:自動的にTODO項目にdoneの印をつける
 (setq org-log-done t)
 
-(org-remember-insinuate)
-(setq org-default-notes-file (expand-file-name "index.org" org-directory))
+;; (org-remember-insinuate)
+;; (setq org-default-notes-file (expand-file-name "index.org" org-directory))
 
-(setq org-remember-templates
-      '(("Note" ?n "** %?\n   %i\n   %a\n   %t" nil "Inbox")
-        ("Todo" ?t "** TODO %?\n   %i\n   %a\n   %t" nil "Inbox")))
+;; (setq org-remember-templates
+;;       '(("Note" ?n "** %?\n   %i\n   %a\n   %t" nil "Inbox")
+;;         ("Todo" ?t "** TODO %?\n   %i\n   %a\n   %t" nil "Inbox")))
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline (format "%sindex.org" org-directory) "Inbox")
@@ -186,5 +187,57 @@
 ;;       org-mode-map "C-c"
 ;;       '(("C-n" . (lambda () (outline-next-visible-heading 1)))
 ;;         ("C-p" . (lambda () (outline-previous-visible-heading 1)))))))
+
+;;-----------------------------------------------------------------
+;; rss
+;;-----------------------------------------------------------------
+(defun org-feed-parse-rdf-feed (buffer)
+  "Parse BUFFER for RDF feed entries.
+Returns a list of entries, with each entry a property list,
+containing the properties `:guid' and `:item-full-text'."
+  (let (entries beg end item guid entry)
+    (with-current-buffer buffer
+      (widen)
+      (goto-char (point-min))
+      (while (re-search-forward "<item[> ]" nil t)
+	(setq beg (point)
+	      end (and (re-search-forward "</item>" nil t)
+		       (match-beginning 0)))
+	(setq item (buffer-substring beg end)
+	      guid (if (string-match "<link\\>.*?>\\(.*?\\)</link>" item)
+		       (org-match-string-no-properties 1 item)))
+	(setq entry (list :guid guid :item-full-text item))
+	(push entry entries)
+	(widen)
+	(goto-char end))
+      (nreverse entries))))
+
+; (setq org-feed-retrieve-method 'wget)
+(setq org-feed-retrieve-method 'curl)
+
+(setq org-feed-default-template "\n* %h\n  - %U\n  - %a  - %description")
+
+(setq org-feed-alist nil)
+(add-to-list 'org-feed-alist
+  '("hatena" "http://feeds.feedburner.com/hatena/b/hotentry"
+    "~/Dropbox/org/rss.org" "はてな"
+    :parse-feed org-feed-parse-rdf-feed))
+(add-to-list 'org-feed-alist
+  '("tamura70" "http://d.hatena.ne.jp/tamura70/rss"
+    "~/DropBox/org/rss.org" "屯遁"
+    :parse-feed org-feed-parse-rdf-feed))
+;;-----------------------------------------------------------------
+;; Mobile
+;;-----------------------------------------------------------------
+;; Dropboxで同期するMobileOrgフォルダへのパスを設定
+(setq org-mobile-directory "~/Dropbox/MobileOrg")
+
+;; MobileOrg側で新しく作成したノートを保存するファイルの名前を指定する。
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/mobile.org")
+
+;; 同期するファイルを指定する。
+(setq org-agenda-files (quote ("~/Dropbox/org/rss.org"
+                               "~/Dropbox/org/index.org"
+                               "~/Dropbox/org/account.org")))
 
 (provide 'mikio-org)

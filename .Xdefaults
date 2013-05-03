@@ -1,10 +1,10 @@
 URxvt.preeditType: Root
 URxvt.perl-ext-common: default,-selection-popup,-option-popup,-searchable-scrollback
 URxvt.saveLines:0
-URxvt.font: xft:Migu 1M:pixelsize=13:antialias=true
-URxvt.boldFont: xft:Migu 1M:pixelsize=13:antialias=true
-URxvt.italicFont: xft:Migu 1M:pixelsize=13:antialias=true
-URxvt.boldItalicFont: xft:Migu 1M:pixelsize=13:antialias=true
+URxvt.font: xft:Migu 1M:pixelsize=16:antialias=true
+URxvt.boldFont: xft:Migu 1M:pixelsize=16:antialias=true
+URxvt.italicFont: xft:Migu 1M:pixelsize=16:antialias=true
+URxvt.boldItalicFont: xft:Migu 1M:pixelsize=16:antialias=true
 URxvt.title: rxvt
 URxvt.color0: #000000
 URxvt.color1: #FF4500

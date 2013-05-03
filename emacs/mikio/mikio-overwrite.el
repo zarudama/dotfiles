@@ -11,11 +11,10 @@
 ;; (add-to-list 'Info-directory-list (mikio/site-lisp-directory "jdee-new/cedet/doc/info"))
 
 ;; JDEE with emacs24 and cedet1.1(tar.gz)
-(load-file (mikio/site-lisp-directory "jdee-old/cedet-1.1/common/cedet.el"))
+;;(load-file (mikio/site-lisp-directory "jdee-old/cedet-1.1/common/cedet.el"))
 
-;; emacs24だと、最新のorg-7.8.11が同梱されている。
-;; (load-file (mikio/site-lisp-directory "org-7.8.11/lisp/org.el"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "org-7.8.11/lisp"))
-;; (add-to-list 'load-path (mikio/site-lisp-directory "org-7.8.11/contrib/lisp"))
+(add-to-list 'load-path (mikio/site-lisp-directory "org-8.0/lisp"))
+(add-to-list 'load-path (mikio/site-lisp-directory "org-8.0/contrib/lisp") t)
+(load-file (mikio/site-lisp-directory "org-8.0/lisp/org.el"))
 
 (provide 'mikio-overwrite)

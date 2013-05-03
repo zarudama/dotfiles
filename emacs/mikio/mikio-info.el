@@ -1,6 +1,5 @@
-(require '_util)
+(require 'mikio-util)
 (require 'info)
-
 ;;-----------------------------------------------------------------
 ;; パッケージに属さないinfoの定義用。
 ;; emacs info 日本語版とか。
@@ -18,5 +17,8 @@
 ;; * Emacs: (emacs-ja).             The extensible self-documenting text editor(Japanese).
 ;;(add-to-list 'Info-directory-list "~/.emacs.d/info")
 ;;(add-to-list 'Info-directory-list (mikio/site-lisp-directory "emacs-jabber-0.8.91"))
+(add-to-list 'Info-directory-list "~/Dropbox/info")
+
+(provide 'mikio-info)
 
 

@@ -64,8 +64,8 @@
 ;;(require 'mikio-windows) ;; install-elisp(original)
 (require 'mikio-simple-screen) ;; install-elisp(original)
 ;;(require 'mikio-elscreen)
-(require 'mikio-e2wm)
-(require 'mikio-color-moccur)
+;;(require 'mikio-e2wm)
+;;(require 'mikio-color-moccur)
 
 ;;(require 'mikio-anything) ; 24.2以降で、自分で定義した関数がM-xで表示されなくなった。
 ;;(require 'mikio-moccur) ;; color-moccur(melpa), moccur-edit(emacswiki)
@@ -75,8 +75,8 @@
 ;;(require 'mikio-helm-git)
 (require 'mikio-helm-moccur)
 (require 'mikio-helm-gtags)
-(require 'mikio-helm-ack)
-(require 'mikio-emamux)
+;;(require 'mikio-helm-ack)
+;;(require 'mikio-emamux)
 
 (require 'mikio-auto-complete)
 (require 'mikio-popwin)
@@ -98,8 +98,9 @@
 (require 'mikio-slime)
 (require 'mikio-nrepl)
 ;; (require 'mikio-flymake)
-(require 'mikio-jdee) ;; manual
+;;(require 'mikio-jdee) ;; manual
 ;;(require 'mikio-cedet) ;; manual
+(require 'mikio-eclim) ;; manual
 
 ;; ;;;-----------------------------------------------------------------
 ;; ;;; メジャーモード
@@ -124,7 +125,7 @@
 ;; ;;; 主にデスクトップのemacsで使用する拡張たち
 ;; ;;;-----------------------------------------------------------------
 (when mikio/skk-use  (require 'mikio-skk)) ; manual-install
-(when mikio/info-use (require 'mikio-info))
+;;(when mikio/info-use (require 'mikio-info))
 (when mikio/org-use (require 'mikio-org))
 (when mikio/o-blog-use (require 'mikio-o-blog))
 (when mikio/gnus-use (require 'mikio-gnus))

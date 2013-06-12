@@ -21,10 +21,4 @@
   ;;   (setq moccur-use-migemo t))
   )
 
-(when (require 'anything-c-moccur nil t)
-  (setq moccur-split-word t)
-  (global-set-key (kbd "C-c s") 'anything-c-moccur-occur-by-moccur)
-  ;; インクリメンタルサーチから以降できるように。
-  (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch))
-
 (provide 'mikio-moccur)

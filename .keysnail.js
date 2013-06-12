@@ -580,11 +580,11 @@ key.setViewKey([["M->"], ["G"]], function (ev) {
     goDoCommand("cmd_scrollBottom");
 }, 'ページ末尾へ移動', true);
 
-key.setViewKey('e', function (ev, arg) {
+key.setViewKey('f', function (ev, arg) {
     ext.exec("hok-start-foreground-mode", arg);
 }, 'Start foreground hint mode', true);
 
-key.setViewKey('E', function (ev, arg) {
+key.setViewKey('F', function (ev, arg) {
     ext.exec("hok-start-background-mode", arg);
 }, 'Start background hint mode', true);
 
@@ -612,11 +612,11 @@ key.setViewKey('R', function () {
     BrowserReloadSkipCache();
 }, '更新(キャッシュを無視)');
 
-key.setViewKey('B', function (ev) {
+key.setViewKey('H', function (ev) {
     BrowserBack();
 }, '戻る', false);
 
-key.setViewKey('F', function (ev) {
+key.setViewKey('L', function (ev) {
     BrowserForward();
 }, '進む', false);
 
@@ -624,7 +624,7 @@ key.setViewKey(["C-x", "h"], function (ev) {
     goDoCommand("cmd_selectAll");
 }, 'すべて選択', true);
 
-key.setViewKey('f', function (ev) {
+key.setViewKey('i', function (ev) {
     command.focusElement(command.elementsRetrieverTextarea, 0);
 }, '最初のインプットエリアへフォーカス', true);
 
@@ -710,9 +710,12 @@ key.setCaretKey('z', function (ev) {
     command.recenter(ev);
 }, 'キャレットの位置までスクロール', false);
 
-key.setCaretKey([["C-SPC"], ["C-@"]], function (ev) {
+key.setCaretKey('v', function (ev) {
     command.setMark(ev);
 }, 'マークをセット', true);
+key.setCaretKey('y', function (ev) {
+    command.copyRegion(ev);
+}, '選択中のテキストをコピー', true);
 
 key.setCaretKey(':', function (ev, arg) {
     shell.input(null, arg);
@@ -726,11 +729,11 @@ key.setCaretKey('R', function () {
     BrowserReloadSkipCache();
 }, '更新(キャッシュを無視)');
 
-key.setCaretKey('B', function (ev) {
+key.setCaretKey('H', function (ev) {
     BrowserBack();
 }, '戻る', false);
 
-key.setCaretKey('F', function (ev) {
+key.setCaretKey('L', function (ev) {
     BrowserForward();
 }, '進む', false);
 
@@ -738,7 +741,7 @@ key.setCaretKey(["C-x", "h"], function (ev) {
     goDoCommand("cmd_selectAll");
 }, 'すべて選択', true);
 
-key.setCaretKey('f', function (ev) {
+key.setCaretKey('i', function (ev) {
     command.focusElement(command.elementsRetrieverTextarea, 0);
 }, '最初のインプットエリアへフォーカス', true);
 

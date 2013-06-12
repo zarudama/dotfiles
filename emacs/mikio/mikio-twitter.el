@@ -104,6 +104,8 @@
             (define-key twittering-mode-map (kbd "F") 'twittering-favorite)
             (define-key twittering-mode-map (kbd "R") 'twittering-native-retweet)
             (define-key twittering-mode-map (kbd "s") 'twittering-search)
+            (when (require 'jaunte nil t)
+              (define-key twittering-mode-map (kbd "f") 'jaunte))
             ;; "<"">"で先頭、最後尾にいけるように
 ))
 ;; ;; URL短縮サービスをj.mpに

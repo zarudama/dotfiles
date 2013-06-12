@@ -17,7 +17,7 @@
 ;; * Emacs: (emacs-ja).             The extensible self-documenting text editor(Japanese).
 ;;(add-to-list 'Info-directory-list "~/.emacs.d/info")
 ;;(add-to-list 'Info-directory-list (mikio/site-lisp-directory "emacs-jabber-0.8.91"))
-(add-to-list 'Info-directory-list "~/Dropbox/info")
+(add-to-list 'Info-directory-list "~/Dropbox/info")k
 
 (provide 'mikio-info)
 

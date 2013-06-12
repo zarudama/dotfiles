@@ -109,6 +109,7 @@
             "y" (lookup-key evil-normal-state-map "y")
             "v" (lookup-key evil-motion-state-map "v")
             "V" (lookup-key evil-motion-state-map "V")
+            "C-e" (lookup-key evil-normal-state-map "C-e")
             ,@bindings
             )))
 
@@ -123,10 +124,11 @@
   (eval-after-load 'w3m
     '(progn
        (my-evil-add-hjkl-bindings w3m-mode-map 'normal
-          "f" (lookup-key w3m-mode-map "e")
-          "F" (lookup-key w3m-mode-map "E")
-          "H" (lookup-key w3m-mode-map "B")
-          "L" (lookup-key w3m-mode-map "F")))))
+;;         "C-e" (lookup-key evil-normal-state-map "C-e")
+         "f" (lookup-key w3m-mode-map "e")
+         "F" (lookup-key w3m-mode-map "E")
+         "H" (lookup-key w3m-mode-map "B")
+         "L" (lookup-key w3m-mode-map "F")))))
 
 (when (locate-library "howm")
   (eval-after-load 'howm

@@ -98,9 +98,9 @@
 (require 'mikio-slime)
 (require 'mikio-nrepl)
 ;; (require 'mikio-flymake)
-;;(require 'mikio-jdee) ;; manual
+(require 'mikio-jdee) ;; manual
 ;;(require 'mikio-cedet) ;; manual
-(require 'mikio-eclim) ;; manual
+;;(require 'mikio-eclim) ;; manual
 
 ;; ;;;-----------------------------------------------------------------
 ;; ;;; メジャーモード
@@ -125,7 +125,7 @@
 ;; ;;; 主にデスクトップのemacsで使用する拡張たち
 ;; ;;;-----------------------------------------------------------------
 (when mikio/skk-use  (require 'mikio-skk)) ; manual-install
-;;(when mikio/info-use (require 'mikio-info))
+(when mikio/info-use (require 'mikio-info))
 (when mikio/org-use (require 'mikio-org))
 (when mikio/o-blog-use (require 'mikio-o-blog))
 (when mikio/gnus-use (require 'mikio-gnus))

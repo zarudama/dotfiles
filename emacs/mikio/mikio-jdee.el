@@ -3,7 +3,7 @@
 ;; 参考URL
 ;; http://epian-wiki.appspot.com/wiki/Emacs/JDEE
 
-(add-to-list 'load-path (mikio/site-lisp-directory "jdee-old/jdee/dist/jdee-2.4.1/lisp"))
+(add-to-list 'load-path (mikio/site-lisp-directory "jdee/lisp"))
 (add-to-list 'load-path (mikio/site-lisp-directory "emacs-helm-jdee-method"))
 
 ;; load autoloads file

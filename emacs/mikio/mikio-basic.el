@@ -61,6 +61,7 @@
 (setq-default save-place t)
 (show-paren-mode 1)
 (line-number-mode 1)
+(setq linum-format "%3d ")
 (column-number-mode 1)
 (transient-mark-mode 1)
 (setq gc-cons-threshold (* 10 gc-cons-threshold))

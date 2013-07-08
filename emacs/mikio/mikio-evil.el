@@ -116,7 +116,10 @@
 (evil-set-initial-state 'dired-mode 'normal)
 (eval-after-load 'dired
   '(progn
-     (my-evil-add-hjkl-bindings dired-mode-map 'normal)
+     (my-evil-add-hjkl-bindings dired-mode-map 'normal
+       "C" (lookup-key dired-mode-map "C")
+       "j" (lookup-key dired-mode-map "n")
+       "k" (lookup-key dired-mode-map "p"))
      (evil-declare-key 'normal dired-mode-map (kbd "C-c C-c") 'revert-buffer)))
 
 (when (locate-library "w3m")
@@ -124,11 +127,11 @@
   (eval-after-load 'w3m
     '(progn
        (my-evil-add-hjkl-bindings w3m-mode-map 'normal
-;;         "C-e" (lookup-key evil-normal-state-map "C-e")
          "f" (lookup-key w3m-mode-map "e")
          "F" (lookup-key w3m-mode-map "E")
          "H" (lookup-key w3m-mode-map "B")
-         "L" (lookup-key w3m-mode-map "F")))))
+         "L" (lookup-key w3m-mode-map "F"))
+       (evil-declare-key 'normal w3m-mode-map (kbd "C-e") 'evil-scroll-line-down))))
 
 (when (locate-library "howm")
   (eval-after-load 'howm
@@ -249,6 +252,17 @@
 ;;   ", w" 'paredit-wrap-round
 ;;   ", \"" 'paredit-meta-doublequote)
 
+;; 物理行移動と論理行移動を入れ替え
+;; http://d.hatena.ne.jp/tarao/20130304/evil_config#misc-physical-line
+(defun evil-swap-key (map key1 key2)
+  ;; MAP中のKEY1とKEY2を入れ替え
+  "Swap KEY1 and KEY2 in MAP."
+  (let ((def1 (lookup-key map key1))
+        (def2 (lookup-key map key2)))
+    (define-key map key1 def2)
+    (define-key map key2 def1)))
+(evil-swap-key evil-motion-state-map "j" "gj")
+(evil-swap-key evil-motion-state-map "k" "gk")
 
 (provide 'mikio-evil)
 
